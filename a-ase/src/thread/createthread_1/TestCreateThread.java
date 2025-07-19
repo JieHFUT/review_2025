@@ -12,6 +12,8 @@ package thread.createthread_1;
 public class TestCreateThread {
     public static void main(String[] args) {
 
+
+
         // 创建继承 thread 类的线程1的实例
         ExtendThread thread1 = new ExtendThread();
         // 通过对象调用 start() 启动线程
