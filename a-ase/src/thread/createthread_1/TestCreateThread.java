@@ -25,7 +25,7 @@ public class TestCreateThread {
         thread2.start();
 
         /**
-         * 注意不能使用 run() 方法来启动线程，这是对线程什么时候开始调度，是计算机操作系统的问题
+         * 注意不能使用 run() 方法来启动线程，对线程什么时候开始调度，是计算机操作系统的问题
          * 使用 run() 方法不会启动线程，只是普通的在 main 线程里调用其他类的方法
          *
          * 已经启动的线程不能再次执行 start() 方法，否则会报 IllegalThreadStateException 错
