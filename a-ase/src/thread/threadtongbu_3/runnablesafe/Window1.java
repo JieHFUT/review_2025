@@ -20,6 +20,7 @@ public class Window1 implements Runnable {
 
     @Override
     public void run() {
+        // 该线程调用下面的 show() 方法
         while (flag) {
             show();
         }

@@ -1,9 +1,10 @@
-package thread.waitandnotify_5;
+package thread.waitandnotify_5.printnumber;
 
 public class PrintNumber implements Runnable {
 
 
     private int number = 1;
+
     Object lock = new Object();
 
     @Override

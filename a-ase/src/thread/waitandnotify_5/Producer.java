@@ -19,7 +19,7 @@ public class Producer extends Thread {
             System.out.println("生产者开始生产商品...");
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

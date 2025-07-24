@@ -21,7 +21,7 @@ public class TestCreateThread {
 
         //
         ExtendThread thread2 = new ExtendThread();
-        thread2.setName("this is the thread's name");
+        thread2.setName("thread-1");
         thread2.start();
 
         /**

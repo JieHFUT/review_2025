@@ -36,7 +36,7 @@ public class Bank {
         return instance;
     }
 
-    //实现线程安全的方式3:相较于方式1和方式2来讲，效率更高。为了避免出现指令重排，需要将instance声明为volatile
+    //实现线程安全的方式3: 相较于方式1和方式2来讲，效率更高。为了避免出现指令重排，需要将 instance声明为 volatile
     public static Bank getInstance3(){
         if(instance == null) {
             synchronized (Bank.class) {
