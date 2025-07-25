@@ -1,4 +1,4 @@
-package api.stringandstringbufferstringbuilder.stringbufferstringbuilder;
+package api.api01_string.stringbufferstringbuilder;
 
 import org.junit.Test;
 

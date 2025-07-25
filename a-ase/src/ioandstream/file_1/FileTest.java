@@ -1,5 +1,7 @@
 package ioandstream.file_1;
 
+import java.util.Arrays;
+
 /**
  * ClassName: FileTest
  * Package: ioandstream.file_1
@@ -11,6 +13,6 @@ package ioandstream.file_1;
  */
 public class FileTest {
     public static void main(String[] args) {
-        
+
     }
 }
