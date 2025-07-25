@@ -18,5 +18,7 @@ public class CollTest {
         LinkedList<String> list = new LinkedList<String>();
         HashMap<Integer, Integer> map = new HashMap();
         System.out.println(0^113);
+
+
     }
 }
