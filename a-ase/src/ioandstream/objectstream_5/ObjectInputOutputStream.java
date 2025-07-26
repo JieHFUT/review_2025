@@ -16,6 +16,7 @@ import java.io.*;
 public class ObjectInputOutputStream {
 
     // 序列化过程：使用ObjectOutputStream流实现。将内存中的Java对象保存在文件中或通过网络传输出去
+
     @Test
     public void test1() throws IOException {
         File file = new File("object.txt");

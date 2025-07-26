@@ -47,8 +47,8 @@ public class FileReaderAndWriter {
 
             // 创建缓冲数组
             char[] cbuffer = new char[4];
-            // 读入：read(char[] cbuffer)
-            // 写出：write(String str) / write(char[] cbuffer,0,len)
+            // 文件读入到内存中：read(char[] cbuffer)，返回值为 char 的个数
+            // 内存写出到文件中：write(String str) / write(char[] cbuffer,0,len)
             // 开始打印在控制台上
             int ret;
             while ((ret = fileReader.read(cbuffer)) != -1) {
