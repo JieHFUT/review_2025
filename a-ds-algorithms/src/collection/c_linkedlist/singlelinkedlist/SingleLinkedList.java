@@ -1,6 +1,8 @@
 package collection.c_linkedlist.singlelinkedlist;
 
 import java.text.BreakIterator;
+import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * ClassName: SingleLinkedList
@@ -150,7 +152,6 @@ public class SingleLinkedList {
 
 
     // 查找单链表中的倒数第 K 个节点
-
     /**
      * 方式1：先遍历一遍，再遍历到 length - k 个
      * 方式2：使用快慢指针方法
@@ -159,8 +160,111 @@ public class SingleLinkedList {
      * @return
      */
     public Node findLastIndexNode1(Node head, int k) {
+        if (head.next == null) return null;
 
+        Node current = head;
+        int length = getLength(head);
+        if (length < k) return null;
+
+        for (int i = 0; i < length - k; i++) {
+            current = current.next;
+        }
+        return current.next;
     }
+    public Node findLastIndexNode2(Node head, int k) {
+        if (head.next == null) return null;
+        // 快慢指针：fast 先跑 k 个节点
+        Node fast = head;
+        Node slow = head;
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow.next;
+    }
+
+    // 单链表的反转
+    /**
+     * 方法一：双指针方法
+     * 方法二：插入法
+     *
+     * @param head
+     */
+    public void reverse1(Node head) {
+        if (head.next == null || head.next.next == null) return;
+        // 至少有两个节点
+        Node prev = head.next;
+        Node next = head.next.next;
+        prev.next = null;
+        while (true) {
+            // 记录 next 下面这个节点
+            Node node = next.next;
+            next.next = prev;
+            // 同步移动
+            prev = next;
+            next = node;
+            if (node == null) break;
+        }
+        // 此时 next 指向最后一个节点，prev 指向倒数第二个节点
+        head.next = prev;
+    }
+
+    public void reverse2(Node head) {
+        // 插入法：制造一个新的头节点，遍历原链表，来一个新节点就插入到新头节点和其他节点之间
+        /**
+         * head -> 1 -> 2 -> 3
+         * newhead
+         * newhead -> 1
+         * newhead -> 2 -> 1
+         * newhead -> 3 -> 2 -> 1
+         */
+        if (head.next == null || head.next.next == null) return;
+        Node newHead = new Node(0, "", "");
+        Node current = head.next;
+        while (current != null) {
+            Node headNext = current.next;
+            current.next = newHead.next;
+            newHead.next = current;
+            current = headNext;
+        }
+        head.next = newHead.next;
+    }
+
+
+    // 从尾到头部打印单链表
+    /**
+     * 方法一：使用栈解决
+     * 方法二：先反转再遍历
+     */
+    public void printFromLast(Node head) {
+        if (head.next == null) return;
+        // 遍历，将其放入栈，在从栈中遍历
+        Stack<Node> stack = new Stack<>();
+        Node current = head;
+
+        while (current.next != null) {
+            stack.push(current.next);
+            current = current.next;
+        }
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+    }
+
+
+
+    // 合并两个有序的单链表，使其合并之后依然有序
+    public Node combine(Node head1, Node head2) {
+        if (head1 == null) return head2;
+        if (head2 == null) return head1;
+
+
+        return null;
+    }
+
 
 
 
