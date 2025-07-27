@@ -257,12 +257,48 @@ public class SingleLinkedList {
 
 
     // 合并两个有序的单链表，使其合并之后依然有序
-    public Node combine(Node head1, Node head2) {
-        if (head1 == null) return head2;
-        if (head2 == null) return head1;
+    public static Node combine(Node head1, Node head2) {
+        if (head1 == null || head1.next == null) return head2;
+        if (head1 == null || head2.next == null) return head1;
+
+        Node list1 = head1.next;
+        Node list2 = head2.next;
+        Node newHead = new Node(0, "", "");
+
+        while (list1 != null && list2 != null) {
+            // 比较大小
+            if (list1.no <= list2.no) {
+                Node headNext = list1.next;
+                list1.next = newHead.next;
+                newHead.next = list1;
+                list1 = headNext;
+            } else {
+                Node headNext = list2.next;
+                list2.next = newHead.next;
+                newHead.next = list2;
+                list2 = headNext;
+            }
 
 
-        return null;
+        }
+        // 到这一步的时候其中一个链表已经到头
+        if (list1 == null) {
+            while (list2 != null) {
+                Node headNext = list2.next;
+                list2.next = newHead.next;
+                newHead.next = list2;
+                list2 = headNext;
+            }
+        }
+        if (list2 == null) {
+            while (list1 != null) {
+                Node headNext = list1.next;
+                list1.next = newHead.next;
+                newHead.next = list1;
+                list1 = headNext;
+            }
+        }
+        return newHead;
     }
 
 
