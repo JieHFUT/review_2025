@@ -13,12 +13,13 @@ import java.util.Scanner;
  * 计算表达式形如：“7-3+2*3-6” = ?
  *
  * 升级版：如果出现多位数怎么考虑？
+ * TODO:在这里需要考虑遍历字符串的时候，如果当前字符是数字，需要继续遍历直到运算符；然后将前面的数字合并
  *
  * @Author jieHFUT
  * @Create 2025/7/27 16:47
  * @Version 1.0
  */
-public class Calculator {
+public class Calculator2 {
 
     public static void main(String[] args) {
         System.out.println("请输入计算表达式：");
@@ -35,8 +36,8 @@ public class Calculator {
          * 4.遍历完成后，就按序 pop出两个数字一个符号计算，直到数字栈中只剩下一个数字
          */
         String input = sc.nextLine(); // "7-3+2*3-6"
-        ArrayStack numStack = new ArrayStack(10); // 数栈
-        ArrayStack opStack = new ArrayStack(10);  // 符号栈
+        ArrayStack numStack = new ArrayStack(20); // 数栈
+        ArrayStack opStack = new ArrayStack(20);  // 符号栈
         int index = 0;
         while (true) {
             // 获取字符串的最前面的字符
@@ -52,9 +53,16 @@ public class Calculator {
                     opStack.push(ch);
                 }
             } else {
-                // 是个位数 => 直接入栈
+                // 是数字 => 直接入栈
+                // 如果是数字的话还需要继续遍历直到找到运算符
+                StringBuilder builder = new StringBuilder();
+                builder.append(ch);
+                while (index < input.length() - 1 && !isOper(input.charAt(index + 1))) {
+                    index++;
+                    builder.append(input.charAt(index));
+                }
                 // TODO:注意在这里不能直接入栈，必须将字符转换为数字
-                numStack.push(Integer.parseInt(String.valueOf(ch)));
+                numStack.push(Integer.parseInt(String.valueOf(builder)));
             }
             index++;
             // 结束标志：如果下标等于字符串长度，遍历完成
