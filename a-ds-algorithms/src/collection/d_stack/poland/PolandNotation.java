@@ -94,6 +94,7 @@ public class PolandNotation {
      */
     public static List<String> infixListToSuffixList(List<String> infixExpression) {
 
+        return null;
     }
 
 	/*
