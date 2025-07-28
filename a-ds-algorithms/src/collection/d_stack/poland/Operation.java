@@ -16,6 +16,7 @@ public class Operation {
     private static int MUL = 2;
     private static int DIV = 2;
 
+
     // 返回这些符号对应的优先级
     public static int getPriority(String operation) {
         int ret = 0;
@@ -37,6 +38,15 @@ public class Operation {
                 break;
         }
         return ret;
+    }
+
+    // 计算
+    public static int cal(int num1, int num2, int oper) {
+        if (oper == '+') return num2 + num1;
+        if (oper == '*') return num2 * num1;
+        if (oper == '/') return num2 / num1;
+        if (oper == '-') return num2 - num1;
+        return 0;
     }
 
 }

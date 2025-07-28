@@ -89,6 +89,5 @@ public class Calculator {
         if (oper == '/') return num2 / num1;
         if (oper == '-') return num2 - num1;
         return 0;
-
     }
 }

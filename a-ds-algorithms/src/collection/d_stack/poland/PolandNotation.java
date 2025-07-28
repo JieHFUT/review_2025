@@ -1,7 +1,9 @@
 package collection.d_stack.poland;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * ClassName: Polandotation
@@ -93,28 +95,87 @@ public class PolandNotation {
      * 8.依次弹出s2中的元素并输出，结果的逆序即为中缀表达式对应的后缀表达式
      */
     public static List<String> infixListToSuffixList(List<String> infixExpression) {
+        Stack<String> numStack = new Stack<>(); // 存储数栈 s2
+        Stack<String> operStack = new Stack<>();// 运算符栈 s1
+        // 遍历前缀集合
+        Iterator<String> iterator = infixExpression.iterator();
+        while (iterator.hasNext()) {
+            String str = iterator.next();
+            // 如果是数字就直接入数栈
+            if (str.matches("[0-9]*")) {
+                numStack.push(str);
+            } else if (str.equals("(")) {
+                operStack.push(str);
+            } else if (str.equals(")")) {
+                // 右括号：一直弹出运算符压入数栈，扔掉括号 "(", ")"
+                while (!operStack.peek().equals("(")) {
+                    numStack.push(operStack.pop());
+                }
+                operStack.pop();
+            } else {
+                // 普通运算符（如果此时运算符的优先级小于等于栈顶的运算符，弹出运算符压入另外一个栈，直到栈顶的运算符优先级高于 str，然后str入栈）
+                //           否则直接入栈
+                while (!operStack.isEmpty() && !operStack.peek().equals("(") && Operation.getPriority(str) <= Operation.getPriority(operStack.peek())) {
+                    numStack.push(operStack.pop());
+                }
+                operStack.push(str);
+            }
+        }
+        while(!operStack.isEmpty()) {
+            numStack.push(operStack.pop());
+        }
+        Stack<String> retStack = new Stack<>();
+        while (!numStack.isEmpty()) {
+            retStack.push(numStack.pop());
+        }
 
-        return null;
+        List<String> ret = new ArrayList<>();
+        while (!retStack.isEmpty()) {
+            ret.add(retStack.pop());
+        }
+
+        return ret;
     }
 
-	/*
-	 *
-	 */
+    /**
+     * 将一个后缀表达式字符串转换为后缀的集合
+     * @param suffixString "10 2 3 + 4 * + 5 -"
+     * @return List[10, 2, 3, +, 4, *, +, 5, -]
+     */
+    public static List<String> suffixExpression(String suffixString) {
+        String[] suffixArray = suffixString.split(" ");
+        List<String> ret = new ArrayList<>();
+        for (String s : suffixArray) {
+            ret.add(s);
+        }
+        return ret;
+    }
 
     /**
      * 完成对逆波兰表达式的运算
-          1)从左至右扫描，将3和4压入堆栈；
-          2)遇到+运算符，因此弹出4和3（4为栈顶元素，3为次顶元素），计算出3+4的值，得7，再将7入栈；
-          3)将5入栈；
-          4)接下来是×运算符，因此弹出5和7，计算出7×5=35，将35入栈；
-          5)将6入栈；
-          6)最后是-运算符，计算出35-6的值，即29，由此得出最终结果
-     * @param suffixExpression List[1, 2, 3, +, 4, ×, +, 5, –]
-     * @return 29
+     * "10+((2+3)×4)-5" = 25
+     * 方法：按序入栈，遇到运算符就弹出两个计算
+     *
+     * @param suffixExpression List[10, 2, 3, +, 4, ×, +, 5, –]
+     * @return 25
      */
     public static int calculate(List<String> suffixExpression) {
-
-        return 0;
+        Stack<String> retStack = new Stack<>();
+        // 遍历集合
+        Iterator<String> iterator = suffixExpression.iterator();
+        while (iterator.hasNext()) {
+            String str = iterator.next();
+            if (str.matches("[0-9]*")) {
+                // 如果是数字就入栈
+                retStack.push(str);
+            } else {
+                // 是符号就弹出计算
+                retStack.push(String.valueOf(
+                        Operation.cal(Integer.parseInt(retStack.pop()), Integer.parseInt(retStack.pop()), str.charAt(0))
+                ));
+            }
+        }
+        return Integer.parseInt(retStack.pop());
     }
 
 
