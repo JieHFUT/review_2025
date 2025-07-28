@@ -59,7 +59,6 @@ public class Fibonacci {
         // 扩展数组长度符合斐波那契长度，
         int[] fibonacci = Arrays.copyOf(array, fib[k] - 1);
 
-        return 0;
     }
 
 }
