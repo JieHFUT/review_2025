@@ -15,8 +15,13 @@ public class Radix {
 
     /**
      * 原理是按照位数排序
+     *
      * 10个桶 0-9
-     * 1.先排序个位数
+     * 1.先排序个位数，按照个位数大小将所有数字放在对应的桶里
+     * 2.再排序十位数，按照十位数大小将所有数字放在对应的桶里（注意是稳定排序）
+     * 3.......
+     *
+     * 数组中最大的数有多少位数，就需要进行排序多少轮，每一轮位数变大一位
      * @param arr
      */
     public static void radixSort(int[] arr) {
@@ -32,7 +37,8 @@ public class Radix {
             }
         }
         int enlarged = 1;
-        int maxNum = (max + "").length();
+        int maxNum = (max + "").length(); // 最大的位数
+
         for (int k = 0; k < maxNum; k++, enlarged *= 10) {
             // 依次排序个位、十位、百位
             // 个、十、百... 位数的数字
@@ -43,6 +49,7 @@ public class Radix {
                 bucket[digit][bucketIndexNumber[digit]] = arr[i];
                 bucketIndexNumber[digit]++;
             }
+
             // 此时数组中的数字已经全部入桶，将桶中的数字全部拿出放回数组中
             int recodeArr = 0;
             for (int i = 0; i < bucket.length; i++) {
