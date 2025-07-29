@@ -353,11 +353,45 @@ public class BinaryTree {
     public boolean isSymmetricTree() {
         /**
          * 思路：
-         *
+         * 方法一、将其左子树的每一个节点的左右反过来，如果反过来后和右子树一样 return true
+         * 方法二：
          */
+        return isSymmetricTree(root);
+    }
+    public boolean isSymmetricTree(Node node) {
+        if (node == null) return false;
+        if (node.getLeft() == null && node.getRight() == null) return true;
+        if (node.getLeft() == null || node.getRight() == null) return false;
+        turnOneTree(node.getLeft());
+        if (isSameTree(node.getRight(), node.getLeft())) return true;
+        return false;
     }
 
+    public boolean isSymmetricTree(Node left, Node right) {
+        if (left == null && right == null) return true;
+        if (left == null || right == null) return false;
+        if (left.getNo() != right.getNo()) return false;
+        return isSymmetricTree(left.getLeft(), right.getRight())
+                && isSymmetricTree(left.getRight(), right.getLeft());
+    }
+
+
+
     // 11.将一棵树的每一个节点的左右子树指向反过来
+    public void turnOneTree() {
+        turnOneTree(root);
+    }
+    public void turnOneTree(Node node) {
+        if (node == null) return;
+        swap(node);
+        turnOneTree(node.getLeft());
+        turnOneTree(node.getRight());
+    }
+    public void swap(Node toTurn) {
+        Node temp = toTurn.getLeft();
+        toTurn.setLeft(toTurn.getRight());
+        toTurn.setRight(temp);
+    }
 
 
     // 12.找到两个指定节点的最近的公共祖先
