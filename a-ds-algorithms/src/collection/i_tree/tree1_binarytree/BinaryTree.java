@@ -395,9 +395,51 @@ public class BinaryTree {
 
 
     // 12.找到两个指定节点的最近的公共祖先
+    public Node lowestCommonAncestor(Node root, Node p, Node q) {
+        /**
+         * 思路：
+         * 方法一：使用集合 list 记录两个节点的路径，比较路径，寻找相同的最早祖先
+         * 方法二：
+         */
+        List<Node> patha = new ArrayList<>();
+        List<Node> pathb = new ArrayList<>();
+        patha = findWay(root, p);
+        pathb = findWay(root, q);
 
+        Iterator<Node> iterator = patha.iterator();
+        while (iterator.hasNext()) {
+            Node node1 = iterator.next();
+            for(Node node2 : pathb) {
+                if (node1.getNo() == node2.getNo()) return node1;
+            }
+        }
+        return null;
+    }
 
-
+    /**
+     *
+     * @param root
+     * @param p
+     * @return 从节点 p 到根节点的一个通路
+     */
+    private List<Node> findWay(Node root, Node p) {
+        List<Node> path = new ArrayList<>();
+        // 判断目标节点是否通过该节点
+        if (root.getNo() == p.getNo()) {
+            path.add(root);
+            return path;
+        }
+        List<Node> pathlr = null;
+        pathlr = findWay(root.getLeft(), p);
+        if (pathlr != null) {
+            path.addAll(pathlr);
+        }
+        pathlr = findWay(root.getRight(), p);
+        if (pathlr != null) {
+            path.addAll(pathlr);
+        }
+        return null;
+    }
 
 
 }
