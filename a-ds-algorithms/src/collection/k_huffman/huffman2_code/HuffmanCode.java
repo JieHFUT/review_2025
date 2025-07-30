@@ -218,6 +218,12 @@ public class HuffmanCode {
     }
 
 
+
+
+
+
+
+
     // 解码，根据传入的经过编码的 byte[]，将其内信息转化为 010100101...
     // 再根据 01 代码匹配哈夫曼表将其解码为原本的 byte[]
     public byte[] decode(byte[] zip) {
@@ -237,7 +243,7 @@ public class HuffmanCode {
             stringBuilder.append(str);
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////
-        ////////////// 这是待传送的0101001001...流
+        ////////////// 这是待传送的 "0101001001..." 流
         //////////////////////////////////////////////////////////////////////////////////////////////////
         //System.out.println(stringBuilder.toString());
         // 此时重新获得 0100101010111010101001010100101001010100100100001010101100010010100...
@@ -287,8 +293,8 @@ public class HuffmanCode {
             // 可能不足 8 位
             return Integer.toBinaryString(code);
         } else {
-            String str = Integer.toBinaryString(code |= 256);
-            return str.substring(str.length() - 8);
+            String str = Integer.toBinaryString(code |= 256); // 256 = 00000000_00000000_00000001_00000000
+            return str.substring(str.length() - 8); // 只要后面8位
         }
     }
 

@@ -26,6 +26,8 @@ public class BinarySortTreeTest {
         System.out.println("输出排序树的层序遍历结果为：");
         tree.levelOrder();
     }
+
+
     @Test
     public void test(){
         BinarySortTree tree = new BinarySortTree();
@@ -39,4 +41,6 @@ public class BinarySortTreeTest {
         tree.levelOrder();
         tree.delete(18);
     }
+
+
 }
