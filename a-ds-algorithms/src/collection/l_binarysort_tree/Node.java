@@ -122,6 +122,8 @@ public class Node implements Comparable<Node>{
      * 没有父亲节点或者没有找到该节点就返回 null
      * @param value
      * @return
+     *
+     * 不过很明显，这种非递归如果不备份 this 会破坏根节点的指向
      */
     public Node searchParent(int value) {
         // 思路：采用双指针法
