@@ -5,6 +5,8 @@ package collection.m_avl;
  * ClassName: AVLTree
  * Package: avl
  * Description:
+ * 平衡二叉树：每一个节点的左右子树的高度差 <= 1
+ *
  *
  * @Author jieHFUT
  * @Create 2024/11/3 19:59

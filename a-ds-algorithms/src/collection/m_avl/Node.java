@@ -38,6 +38,7 @@ public class Node implements Comparable<Node>{
         return "Node [value=" + value + "]";
     }
 
+
     public void preOrder(Node root) {
         System.out.println(root);
         if (root.left != null)
@@ -48,7 +49,7 @@ public class Node implements Comparable<Node>{
 
 
     // 添加数据，同时将其进行排序
-    // 如果当添加完一个节点后，不满足 AVL 树，就需要旋转
+    // 如果当添加完一个节点后，不满足 AVL 树，就需要旋转（双旋转）
     public void add(Node toAdd) {
 
         if (value < toAdd.value) {
@@ -66,6 +67,7 @@ public class Node implements Comparable<Node>{
             else
                 this.left.add(toAdd);
         }
+
         // 需要左旋
         if (rightHeight() - leftHeight() > 1) {
             // 如果右子树的左子树 > 右子树的右子树 => 需要先对右子树进行右旋
@@ -83,6 +85,7 @@ public class Node implements Comparable<Node>{
             }
             rightRotate();
         }
+
     }
 
 

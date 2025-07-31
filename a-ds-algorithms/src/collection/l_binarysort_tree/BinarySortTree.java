@@ -110,21 +110,22 @@ public class BinarySortTree {
             else
                 parent.setRight(toDelete.getLeft());
         } else {
-            // 要删除的节点的左右子树都在（如以其右子节点为根，和其左子节点再造一个二叉排序树）
-            // 其父亲节点的子节点就是新的根
+            // 要删除的节点的左右子树都在（首先右子树的左右节点都大于左子树的）
+            // 所以找到右子树的最小节点，将其放到要被删除节点的位置
             int newValue = delRightTreeMin(toDelete.getRight());
-
+            toDelete.setValue(newValue);
         }
-
-
-
-
-
-        return false;
+        return true;
     }
 
     private int delRightTreeMin(Node right) {
-
+        while (right.getLeft() != null) {
+            right = right.getLeft();
+        }
+        // 找到右子树的最小节点
+        int value = right.getValue();
+        delete(value);
+        return value;
     }
 
 
