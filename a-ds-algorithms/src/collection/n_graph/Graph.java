@@ -255,6 +255,7 @@ public class Graph {
                     System.out.println(getNameByInex(w) + "->");
                     queue.add(w);
                 }
+
                 // 以 u 为前驱节点，找到 w 后面的下一个临接节点
                 w = getNextNeighbour(u, w);
             }
