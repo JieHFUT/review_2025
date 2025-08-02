@@ -49,7 +49,6 @@ public class KMPMatch {
             if (j == dest.length()) {
                 return i - j + 1;
             }
-
         }
         return -1;
     }
