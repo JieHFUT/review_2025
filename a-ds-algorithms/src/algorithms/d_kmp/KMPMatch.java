@@ -38,9 +38,20 @@ public class KMPMatch {
      */
     public int kmpMatch(String toMatch, String dest) {
         // 开始通过 i 遍历 toMatch 字符串，注意因为匹配值的问题，可能一次跳多个
-        for (int i = 0; i < toMatch.length(); i++) {
+        for (int i = 0, j = 0; i < toMatch.length(); i++) {
+
+
+            // 开始进行匹配
+            while (toMatch.charAt(i) == dest.charAt(j)) {
+                // 如果匹配成功，j 就往前移动一位
+                j++;
+            }
+            if (j == dest.length()) {
+                return i - j + 1;
+            }
 
         }
+        return -1;
     }
 
     /**
