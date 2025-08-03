@@ -36,6 +36,7 @@ public class Floyd {
 
         // 构造图
         Graph graph = new Graph(vertexs.length, vertexs, weights);
+        graph.print();
         // 对这些数据进行弗洛伊德算法
         long start = System.currentTimeMillis();
         graph.floyd();

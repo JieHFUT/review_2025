@@ -8,7 +8,7 @@ import java.util.Comparator;
 /**
  * 以马走日的方法
  * 跳满棋盘
- * 思路：
+ * 思路：实际上是图的深度优先的一种应用
  */
 
 public class HorseChess {
@@ -57,12 +57,18 @@ public class HorseChess {
         this.isVisited = new boolean[X * Y];
     }
 
+    /**
+     *
+     * @param row 开始的行下标
+     * @param col 开始的列下标
+     * @param step 这个位置是第几步走的
+     */
     public void horseChess(int row, int col, int step) {
         // 首先记录 step 在棋盘中对应的点
         chessBoard[row][col] = step;
         // 记录开始的点是 isVisited
         isVisited[row * X + col] = true;
-        // 获得开始点能走的下一步的点的集合
+        // 获得开始点能走的下一步的点的集合（点 = 行，列）
         ArrayList<Point> nextPoints = next(new Point(col, row));
 
         sort(nextPoints);
@@ -77,13 +83,13 @@ public class HorseChess {
                 // 这个点被访问过
             }
         }
-        //判断马儿是否完成了任务，使用   step 和应该走的步数比较 ，
+        //判断马儿是否完成了任务，使用 step 和应该走的步数比较 ，
         //如果没有达到数量，则表示没有完成任务，将整个棋盘置0
         //说明: step < X * Y  成立的情况有两种
-        //1. 棋盘到目前位置,仍然没有走完
-        //2. 该点周边的点全部走完，棋盘处于一个回溯过程
+        // 1. 棋盘到目前位置,仍然没有走完
+        // 2. 该点周边的点全部走完，棋盘处于一个回溯过程
         if (step < X * Y && !isFinished) {
-            // 说明走到最后一步或者正在回溯，但是没有成功
+            // 说明没有走到最后一步或者正在回溯，但是没有成功
             // 记录该点不行
             chessBoard[row][col] = 0;
             isVisited[row * X + col] = false;
@@ -101,7 +107,7 @@ public class HorseChess {
     public static ArrayList<Point> next(Point curPoint) {
         ArrayList<Point> pointList = new ArrayList<>();
         // 判断这个点的周边的点是否可以加入到集合中
-        //创建一个Point
+        // 创建一个Point
         Point point = new Point();
         //表示马儿可以走5这个位置
         if((point.x = curPoint.x - 2) >= 0 && (point.y = curPoint.y -1) >= 0) {
@@ -139,7 +145,7 @@ public class HorseChess {
     }
 
 
-    //根据当前这个一步的所有的下一步的选择位置，进行非递减排序, 减少回溯的次数
+    //根据当前这一步的所有的下一步的选择位置，进行非递减排序, 减少回溯的次数
     public static void sort(ArrayList<Point> ps) {
         ps.sort(new Comparator<Point>() {
             @Override

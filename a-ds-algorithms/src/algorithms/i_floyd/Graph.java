@@ -16,15 +16,21 @@ import java.util.Arrays;
 public class Graph {
     // 存放顶点的数组
     String[] vertexs;
-    // 用来保存距离的二维数组
+    // 维护的第一个表：用来保存距离的二维数组
     int[][] distance;
-    // 用来记录前驱的二维数组
+    // 维护的第二个表：用来记录前驱的二维数组
     int[][] prev;
     // 表示两个顶点不联通
     public static final int N = 65535;
 
 
-    // 构造方法对其进行初始化
+
+    /**
+     * 构造方法对其进行初始化
+     * @param count 顶点数量
+     * @param vertexs 顶点名称
+     * @param distance 临接表
+     */
     public Graph(int count, String[] vertexs, int[][] distance) {
         this.vertexs = vertexs;
         this.distance = distance;
@@ -34,6 +40,8 @@ public class Graph {
             Arrays.fill(this.prev[i], i);
         }
     }
+
+
 
     // 打印构造的用来记录
     // 1.用来记录实时最短距离的 distance 数组
@@ -58,9 +66,9 @@ public class Graph {
             for (int i = 0; i < this.vertexs.length; i++) {
                 // 这个中间顶点周边的后继顶点
                 for (int j = 0; j < this.vertexs.length; j++) {
-                    // 原本记录的前驱顶点到后继顶点的距离
+                    // 原本记录的前驱顶点到后继顶点的距离 i->j = init
                     int init = distance[i][j];
-                    // 前驱顶点通过该中转顶点到后继顶点的距离
+                    // 前驱顶点通过该中转顶点到后继顶点的距离 i->k->j = len
                     int len = distance[i][k] + distance[k][j];
                     if (len < init) {
                         // 对前驱顶点到后继顶点的距离进行修改
@@ -75,6 +83,7 @@ public class Graph {
         // 输出结果
         result();
     }
+
 
     public void result() {
         for (int i = 0; i < distance.length; i++) {
