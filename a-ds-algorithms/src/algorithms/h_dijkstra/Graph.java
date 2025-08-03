@@ -48,7 +48,7 @@ public class Graph {
     String[] vertexs;
     // 邻接矩阵
     int[][] weights;
-
+    // 已经访问的顶点的集合
     VisitedVertex visitedVertex;
 
     // 构造器
