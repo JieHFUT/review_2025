@@ -36,12 +36,19 @@ public class KMPMatch {
      * @return 如果 toMatch 中出现了 dest，就返回第一次出现的首字母的下标
      *         否则就返回 -1
      */
-    public int kmpMatch(String toMatch, String dest) {
+    public int kmpMatch(String toMatch, String dest, int[] next) {
         // 开始通过 i 遍历 toMatch 字符串，注意因为匹配值的问题，可能一次跳多个
         for (int i = 0, j = 0; i < toMatch.length(); i++) {
 
+            // 1.开始进行匹配：先任由 i++，在 toMatch 中找到与 dest 的首字母一样的字符下标
 
-            // 开始进行匹配
+            // 3.如果某一刻不匹配了，记录前面已经匹配的最后一个字符的匹配值 j = next[j -1]
+            while (j > 0 && toMatch.charAt(i) != toMatch.charAt(j)) {
+                j = next[j -1];
+            }
+
+
+            // 2.然后 i 与 j 同时进行加一，期间如果找到了就直接返回下标，否则 3
             while (toMatch.charAt(i) == dest.charAt(j)) {
                 // 如果匹配成功，j 就往前移动一位
                 j++;
