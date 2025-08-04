@@ -31,6 +31,5 @@ public class test {
         Character.isDigit('t');
         char ch = '8' - '0';
         System.out.println("ch = " + ch);
-
     }
 }
