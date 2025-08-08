@@ -20,12 +20,47 @@ class Solution {
 //        for (String s : strings) {
 //            System.out.println(s);
 //        }
-        mergeKLists(new ListNode[]{
+        mergeKLists1(new ListNode[]{
                 new ListNode(1, new ListNode(4, new ListNode(5, null))),
                 new ListNode(1, new ListNode(3, new ListNode(4, null))),
                 new ListNode(2, new ListNode(6, null))
         });
 
+
+
+
+
+    }
+
+    public static ListNode mergeKLists1(ListNode[] lists) {
+        // 使用小顶堆来实现
+        Queue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
+            }
+        });
+
+        // 把各个链表的第一个元素，也就是头节点放进去了，这些头节点组成了一个小顶堆
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                queue.add(lists[i]);
+            }
+        }
+
+        ListNode head = new ListNode();
+        ListNode r = head; // 记录
+        while(!queue.isEmpty()){
+            // 将最小的出优先级队列
+            ListNode temp = queue.poll();
+            // 如果这个最小节点还有后续节点，就将其加入最小堆
+            if(temp.next != null)
+                queue.offer(temp.next);
+            r.next = temp;
+            r = r.next;
+            r.next = null;
+        }
+        return head.next;
 
 
     }
