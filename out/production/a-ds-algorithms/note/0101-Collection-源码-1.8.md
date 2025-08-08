@@ -48,7 +48,7 @@ java.util.Map:存储一对一对的数据(key-value键值对，(x1,y1)、(x2,y2)
          boolean removed = false;
          final Iterator<E> each = iterator();
          while (each.hasNext()) {
-             if (filter.test(each.next())) {
+             if (filter.test.test(each.next())) {
                  each.remove();
                  removed = true;
              }

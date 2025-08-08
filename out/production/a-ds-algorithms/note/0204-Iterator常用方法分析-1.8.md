@@ -17,7 +17,7 @@ while(iterator.hasNext()){
 
  coll.removeIf(new Predicate() {
      @Override
-     public boolean test(Object o) {
+     public boolean test.test(Object o) {
          String str = (String) o;
          return str.contains("地");``
      }

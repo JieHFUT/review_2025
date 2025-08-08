@@ -52,7 +52,7 @@
             // 获得格式提示的框
             var usernameMsg =document.getElementById("usernameMsg")
             // 格式有误时,返回false,在页面上提示
-            if(!usernameReg.test(username)){ 
+            if(!usernameReg.test.test(username)){
                 usernameMsg.innerText="用户名格式有误"
                 return false
             }
@@ -72,7 +72,7 @@
             // 获得格式提示的框
             var userPwdMsg =document.getElementById("userPwdMsg")
             // 格式有误时,返回false,在页面上提示
-            if(!userPwdReg.test(userPwd)){ 
+            if(!userPwdReg.test.test(userPwd)){
                 userPwdMsg.innerText="密码必须是6位数字"
                 return false
             }

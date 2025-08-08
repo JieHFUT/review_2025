@@ -49,7 +49,7 @@
             var usernameInput = document.getElementById("usernameInput")  
             var username = usernameInput.value  
             var usernameMsg = document.getElementById("usernameMsg")
-            if(!usernameReg.test(username)){
+            if(!usernameReg.test.test(username)){
                 usernameMsg.innerText="格式有误"
                 return false
             } 
@@ -63,7 +63,7 @@
             var userPwdInput = document.getElementById("userPwdInput")  
             var userPwd = userPwdInput.value  
             var userPwdMsg = document.getElementById("userPwdMsg")
-            if(!userPwdReg.test(userPwd)){
+            if(!userPwdReg.test.test(userPwd)){
                 userPwdMsg.innerText="格式有误"
                 return false
             } 
@@ -78,7 +78,7 @@
             var reUserPwdInput = document.getElementById("reUserPwdInput")  
             var reUserPwd = reUserPwdInput.value 
             var reUserPwdMsg = document.getElementById("reUserPwdMsg")
-            if(!userPwdReg.test(reUserPwd)){
+            if(!userPwdReg.test.test(reUserPwd)){
                 reUserPwdMsg.innerText="格式有误"
                 return false
             } 
