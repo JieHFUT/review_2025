@@ -20,16 +20,163 @@ class Solution {
 //        for (String s : strings) {
 //            System.out.println(s);
 //        }
-        mergeKLists1(new ListNode[]{
-                new ListNode(1, new ListNode(4, new ListNode(5, null))),
-                new ListNode(1, new ListNode(3, new ListNode(4, null))),
-                new ListNode(2, new ListNode(6, null))
-        });
+//        mergeKLists1(new ListNode[]{
+//                new ListNode(1, new ListNode(4, new ListNode(5, null))),
+//                new ListNode(1, new ListNode(3, new ListNode(4, null))),
+//                new ListNode(2, new ListNode(6, null))
+//        });
+
+//        ListNode ret =  reverseKGroup(new ListNode(1,
+//                                            new ListNode(2,
+//                                                    new ListNode(3,
+//                                                            new ListNode(4,
+//                                                                    new ListNode(5, null))))), 3);
+//        int i = removeElement(new int[]{2}, 3);
+//        System.out.println(i);
+
+        int[] next = getNext("abcdadca");
+        System.out.println(Arrays.toString(next));
 
 
+    }
 
 
+    public static int strStr(String haystack, String needle) {
+        // 手撕 KMP 算法
+        int[] next = getNext(needle);
+        // 每次遇到匹配不成功的需要前进的程度为：前面已经匹配的数量 - 其匹配值
+        for (int i = 0; i < haystack.length(); ) {
+            int j = 0;
+            for (j = 0; j < needle.length(); j++) {
+                if (haystack.charAt(i) != needle.charAt(0)) {
+                    i++;
+                    break;
+                }
+                if (haystack.charAt(i+j) != needle.charAt(j)) {
+                    i += j-next[j];
+                }
+            }
+            if (j == needle.length()) {
+                // 表示这一次完全匹配成功
+                return i;
+            }
+        }
+        return -1;
+    }
 
+    // 获取字符串 needle 的 next[] 数组
+    public static int[] getNext(String needle) {
+        //
+        int[] ret = new int[needle.length()];
+        int index = 0;
+
+        for (int i = 0; i < needle.length(); i++) {
+            if (i == 0) {
+                ret[i] = 0;
+            } else {
+                if (needle.charAt(i) == needle.charAt(index)) {
+                    ret[i] = ret[i-1] + 1;
+                    index++;
+                } else if(needle.charAt(i) == needle.charAt(0)) {
+                    ret[i] = 1;
+                    index = 1;
+                }
+            }
+        }
+        return ret;
+    }
+
+    public static int removeElement(int[] nums, int val) {
+        // 思路：前后指针，前面找 val，后面找非 val，进行交换
+        int len = nums.length;
+        if (len == 0) {
+            return 0;
+        }
+        int left = 0;
+        int right = len - 1;
+
+
+        while(left < right) {
+
+            while(left < len && nums[left] != val) {
+                left++;
+            }
+            if (left == len) {
+                return len;
+            }
+            while(right > -1 && nums[right] == val) {
+                right--;
+            }
+            if (left > right) {
+                break;
+            }
+            // 进行交换
+            swap(nums, left, right);
+        }
+        // 交换完成了
+
+        int count = 0;
+        int index = len - 1;
+        int record = nums[index];
+        while(index > -1 && nums[index] == record) {
+            count++;
+            index--;
+        }
+        return len - count;
+
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || head.next == null || k == 1) return head;
+        // 思路：持续翻转，每次翻转 K 个以后，就以最后一个节点为新的开始节点再翻转 K 个
+
+        // 先创建一个指针先走 K-1 个，如果走不到就直接返回，走到了就与遍历同时走，
+        // 如果这一组翻转完成期间，先走的指针.next 指到空的了就不要再继续了
+        ListNode advance = head;
+        for (int i = 1; i < k; i++) {
+            advance = advance.next;
+            if (advance == null) {
+                return head;
+            }
+        }
+
+        ListNode newHead = new ListNode();
+        ListNode ret = newHead;
+
+        int count = 0; // 记录翻转了几个
+        boolean flag = true; // 记录下一轮 K 个要不要翻转
+        while (flag) {
+
+            for (int j = 0; j < k; j++) {
+                // 应该再翻转之前进行判断
+                if (advance.next == null) {
+                    flag = false;
+                } else {
+                    advance = advance.next;
+                }
+
+                // 一轮翻转 K 个
+                ListNode temp = head.next;
+                head.next = newHead.next;
+                newHead.next = head;
+                head = temp;
+            }
+            // 移动 newHead 到最后一个节点再来一遍
+            for (int m = 0; m < k; m++) {
+                newHead = newHead.next;
+            }
+        }
+
+        // 到这里还有最后一个不足 K 的需要添加到末尾
+        newHead.next = head;
+
+        return ret.next;
     }
 
     public static ListNode mergeKLists1(ListNode[] lists) {

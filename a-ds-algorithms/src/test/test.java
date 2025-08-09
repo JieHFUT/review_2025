@@ -70,6 +70,9 @@ public class test {
         int[] point = new int[2];
         Arrays.fill(point, 0);
 
+        int[] nums = {1,2,4,2315,4,36,457,65,87};
+        Arrays.sort(nums);
+
 
 
     }
