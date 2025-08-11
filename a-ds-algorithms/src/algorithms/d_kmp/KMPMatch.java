@@ -49,7 +49,7 @@ public class KMPMatch {
 
 
             // 2.然后 i 与 j 同时进行加一，期间如果找到了就直接返回下标，否则 3
-            while (toMatch.charAt(i) == dest.charAt(j)) {
+            if (toMatch.charAt(i) == dest.charAt(j)) {
                 // 如果匹配成功，j 就往前移动一位
                 j++;
             }

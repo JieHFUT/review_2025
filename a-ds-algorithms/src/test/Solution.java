@@ -34,8 +34,14 @@ class Solution {
 //        int i = removeElement(new int[]{2}, 3);
 //        System.out.println(i);
 
-        int[] next = getNext("abcdadca");
+//        int[] next = getNext("abcdadca");
+//        System.out.println(Arrays.toString(next));
+
+        int[] next = getNext("abaababab");
         System.out.println(Arrays.toString(next));
+
+        int index = strStr("mississippi", "issip");
+        System.out.println(index);
 
 
     }
@@ -48,12 +54,18 @@ class Solution {
         for (int i = 0; i < haystack.length(); ) {
             int j = 0;
             for (j = 0; j < needle.length(); j++) {
+                // 如果越界了但是 needle 没有到尽头
+                if (i + j == haystack.length() && j != needle.length()) {
+                    return -1;
+                }
+
                 if (haystack.charAt(i) != needle.charAt(0)) {
                     i++;
                     break;
                 }
-                if (haystack.charAt(i+j) != needle.charAt(j)) {
-                    i += j-next[j];
+                if (i+j < haystack.length() && haystack.charAt(i+j) != needle.charAt(j)) {
+                    i += j-next[j-1];
+                    break;
                 }
             }
             if (j == needle.length()) {
