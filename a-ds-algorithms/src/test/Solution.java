@@ -54,6 +54,7 @@ class Solution {
         for (int i = 0; i < haystack.length(); ) {
             int j = 0;
             for (j = 0; j < needle.length(); j++) {
+
                 // 如果越界了但是 needle 没有到尽头
                 if (i + j == haystack.length() && j != needle.length()) {
                     return -1;
