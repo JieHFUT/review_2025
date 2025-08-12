@@ -1,7 +1,6 @@
 package test;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * ClassName: test.test
@@ -66,14 +65,17 @@ public class test {
 //            System.out.println(s);
 //        }
 
-        Stack<Integer> stack = new Stack<>();
-        int[] point = new int[2];
-        Arrays.fill(point, 0);
+//        Stack<Integer> stack = new Stack<>();
+//        int[] point = new int[2];
+//        Arrays.fill(point, 0);
+//
+//        int[] nums = {1,2,4,2315,4,36,457,65,87};
+//        Arrays.sort(nums);
 
-        int[] nums = {1,2,4,2315,4,36,457,65,87};
-        Arrays.sort(nums);
+        System.out.println(Integer.MIN_VALUE);
+        Stack stack = new Stack();
 
-
+        Queue<Character> queue = new LinkedList<>();
 
     }
 
