@@ -83,6 +83,21 @@ public class Queue8 {
             }
         }
     }
+
+    /**
+     * 将每一次成功的放置结果放到集合 result 中：List<List<Integer>> result
+     * 并且记录成功放置的次数 count
+     * @param
+     */
+    public void putResult() {
+        count++;
+        List<Integer> list = new ArrayList<>();
+        for (int num : array) {
+            list.add(num);
+        }
+        result.add(list);
+    }
+
     /**
      * 当我们放置第 N 个皇后的时候，判断其和前面的 N-1 个皇后是否有冲突
      * 前面放置的皇后在数组 array 中
@@ -106,21 +121,7 @@ public class Queue8 {
                 return false;
             }
         }
-        return false;
-    }
-
-    /**
-     * 将每一次成功的放置结果放到集合 result 中：List<List<Integer>> result
-     * 并且记录成功放置的次数 count
-     * @param
-     */
-    public void putResult() {
-        count++;
-        List<Integer> list = new ArrayList<>();
-        for (int num : array) {
-            list.add(num);
-        }
-        result.add(list);
+        return true;
     }
 
 }
