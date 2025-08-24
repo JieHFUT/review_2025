@@ -1,5 +1,8 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * ClassName: FourtyFive
  * Package: test
@@ -11,11 +14,65 @@ package test;
  */
 public class FourtyFive {
     public static void main(String[] args) {
+//        System.out.println(jump(new int[]{2, 3, 1, 1, 4}));
 
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
 
+        String string = list.remove(2).toString();
+        System.out.println(string);
     }
 
-    public int jump1(int[] nums) {
+
+
+
+
+
+
+
+
+
+
+
+
+    public static int jump(int[] nums) {
+        // 1.使用回溯算法
+        findStep(nums, 0, 0);
+        return min_step;
+    }
+
+    static int min_step = Integer.MAX_VALUE;
+    /**
+     * @param nums 输入的原始数组
+     * @param step 到达 index 下标已经走的步数
+     * @param index 现在处于下标为 index 的位置
+     */
+    public static void findStep(int[] nums, int step, int index) {
+        if (index == nums.length - 1) {
+            // 找到了一个结果
+            if (step < min_step) min_step = step;
+            return;
+        }
+
+        // index 没有到达数组的最后一位，开始对这位上的数字进行遍历
+        int path = nums[index];
+        for (int i = 1; i <= path; i++) {
+            if (index + i > nums.length - 1) {
+                // 跳过头了，不考虑
+            } else {
+                //
+                findStep(nums, step + 1, index + i);
+            }
+        }
+    }
+
+
+
+
+
+    public int jump2(int[] nums) {
         // 思路一：采用回溯法
         minStep(nums, 0, nums.length - 1, 0);
         return minStep;
@@ -71,7 +128,7 @@ public class FourtyFive {
 
 
 
-    public int jump(int[] nums) {
+    public int jump1(int[] nums) {
         // 思路二：采用递归
         return minStep(nums, 0);
     }
