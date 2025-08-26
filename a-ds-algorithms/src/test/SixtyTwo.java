@@ -14,11 +14,52 @@ public class SixtyTwo {
     public static void main(String[] args) {
         int paths = uniquePaths(51, 9);
         System.out.println(paths);
+
+
     }
 
 
+    // 上面使用回溯和递归显然是一个可行的方法，但是时间超出了限制，显然需要使用一个巧方法
+    public int uniquePaths(int m, int n) {
+        if (m == 1 && n == 1) return 0;
+        if (m == 1 || n == 1) return 1;
+        // 使用排列知识 => 一共有 m+n-2 步：C(m+n-2, m-1)
+        return CNM(m+n-2, m-1);
+    }
+
+    // 排列组合 C(n, m) = n! / (m! * (n - m)!)
+    public int CNM(int n, int m) {
+        return factorial(n) / (factorial(m) * factorial(n - m));
+    }
+
+    // 计算 N 的阶乘
+    public int factorial(int n) {
+        if (n < 0) throw new IllegalArgumentException("n不能为负数");
+        if (n <= 1) return 1;
+
+        return n * factorial(n - 1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int uniquePaths2(int m, int n) {
-        //
+        // 递归
         if (m == 1 && n == 1) {
             return 0;
         } else if (m == 1) {
@@ -30,7 +71,26 @@ public class SixtyTwo {
         }
     }
 
-    public static int uniquePaths(int m, int n) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static int uniquePaths1(int m, int n) {
         // 思路：回溯（M行N列）
         getPath(0, 0, m, n);
         return uniquePaths;
