@@ -48,7 +48,7 @@ public class SixtyOne {
         while (step2-- > 0) {
             prev = prev.next;
         }
-
+        // 断开
         prev.next = null;
 
         return newHead;
