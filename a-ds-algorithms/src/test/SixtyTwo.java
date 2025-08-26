@@ -12,36 +12,29 @@ package test;
 public class SixtyTwo {
 
     public static void main(String[] args) {
-        int paths = uniquePaths(51, 9);
-        System.out.println(paths);
 
+        System.out.println(combinationOptimized(5, 3));
 
     }
 
 
-    // 上面使用回溯和递归显然是一个可行的方法，但是时间超出了限制，显然需要使用一个巧方法
-    public int uniquePaths(int m, int n) {
-        if (m == 1 && n == 1) return 0;
-        if (m == 1 || n == 1) return 1;
-        // 使用排列知识 => 一共有 m+n-2 步：C(m+n-2, m-1)
-        return CNM(m+n-2, m-1);
+
+
+
+
+    public static long combinationOptimized(int n, int k) {
+        if (k < 0 || k > n) return 0;
+        if (k == 0 || k == n) return 1;
+
+        // 使用对称性: C(n, k) = C(n, n-k)
+        k = Math.min(k, n - k);
+
+        long result = 1;
+        for (int i = 1; i <= k; i++) {
+            result = result * (n - k + i) / i;
+        }
+        return result;
     }
-
-    // 排列组合 C(n, m) = n! / (m! * (n - m)!)
-    public int CNM(int n, int m) {
-        return factorial(n) / (factorial(m) * factorial(n - m));
-    }
-
-    // 计算 N 的阶乘
-    public int factorial(int n) {
-        if (n < 0) throw new IllegalArgumentException("n不能为负数");
-        if (n <= 1) return 1;
-
-        return n * factorial(n - 1);
-    }
-
-
-
 
 
 
