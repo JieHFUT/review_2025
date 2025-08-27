@@ -13,7 +13,7 @@ public class SixtyTwo {
 
     public static void main(String[] args) {
 
-        System.out.println(combinationOptimized(5, 3));
+        System.out.println(combinationOptimized(58, 8));
 
     }
 
