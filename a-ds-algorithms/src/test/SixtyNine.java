@@ -33,8 +33,6 @@ public class SixtyNine {
     }
 
 
-
-
     public static int mySqrt(int x) {
         // 计算算数平方根（思路：从 1 开始计算平方，直到出现第一个大于 x 的数字）
         // 对 ret 的初始值进行调整，减少运行时间
