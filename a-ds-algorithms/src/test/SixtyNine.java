@@ -12,15 +12,23 @@ package test;
 public class SixtyNine {
     public static void main(String[] args) {
 
-        System.out.println(mySqrt(Integer.MAX_VALUE));
+        System.out.println(mySqrt1(Integer.MAX_VALUE));
 
+        System.out.println(climbStairs(45));
     }
 
+    public static int climbStairs(int n) {
+        // 台阶 1 2 => n
+        if (n == 1) return 1;
+        if (n == 2) return 2;
+
+        return climbStairs(n - 1) + climbStairs(n - 2);
+    }
 
     public static int mySqrt1(int x) {
         // 计算算数平方根（思路：从 1 开始计算平方，直到出现第一个大于 x 的数字）
 
-        int ret = 1;
+        long ret = 1;
         while(true) {
             // 问题出在当 ret * ret 溢出的时候就出现 bug
 
@@ -29,7 +37,7 @@ public class SixtyNine {
             }
             ret++;
         }
-        return ret - 1;
+        return (int) (ret - 1);
     }
 
 
