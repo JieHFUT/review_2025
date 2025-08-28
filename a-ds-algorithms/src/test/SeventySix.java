@@ -106,6 +106,7 @@ public class SeventySix {
             }
 
         }
+
         return true;
     }
 }
