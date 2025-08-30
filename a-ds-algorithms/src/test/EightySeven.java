@@ -54,8 +54,6 @@ public class EightySeven {
             List<String> list1 = recursion(s1);
             List<String> list2 = recursion(s2);
 
-
-
             // 对这两个集合进行整合
             for (String str1 : list1) {
                 for (String str2 : list2) {
