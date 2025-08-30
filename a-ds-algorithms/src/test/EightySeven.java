@@ -42,7 +42,6 @@ public class EightySeven {
             return ret;
         }
 
-
         List<String> ret = new ArrayList<>();
 
         // 长度大于等于 2 的时候需要进行随机分割
