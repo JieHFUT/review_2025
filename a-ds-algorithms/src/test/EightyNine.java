@@ -34,7 +34,6 @@ public class EightyNine {
     public static List<String> getGrayCode(int n) {
 
         List<String> ret = new ArrayList<>();
-
         if (n == 1) {
             ret.add("0");
             ret.add("1");
