@@ -32,6 +32,7 @@ public class NietySix {
         return ret.size();
     }
 
+
     static List<List<Integer>> ret = new ArrayList<>();
 
     /**
