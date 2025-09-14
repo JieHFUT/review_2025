@@ -33,6 +33,8 @@ public class NietySix {
     }
 
 
+
+
     static List<List<Integer>> ret = new ArrayList<>();
 
     /**
