@@ -35,7 +35,6 @@ public class NietySix {
 
     static List<List<Integer>> ret = new ArrayList<>();
 
-
     /**
      * @param used 已经使用的数字
      * @param rest 没有使用的数字
