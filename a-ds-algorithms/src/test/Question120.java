@@ -64,7 +64,6 @@ public class Question120 {
             return;
         }
 
-
         // 去遍历两个
         List<Integer> toOrder = rest.get(0);
         int prev = 0;
