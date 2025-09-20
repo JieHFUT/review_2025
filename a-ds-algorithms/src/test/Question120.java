@@ -36,6 +36,7 @@ public class Question120 {
         rest5.add(rest3);
         rest5.add(rest4);
 
+
         System.out.println(minimumTotal(rest5));
 
     }
@@ -77,5 +78,7 @@ public class Question120 {
 
         backtrack(prevsum + prev, preindex, rest);
         backtrack(prevsum + next, preindex + 1, rest);
+
+        rest.add(0, toOrder);
     }
 }
