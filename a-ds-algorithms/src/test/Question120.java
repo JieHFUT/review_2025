@@ -35,8 +35,6 @@ public class Question120 {
         rest5.add(rest2);
         rest5.add(rest3);
         rest5.add(rest4);
-
-
         System.out.println(minimumTotal(rest5));
     }
 
