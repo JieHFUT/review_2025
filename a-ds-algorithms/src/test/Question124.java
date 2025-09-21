@@ -41,6 +41,7 @@ public class Question124 {
         }
 
 
+
         // 不包含根节点
         if (root != null && root.left != null && root.right != null) {
             return Math.max(contain, Math.max(maxPathSum(root.left), maxPathSum(root.right)));
@@ -52,6 +53,7 @@ public class Question124 {
             return root.val;
         }
     }
+
 
 
     public static int maxPathSumContain(HashMap<TreeNode, Integer> map) {
