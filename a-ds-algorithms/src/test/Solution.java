@@ -13,6 +13,9 @@ import java.util.*;
  */
 class Solution {
     public static void main(String[] args) {
+
+        HashMap
+
         // System.out.println(isMatch("aab", "c*a*b"));
         // System.out.println(maxArea(new int[]{2,3,4,5,18,17,6}));
         // jisuan(21);
@@ -161,11 +164,11 @@ class Solution {
 //        System.out.println(jump(new int[]{3,2,0,2,2,1,5}));
 //        int[] nums = new int[]{1,2,3,4,5,6};
 //        Arrays.asList(nums);
-        int[][] matrix = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
-        rotate(matrix);
-        for (int[] row : matrix) {
-            System.out.println(Arrays.toString(row));
-        }
+//        int[][] matrix = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+//        rotate(matrix);
+//        for (int[] row : matrix) {
+//            System.out.println(Arrays.toString(row));
+//        }
 
     }
 
