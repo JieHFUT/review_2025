@@ -14,8 +14,6 @@ import java.util.*;
 class Solution {
     public static void main(String[] args) {
 
-        HashMap
-
         // System.out.println(isMatch("aab", "c*a*b"));
         // System.out.println(maxArea(new int[]{2,3,4,5,18,17,6}));
         // jisuan(21);
