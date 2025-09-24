@@ -1,0 +1,10 @@
+web项目中，我们一定要使用的对分别是 ：请求域、会话域、应用域；
+     1.请求域是 HttpServletRequest ，传递数据的是一次请求之内以及请求转发；
+     2.会话域是 HttpSession，传递数据的是一次会话之内，可以跨多个请求；
+     3.应用域是 ServletContext，传递数据的是本应用之内，可以跨多个会话；
+
+
+     无论哪一种域对象都会有的 3 中 API
+     1.void setAttribute(String key, Object value)  向域中存储或者修改数据
+     2.Object getAttribute(String key)              获得域中的数据
+     3.void removeAttribute(String key)             移除域中的数据

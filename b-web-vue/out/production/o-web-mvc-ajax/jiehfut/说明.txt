@@ -1,0 +1,10 @@
+MVC
+M: Model    ====>  模型：数据的增删改查，业务处理
+    pojo/entity/bean 实体类和对象
+    vo               有些参数不是实体类属性一一对应的（valueObject）
+    dao/mapper       CRUD方法封装的一些类
+    service          对数据进行业务逻辑运算的一些类
+V: View     ====>  视图：界面（静态资源）
+    web
+C: Controller ==>  控制器：获得用户请求，处理逻辑，返回响应
+    controller       控制层包

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <!--这是公共的配置信息，由所有的 servlet 共用-->
+    <context-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+    <context-param>
+        <param-name>key</param-name>
+        <param-value>value</param-value>
+    </context-param>
+    
+    
+    <servlet>
+        <servlet-name>servletConfigTest</servlet-name>
+        <servlet-class>com.jiehfut.servletconfig.ServletConfigTest</servlet-class>
+        <!--配置 servlet 的初始参数，这是请求域的参数-->
+        <init-param>
+            <param-name>key</param-name>
+            <param-value>value</param-value>
+        </init-param>
+        <init-param>
+            <param-name>key1</param-name>
+            <param-value>value1</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>servletConfigTest</servlet-name>
+        <url-pattern>/servletConfigTest</url-pattern>
+    </servlet-mapping>
+
+
+
+    
+    
+    
+    
+    
+    
+</web-app>

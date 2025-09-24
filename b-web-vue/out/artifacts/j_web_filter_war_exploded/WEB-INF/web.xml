@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <!--配置过滤器，配置哪些请求会被拦截-->
+    <!--拦截前后做什么在 loggingFilter 类中实现-->
+    <filter>
+        <filter-name>loggingFilter</filter-name>
+        <filter-class>com.jiehfut.filters.LoggingFilter</filter-class>
+    </filter>
+    <!--配置过滤器过滤的资源规则-->
+    <filter-mapping>
+        <filter-name>loggingFilter</filter-name>
+        <!--
+            有两种方式来过滤资源
+            1.url-pattern：根据请求的资源路径对指定的请求进行过滤
+                /*     过滤全部资源
+                /a/*   过滤以 a 开头的资源
+                *.html 过滤以 html 为后缀的资源
+                /servleta 对 servleta 的请求进行过滤
+                ...
+
+            2.servlet-name：根据请求的 servlet 的别名，对指定的 servlet 资源进行过滤
+                如 /filtera 的别名是 alias
+                <servlet-name>alias</servlet-name>
+        -->
+
+
+        <!-- 一个 filter-mapping 可以存在多个 url-pattern 和 servlet-name -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!--filter 配置信息-->
+    <filter>
+        <filter-name>lifeCycleFlter</filter-name>
+        <filter-class>com.jiehfut.lifecyclefilter.LifeCycleFilter</filter-class>
+        <init-param>
+            <param-name>filter-key</param-name>
+            <param-value>filter-value</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>lifeCycleFlter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+</web-app>

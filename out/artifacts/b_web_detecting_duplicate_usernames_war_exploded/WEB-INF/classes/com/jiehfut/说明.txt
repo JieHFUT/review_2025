@@ -1,0 +1,6 @@
+1.servlet.前后端交互实例
+2.servleturl.前后端交互时候如何匹配 url，以及 url 特使写法
+3.annotate.前后端交互注解配置
+4.lifecycle.servlet生命周期
+5.servletinterface.servlet继承结构
+6.servletconfig.为 servlet 提供初始配置信息的对象

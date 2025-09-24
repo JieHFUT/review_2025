@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function getMessage() {
+            // 1.实例化一个 xmlHttpRequest 对象
+            var request = new XMLHttpRequest();
+            // 2.设置 xmlHttpRequest 对象的回调函数  
+            // readState 状态：1，2，3，4；  状态 4 是响应返回
+            // request.states：响应行状态码
+            request.onreadystatechange=function() {
+                if(request.status == 200 && request.readyState == 4) {
+                    // 正确接收到响应
+                    alert("接收到响应");
+                    // request.responseText：代表后端返回的响应体中的数据
+                    console.log(request.responseText);    
+
+                    var inputEle = document.getElementById("message");
+                    inputEle.value = request.responseText;
+
+                    
+                }
+            }
+            // 3.设置发送请求的方式和请求的资源路径
+            request.open("GET", "/hello?username=zhangsan");
+            // 4.发送请求
+            request.send();
+        }
+    </script>
+</head>
+<body>
+    <button onclick="getMessage()">按钮</button>
+    <input type="text" id="message">
+</body>
+</html>

@@ -1,0 +1,35 @@
+一个 session 对象可以存储更多的 key-value 键值对
+
+
+客户端首次访问服务器的时候，服务器会创建一个 session 对象用于记录此次会话，session 对象存储在服务器中，不会响应给客户端
+session 对象中有一个 sessionId，服务器可以根据 sessionId 获取这个 session 对象
+服务器会创建一个（也可多个） cookie 对象响应给客户端，此 cookie 对象中存储的是 sessionId
+cookie：JSESSIONID="573B5A7439B207E7115DB105BB8FE614"
+session:{key1=value1,key2=value2,key3=value3,key4=value4,key5=value5,key6=value6......}
+
+
+一般在记录用户状态的时候
+账号，密码，权限等敏感信息一般放置在 session 对象中
+视频播放进度等不敏感的信息可以放在 cookie 中
+后端如果需要使用 session，一定要配合 cookie 使用
+
+
+
+
+
+
+
+
+
+
+服务器 session 对象的生命周期是 30 min，如果 30 min 内有新的访问，那么会刷新 30 min 的计时
+session 对象的生命周期可以在 tomcat/conf/web.xml 中配置
+如果在自己的 WEB-INF/web.xml 中配置，会覆盖 tomcat/conf/web.xml 中配置
+<session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
+
+也可以通过 HttpSession 对象的 API 动态的对 session 对象的生命周期进行设置
+session.setMaxInactiveInterval(30);
+
+
