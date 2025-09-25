@@ -25,7 +25,7 @@ public class UserServlet extends HttpServlet {
         // 2.处理业务的代码
         String ret = "<h1>YES</h1>";
         if (username.equals("jieHFUT")) {
-            ret = "NO";
+            ret = "<h1>NO<h1>";
         }
 
         // 3.将要响应的代码放进 reponse 中

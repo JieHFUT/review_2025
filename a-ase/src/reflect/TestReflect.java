@@ -38,7 +38,7 @@ public class TestReflect {
     @Test
     public void testConstructor() throws Exception {
         Class clazz1 = Car.class;
-        // 获取无参数构造
+        // 获取所有构造方法（不包括非 public 的）
         Constructor[] constructors = clazz1.getConstructors();
         for (Constructor constructor : constructors) {
             System.out.println("构造方法的名称：" + constructor.getName() + " 参数个数：" + constructor.getParameterCount());
@@ -90,6 +90,7 @@ public class TestReflect {
             System.out.println(method.getName());
             // 执行某一个方法，如 toString
             if (method.getName().equals("toString")) {
+                // invoke 执行该方法
                 String string = (String) method.invoke(car);
                 System.out.println("toString function: " + string);
             }
