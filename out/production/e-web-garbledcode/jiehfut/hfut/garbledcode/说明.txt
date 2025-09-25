@@ -27,7 +27,7 @@ Editor-FileEncodings
 
 4.GET 方式请求时候乱码（GET URI?key=value&key=value... http/1.1）
     如果 html 设置发送过来的数据是 GBK 编码，输出则会乱码
-    tomcat-conf-server.xml-<Connector> 设置使用的字符集
+    tomcat文件夹 -> conf文件夹 -> server.xml文件 - <Connector> 设置使用的字符集
     需要保证 HTML 设置的编码格式与 Tomcat 配置中 URI 的解码格式一致
 
     <Connector port="8080" protocol="HTTP/1.1"
@@ -53,5 +53,9 @@ Editor-FileEncodings
     但是如果设置 HTML 中客户端提交数据的编码方式为 GBK 格式,那么输出解析的请求体就会出现乱码
     就需要设置请求体的解码字符集
     req.setCharacterEncoding("UTF-8");
+
+
+5.响应体乱码
+    ResponseGarbled 文件
 
 

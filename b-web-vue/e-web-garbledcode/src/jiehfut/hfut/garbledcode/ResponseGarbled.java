@@ -26,8 +26,11 @@ public class ResponseGarbled extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 下面这两行一个设置服务器编码方式，一个告诉客户端解码方式（实际情况选择一个设置即可）
+
         // 为了设置响应体使用 UTF-8 来进行编码
         resp.setCharacterEncoding("UTF-8");
+
         // 来设置 ContentType 响应头来告诉客户端采用 UTF-8 进行解码
         resp.setContentType("text/html;charset=UTF-8");
 
@@ -49,10 +52,10 @@ public class ResponseGarbled extends HttpServlet {
          * 解决思路：
          *      1.后端适应前端（不推荐）
          *          resp.setCharacterEncoding("GBK");
-         *      2.指定客户端使用什么字符集进行解码（设置 Content-Type 响应头）
+         *      2.指定客户端使用什么字符集进行解码（设置 Content-Type 响应头，推荐）
          *          resp.setContentType("text/html;charset=UTF-8");
          *
-         * 注意：在 2中，要先明确响应体的编码（Tomcat8 版本可能是默认响应为 GBK 字符集）
+         * 注意：如果只选择方法二，要先明确响应体的编码（Tomcat8 版本可能是默认响应为 GBK 字符集）
          * 然后再设置 Content-Type 响应头
          */
 

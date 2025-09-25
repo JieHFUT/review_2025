@@ -24,6 +24,7 @@ public class ViewPath extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 请求转发
+        // 由于 WEB-INF 下面的内容是受到保护的，想要访问 view1.html 需要请求转发
         req.getRequestDispatcher("WEB-INF/views/view1.html").forward(req, resp);
 
     }

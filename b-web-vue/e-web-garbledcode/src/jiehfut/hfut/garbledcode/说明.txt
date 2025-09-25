@@ -55,3 +55,7 @@ Editor-FileEncodings
     req.setCharacterEncoding("UTF-8");
 
 
+5.响应体乱码
+    ResponseGarbled 文件
+
+

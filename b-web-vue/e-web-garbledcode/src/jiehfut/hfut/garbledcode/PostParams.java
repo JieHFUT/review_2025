@@ -38,6 +38,7 @@ public class PostParams extends HttpServlet {
         // tomcat10 默认是使用 UTF-8 对请求体进行解码
         // 但是如果设置 HTML 中客户端提交数据的编码方式为 GBK 格式,那么输出解析的请求体就会出现乱码
         // 就需要设置请求体的解码字符集
+
         req.setCharacterEncoding("UTF-8");
         System.out.println("username = " + req.getParameter("username"));
 
