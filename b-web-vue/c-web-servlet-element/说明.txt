@@ -14,8 +14,8 @@ ServletConfig && ServletContext 的作用
 
 3.httpservlet - 介绍如何获取报文中的内容 API
     请求行
+    请求头
     请求体
-    请求行
 
 
 

@@ -27,7 +27,7 @@ Editor-FileEncodings
 
 4.GET 方式请求时候乱码（GET URI?key=value&key=value... http/1.1）
     如果 html 设置发送过来的数据是 GBK 编码，输出则会乱码
-    tomcat文件夹 -> conf文件夹 -> server.xml文件 - <Connector> 设置使用的字符集
+    tomcat-conf-server.xml-<Connector> 设置使用的字符集
     需要保证 HTML 设置的编码格式与 Tomcat 配置中 URI 的解码格式一致
 
     <Connector port="8080" protocol="HTTP/1.1"

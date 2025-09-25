@@ -30,6 +30,7 @@ public class ServletForwardA extends HttpServlet {
         // RequestDispatcher requestDispatcher4 = req.getRequestDispatcher("https://www.baidu.com");   // 不可以
 
 
+        // 下面两行是进行请求转发
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("servletForwardB");
         // 让请求转发器做出请求转发动作（将 request && response 对象转发给另外一个 servlet）
         requestDispatcher.forward(req, resp);

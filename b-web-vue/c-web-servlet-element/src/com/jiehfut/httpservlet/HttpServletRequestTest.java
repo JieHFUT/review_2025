@@ -17,6 +17,7 @@ public class HttpServletRequestTest extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // 请求行相关的  GET POST URL http/1.1
+        // 也就是 URL 中的各个数据
         String method = req.getMethod();    // 获取请求方式
         String scheme = req.getScheme();    // 获取请求的协议
         String protocol = req.getProtocol();// 获取协议以及版本号
@@ -78,6 +79,7 @@ public class HttpServletRequestTest extends HttpServlet {
             String headerName = headerNames.nextElement();
             System.out.println(headerName + " = " + req.getHeader(headerName));
         }
+
 //        host = localhost:8080
 //        connection = keep-alive
 //        cache-control = max-age=0

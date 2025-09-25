@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 0002
  * 请求头相关的 API
  * 发现无论是 GET 还是 POST 请求，只要是满足 key-value 类型的数据都可以通过以下 API 捕获，无论其在 URL 中还是在请求体中
  *
@@ -39,6 +41,7 @@ public class HttpServletRequestHeadTest extends HttpServlet {
 
 
         // 先获取所有的参数名
+        // 把每一个参数都当成多 value 的值
         Enumeration<String> parameterNames = req.getParameterNames();
         while (parameterNames.hasMoreElements()) {
             String parameterName = parameterNames.nextElement();
@@ -51,6 +54,7 @@ public class HttpServletRequestHeadTest extends HttpServlet {
 
 
 
+        // 另外一种方法来获取所有的 k-v
         // 返回所有参数的 map 集合   【key = 参数名】 【value = 参数值】
         System.out.println("=================map.get.key.value======================");
 
@@ -94,18 +98,13 @@ public class HttpServletRequestHeadTest extends HttpServlet {
 
         /**
          * 获得请求体中的非键值对信息？ JSON 串、文件
-         *
-         *
-         * 获得一个从请求体中读取字符的字符输入流
-         * BufferedReader reader = req.getReader();  JSON 串
-         *
-         *
-         * 获得一个从请求体中读取二进制数据字节的输入流
-         * ServletInputStream inputStream = req.getInputStream(); 文件
-         *
-         *
-         */
 
+             * 获得一个从请求体中读取字符的字符输入流
+             * BufferedReader reader = req.getReader();  JSON 串
+
+             * 获得一个从请求体中读取二进制数据字节的输入流
+             * ServletInputStream inputStream = req.getInputStream(); 文件
+         */
 
 
     }

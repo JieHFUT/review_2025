@@ -38,7 +38,7 @@ public class ServletDirectionA extends HttpServlet {
         // resp.sendRedirect("WEB-INF/forword.html");  不可以是 WEB-INF 受保护的资源
         // resp.sendRedirect("https://www.baidu.com"); 可以
 
-        resp.sendRedirect("servletDirectionB");
+        resp.sendRedirect("servletDirectionB");  // 这一行就实现了 32 33 两行的作用
 
 
         /**
