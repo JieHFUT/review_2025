@@ -25,13 +25,12 @@ public class TestReflect {
         // 2.对象.getClass()
         Class clazz2 = new Car().getClass();
         // 3.Class.forName("path")
-        Class clazz3 = Class.forName("com.jiehfut.testreflect.Car");
+        Class clazz3 = Class.forName("reflect.Car");
 
         // 实例化 - 无参构造方法进行实例化
         Car car1 = clazz1.newInstance(); // 已经过时
         Car car = (Car) clazz3.getDeclaredConstructor().newInstance();
         System.out.println(car);
-
 
     }
 
