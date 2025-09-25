@@ -1,0 +1,71 @@
+1. Tomcat 关联 IDEA
+2. 创建一个 moudle
+3. 模块添加 Tomcat 依赖（web资源组件）
+4. 进行代码编写
+   java 源代码放在 src 中
+   js css html jpg 放在 web 中
+   这是一个工程，编写完代码以后，需要进行构建才能部署
+5. resources 目录存放当前项目的配置文件，添加完配置文件后需要右键标记该包 Mark Directory as => Resources Root
+   ststic 目录存放前端的静态文件
+
+   WEB-INF目录下的lib位置不能改变，一般添加该 moudle 的jar包依赖，
+   Add as Library 的时候建议将其设置为本模块的依赖，不要设置成该项目的依赖
+
+6. 当前工程代码编写完毕 Build => 对该项目进行构建操作
+   Build => Build Artifacts => 选择 web moudle 进行构建操作
+   out 目录中的 artifacts 中，就有可以进行部署的 app
+
+   一个 moudle, 如：web-example 叫做一个工程
+   out 目录中的 artifacts 中对应的 web_example_war_exploded 就是可以进行部署的 app；
+   构建时：src 和 resources 文件编译之后就会变成部署中 WEB-INF 下的 classes 目录
+
+7. 将这个构建的项目放在 tomcat 中运行即可
+   Current File => Edit Configurations...
+   选择一个 tomcat (即+一个 Tomcat Server)
+   需要在 Deployment 处部署 out 文件夹中的项目 =>  即+一个 artifact(如：web_example_war_exploded)
+   Application Context：即为设置的在浏览器中输入的上下文路径
+
+   Server 页中如果勾选 After launch，就会通过默认浏览器并且在浏览器中输入一段地址
+   设置端口号 | 设置
+
+   控制台（cmd窗口）输出乱码 conf-logging.properties-ConsoleHandler.encoding = GBK
+   日志输出乱码：conf-logging.properties-catalina 的修改为 GBK
+
+8. tomcat 将 javaweb 的 out 文件中的 app 创建了一个副本，而不是直接将部署的项目放在 webapps 中
+   这个副本默认在C盘的 C:\Users\34927\AppData\Local\JetBrains\IntelliJIdea2024.1\tomcat
+   这个文件夹中存放的仅仅是和要部署的项目相关的配置文件，让你安装的 tomcat 软件按照这个C盘中的这一套配置文件运行
+   conf\Catalina\localhost\webexample.xml 存放的是：
+           <Context path="/webexample" docBase="E:\code\web_code\out\artifacts\web_example_war_exploded" />
+   说明浏览器输入该路径的时候就会通过该配置访问E盘中真实路径
+
+9. 请求，响应 http 协议
+   （1）tomcat 先拿到浏览器发送的请求报文，将其封装成为 HttpServletRequest 对象
+   （2）tomcat 同时创建了一个 HttpServletResponse 对象，该对象用于承装要响应给客户端的信息，该对象会被转换成响应的报文
+   （3）我们实现的类要实现 servlet 接口，重写 service() 方法
+       service(HttpServletRequest request, HttpServletResponse reponse)
+       这个 service 方法不是我们去调用的，是 Tomcat 根据请求中的资源路径找到对应的 servlet，将 servlet 实例化，调用
+       service 中的方法，同时将 HttpServletRequest 和 HttpServletResponse 对象传入
+       我们给当前的 servlet 指定请求路径，tomcat 根据请求路径来调用方法
+   （4）在 service 方法内部，我们从 request 对象中去获取请求报文中的信息
+       根据拿到的参数去生成要响应给客户端的数据，将响应的数据放入 response 对象
+       Tomcat 就会将这个 response 对象转成对应的报文发给客户端即可
+
+10. Project structure 中的 moudle 的 dependencies 中 Scope 列的意思是该依赖的作用域
+    Provided = 编码的时候需要，编译（构建打包）的时候不携带
+
+
+11. <servlet>
+        <servlet-name>userServlet1</servlet-name>
+        <servlet-class>com.jiehfut.servlet.UserServlet</servlet-class>
+    </servlet>
+    <!--后端关联前端 映射前端 form 表单的 action-->
+    <servlet-mapping>
+        <servlet-name>userServlet1</servlet-name>
+        <url-pattern>/userServlet2</url-pattern>
+    </servlet-mapping>
+
+    通过浏览器输入 http://localhost:8080/detectusername/userServlet2
+                匹配前端的 userServlet2，其所对应的别名是 userServlet1
+                根据别名去找到对应的类：com.jiehfut.servlet.UserServlet，
+                Tomcat 拿到这个路径之后就通过反射拿到其字节码，然后由反射去执行其 service 方法
+

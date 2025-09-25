@@ -1,0 +1,11 @@
+ServletContext也可以对 servlet 提供配置参数
+不过 ServletContext 是为所有的 servlet 提供配置参数
+
+ServletCogfig 是多例的，每一个 servlet 都有一个 ServletCogfig 对象
+ServletContext 是单例的，所有的 servlet 共用一个 ServletContext 对象
+
+
+ServletContext 域是本应用中最大的域，可以在本应用内实现数据的共享和传递，也叫做应用域
+如：两个 servlet 对象之间如何传递数据，总不能通过调用 service 方法来传递吧 => 通过域对象来传递
+
+

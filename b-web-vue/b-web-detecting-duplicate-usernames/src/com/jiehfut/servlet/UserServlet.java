@@ -33,8 +33,8 @@ public class UserServlet extends HttpServlet {
         response.setHeader("Content-Type", "text/html");
         response.setCharacterEncoding("UTF-8");
 
-        //response.setContentType("text/html");
-        PrintWriter writer = response.getWriter(); //该方法返回的是一个向响应体中打印字符串的 打印流
+        // response.setContentType("text/html");
+        PrintWriter writer = response.getWriter(); // 该方法返回的是一个向响应体中打印字符串的 打印流
         writer.write(ret);
 
         // 4.请求路径
@@ -67,6 +67,8 @@ public class UserServlet extends HttpServlet {
      * application/pdf       ：pdf格式
      * application/msword  ： Word文档格式
      * application/octet-stream ： 二进制流数据（如常见的文件下载）
+     *
+     * 下面是表单发动的默认是 key-value 模式
      * application/x-www-form-urlencoded ： <form encType=””>中默认的 encType，form表单数据被编码为
      *                                      key/value格式发送到服务器（表单默认的提交数据的格式）
      *

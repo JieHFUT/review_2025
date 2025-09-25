@@ -11,13 +11,15 @@
         servlet-name  用来关联请求的映射路径
     -->
     <servlet>
-        <servlet-name>userServlet</servlet-name>
+        <servlet-name>userServletmatch</servlet-name>
+        <!--后端匹配成功后 servlet 去寻找的类-->
         <servlet-class>com.jiehfut.servlet.UserServlet</servlet-class>
     </servlet>
     <!--后端关联前端 映射前端 form 表单的 action-->
     <servlet-mapping>
-        <servlet-name>userServlet</servlet-name>
-        <url-pattern>/userServlet</url-pattern>
+        <servlet-name>userServletmatch</servlet-name>
+        <!--前端要输入的URL-->
+        <url-pattern>/userServletURL</url-pattern>
     </servlet-mapping>
 
 
@@ -40,15 +42,15 @@
 
 
     <!--
-        url-pattern
+        url-pattern 访问路径
             1.精确匹配
                 <servlet>
-                    <servlet-name>userServlet</servlet-name>
+                    <servlet-name>userServletmatch</servlet-name>
                     <servlet-class>com.jiehfut.servlet.UserServlet</servlet-class>
                 </servlet>
                 <servlet-mapping>
-                    <servlet-name>userServlet</servlet-name>
-                    <url-pattern>/userServlet</url-pattern>
+                    <servlet-name>userServletmatch</servlet-name>
+                    <url-pattern>/userServletURL</url-pattern>
                 </servlet-mapping>
 
             2.模糊匹配  =>  使用 * 作为通配符，* 在哪里，哪里就是模糊的
@@ -63,6 +65,7 @@
                 </servlet>
                 <servlet-mapping>
                     <servlet-name>userServlet</servlet-name>
+                    <! 匹配全部 ->
                     <url-pattern>/</url-pattern>
                 </servlet-mapping>
     -->
