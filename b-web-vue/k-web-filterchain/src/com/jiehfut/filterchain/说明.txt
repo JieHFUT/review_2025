@@ -1,3 +1,7 @@
+考虑有多个过滤器，每一个过滤器负责不同的范围
+
+
+
 使用 web.xml 文件进行配置的时候过滤器的执行顺序
 filtera before dofilter invoked
 filterb before dofilter invoked
@@ -7,9 +11,6 @@ filterc after dofilter invoked
 filterb after dofilter invoked
 filtera after dofilter invoked
 执行的过滤器顺序和 web.xml 文件中配置的 <filter-mapping> 的顺序有关
-
-
-
 
 
 
@@ -24,10 +25,6 @@ filterc after dofilter invoked
 filterb after dofilter invoked
 filtera after dofilter invoked
 实际上影响过滤器执行顺序的是类名（类名的字典顺序）
-
-
-
-
 
 
 

@@ -81,7 +81,7 @@ public class LoggingFilter implements Filter {
      上面是 IDEA 帮助打开浏览器时候默认的一些请求
 
      /filtera 资源在 2024-11-25 12:23:45 被访问了
-     filtera service
+     filtera service arrive ...
      /filtera 资源在 2024-11-25 12:23:45 的请求中耗时 1006 ms
 
      */
