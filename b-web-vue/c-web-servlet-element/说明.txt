@@ -1,0 +1,27 @@
+ServletConfig && ServletContext 的作用
+
+1.servletconfig
+    web.xml 中的 init-param 配置信息(key-value key1-value1)会通过 Tomcat 放到对象 ServletConfig 对象里面
+    GenericServlet 在后期的构造和初始化的时候会将其传入 init 方法中，将其赋值给属性 config 中
+    ServletConfig servletConfig = getServletConfig(); 获取初始配置信息
+    servletConfig 是为某一个特定的 servlet 对象提供初始化参数，是多例的
+
+
+2.servletcontext - 最大的域（应用域）
+    servletcontext 是为所有的 serlet 对象提供参数，是单例的
+    web.xml 中通过标签 <context-param> 实现
+
+
+3.httpservlet - 介绍如何获取报文中的内容 API
+    请求行
+    请求体
+    请求行
+
+
+
+
+
+
+
+
+

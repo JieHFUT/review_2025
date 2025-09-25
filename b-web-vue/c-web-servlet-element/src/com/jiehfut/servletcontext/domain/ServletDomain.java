@@ -15,7 +15,7 @@ public class ServletDomain extends HttpServlet {
 
 
     /**
-     * ServletContext 是本应用中最大的域对象
+     * ServletContext 是本应用中最大的域对象 - 应用域
      * 1.void setAttribute(String key, Object value)  向域中存储或者修改数据
      * 2.Object getAttribute(String key)              获得域中的数据
      * 3.void removeAttribute(String key)             移除域中的数据

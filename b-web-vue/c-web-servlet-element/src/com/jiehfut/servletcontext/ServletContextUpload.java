@@ -31,17 +31,13 @@ public class ServletContextUpload extends HttpServlet {
 
         String path = servletContext.getRealPath("upload");
         System.out.println("path = " + path);
-        // path = E:\code\web_code\out\artifacts\c_web_servlet_element_war_exploded\\upload
+        // path = path = E:\code\all-moudles-review\out\artifacts\c_web_servlet_element_Web_exploded\\upload
         // FileOutputStream fos = new FileOutputStream(path + "\\test.txt");
 
 
-        // 获取项目部署的上下文路径，也就是项目的访问路径（edit Configrations... 中配置的上下文路径）
+        // 获取项目部署的上下文路径，也就是项目的访问路径（tomcat 中 edit Configrations... 中配置的上下文路径）
         String contextPath = servletContext.getContextPath();
         System.out.println("contextPath = " + contextPath);
-
-
-
-
 
     }
 }

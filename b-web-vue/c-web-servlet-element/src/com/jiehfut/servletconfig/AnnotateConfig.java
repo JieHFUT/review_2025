@@ -17,6 +17,7 @@ import java.util.Enumeration;
  */
 @WebServlet(
         urlPatterns = "/annotateConfig",
+        // @WebInitParam 是一个数组，来配置初始化参数
         initParams = {@WebInitParam(name = "keya", value = "valuea"),
                 @WebInitParam(name = "keyb", value = "valueb")}
 )

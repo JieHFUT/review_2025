@@ -29,7 +29,7 @@ public class ServletInterface {
          void init(ServletConfig var1) throws ServletException;
 
          获得 ServletConfig 对象的方法，配置信息的保存，形成一个配置对象
-         ServletConfig 是一个接口
+         ServletConfig 是一个接口，获取配置对象
          ServletConfig getServletConfig();
 
          接收用户请求，用于向客户端响应的方法
@@ -99,6 +99,8 @@ public class ServletInterface {
          this.service(request, response);
      }
 
+
+     // 我们在继承了 HttpServlet 类之后，我们重写的就是这个 service 方法
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String method = req.getMethod();        客户端拿请求的方式：GET POST DELETE PUT ...

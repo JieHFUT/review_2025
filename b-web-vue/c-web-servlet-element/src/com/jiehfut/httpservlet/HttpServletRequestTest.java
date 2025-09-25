@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 
-
+// 0001
 @WebServlet("/httpServletRequest")
 public class HttpServletRequestTest extends HttpServlet {
 
@@ -37,6 +37,7 @@ public class HttpServletRequestTest extends HttpServlet {
          获取请求的项目内资源的完整的路径 url = http://localhost:8080/servletelement/httpServlet
          URI: 统一资源标识符  interface URI()              资源定位的要求和规范
          URL: 统一资源定位符  class URL implements URI{}   具体的某一个资源的定位语法
+              http://ip:port/demo/xxx.html
          */
 
         int appPort = req.getLocalPort();      // 本应用容器（Tomcat）的端口号

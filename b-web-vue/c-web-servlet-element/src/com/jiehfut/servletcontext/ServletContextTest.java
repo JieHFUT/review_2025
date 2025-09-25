@@ -17,6 +17,7 @@ public class ServletContextTest extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+
         System.out.println("获取 servletContext 对象的参数");
 
         // 获取 servletContext 下面三个本质上是同一个对象，应用域

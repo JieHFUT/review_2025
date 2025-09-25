@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 请求头相关的 API
  * 发现无论是 GET 还是 POST 请求，只要是满足 key-value 类型的数据都可以通过以下 API 捕获，无论其在 URL 中还是在请求体中
  *
  * GET 请求可以有请求体，但是通过 form 表单标签提交请求的时候，不会往请求体里面放数据，会把 key-value 缀在 URL 后面

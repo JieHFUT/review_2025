@@ -1,0 +1,2 @@
+1.ServletConfigTest：通过 web.xml 来进行初始参数的配置
+2.AnnotateConfig：通过注解来进行初始参数的配置
