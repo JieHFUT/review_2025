@@ -5,7 +5,7 @@
          version="6.0">
 
     <!--这里的配置会覆盖 tomcat/conf/web.xml 中的配置-->
-    <!--这个配置的作用是：配置服务器中 session 对象的生命周期，单位是分钟-->
+    <!--这个配置的作用是：配置服务器中 session 对象的生命周期-->
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>

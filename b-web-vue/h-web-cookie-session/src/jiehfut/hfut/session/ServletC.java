@@ -33,12 +33,13 @@ public class ServletC extends HttpServlet {
          * 获得 session 对象的过程
          * 判断请求中有没有一个特殊的 cookie，即为 JSESSIONID="573B5A7439B207E7115DB105BB8FE614"
          * 1.有这样的 cookie 对象
-         *     根据 JSESSIONID 去找对应的 session 对象
+         *      根据 JSESSIONID 去找对应的 session 对象
          *     （1）在服务器端找到了这个 session 对象：返回之前的这个 session 对象
          *     （2）在服务器端没有找到 session 对象：创建一个新的 session 对象返回，并且自动向 response 对象中存放一个 JSESSIONID 的 cookie
          * 2.没有这样的 cookie 对象
          *     创建一个新的 session 对象返回，并且自动向 response 对象中存放一个 JSESSIONID 的 cookie
          */
+
         HttpSession session = req.getSession();
         // 判断这个 session 对象是不是新的
         boolean isNew = session.isNew();

@@ -40,6 +40,7 @@ public class LoggingFilter implements Filter {
          * 1.请求到达目标资源之前的代码
          *      （1）判断是否进行登陆
          *      （2）校验权限是否满足
+         *
          * 2.放行代码
          *
          * 3.响应之前，HttpServletResponse 这个对象在转换成为响应报文之前的功能代码

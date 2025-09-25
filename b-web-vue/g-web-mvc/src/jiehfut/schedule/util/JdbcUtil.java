@@ -13,6 +13,7 @@ import java.util.Properties;
  * ClassName: JdbcUtil
  * Package: util
  * Description:
+ *
  * 该工具类用于使用德鲁伊库连接池封装连接数据库的方法
  * 1.向外提供获取获取连接池的方法：getDataSource()
  * 2.向外提供从连接池中获取一个连接的方法：getConnection()

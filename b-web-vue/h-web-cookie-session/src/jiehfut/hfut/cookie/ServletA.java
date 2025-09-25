@@ -28,8 +28,9 @@ public class ServletA extends HttpServlet {
         Cookie cookie1 = new Cookie("keya", "valuea");
         // 将 cookie1 设置成为持久化 cookie
         cookie1.setMaxAge(60*3);//该 cookie 保存时间是 180s
+
         Cookie cookie2 = new Cookie("keyb", "valueb");
-        // 设置 cookie 的提交路径
+        // 设置 cookie 的提交路径（在请求不是下面这个路径的时候就不会提交该 cookie）
         cookie1.setPath("/servletb");
 
         // 2.将 cookie 对象放在 response 对象中

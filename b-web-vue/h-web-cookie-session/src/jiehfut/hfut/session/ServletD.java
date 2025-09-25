@@ -26,6 +26,7 @@ public class ServletD extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1.获得 session 对象
         HttpSession session = req.getSession();
+
         System.out.println("此 session 对象ID = " + session.getId());
         System.out.println("此 session 对象 isNew = " + session.isNew());
 

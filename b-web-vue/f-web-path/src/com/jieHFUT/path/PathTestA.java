@@ -40,7 +40,7 @@ public class PathTestA extends HttpServlet {
 
 
          2.绝对路径写法【和前端的相对路径规则一致】
-            http://localhost:8080/ 在 8080 后面加绝对路径
+            http://localhost:8080/  在 8080 后面加绝对路径
          */
 
         // 相对路径（以 ./ ../ 为出发点）
@@ -90,6 +90,7 @@ public class PathTestA extends HttpServlet {
         // TODO: 如何做到不要项目上下文
         /**
          Edit Configurations-Deployment-Application context 中设置项目上下文只为 "/"
+
          */
 
 

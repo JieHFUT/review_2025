@@ -35,6 +35,7 @@ import java.io.Serializable;
  *
  *      @NoArgsConstructor    添加了全参构造
  *      @AllArgsConstructor   添加了无参构造
+ *
  *      @Getter               添加了 getter 方法
  *      @Setter               添加了 setter 方法
  *      @EqualsAndHashCode    添加了 equals && hashcode 方法
