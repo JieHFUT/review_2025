@@ -11,9 +11,13 @@ import java.io.IOException;
 
 
 @WebFilter(
+        // 对哪些路径进行过滤
         urlPatterns = {"/showSchedule.html","/schedule/*"}
 )
 public class LoginFilter implements Filter {
+
+    // 用户第一次登录的时候将用户的信息 sysUser 对象放到 session 域中
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         // 参数父转子

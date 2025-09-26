@@ -17,6 +17,6 @@ public class ApplicationListenerB extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 在应用域中修改数据
         ServletContext application = getServletContext();
-        application.setAttribute("keyb", "valueb");
+        application.setAttribute("keya", "valueaaaaa");
     }
 }

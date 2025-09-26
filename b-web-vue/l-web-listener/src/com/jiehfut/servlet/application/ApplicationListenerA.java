@@ -18,5 +18,13 @@ public class ApplicationListenerA extends HttpServlet {
         // 向应用域中放入数据
         ServletContext application = getServletContext();
         application.setAttribute("keya", "valuea");
+
+
+
+
+        // 创建 session 对象
+        HttpSession session = req.getSession();
+        // 手动销毁 session
+        session.invalidate();
     }
 }

@@ -1,5 +1,6 @@
 package com.jiehfut.servlet.sessionbinding;
 
+import com.jiehfut.listener.sessionbinding.SessionBindingListener;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -14,11 +15,11 @@ public class SessionBindingServlet extends HttpServlet {
         HttpSession session = req.getSession();
 
 
-        HttpSessionBindingListener httpSessionBindingListener = new HttpSessionBindingListener() {};
+        SessionBindingListener sessionBindingListener = new SessionBindingListener() {};
 
         // 当这个对象放进 session 对象的时候，触发监视器
-        req.setAttribute("httpSessionBindingListener", httpSessionBindingListener);
+        req.setAttribute("sessionBindingListener", sessionBindingListener);
         // 当这个对象从 session 对象移除的时候，触发监视器
-        req.removeAttribute("httpSessionBindingListener");
+        req.removeAttribute("sessionBindingListener");
     }
 }

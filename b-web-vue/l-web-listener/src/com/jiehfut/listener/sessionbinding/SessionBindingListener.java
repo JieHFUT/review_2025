@@ -11,6 +11,7 @@ public class SessionBindingListener implements HttpSessionBindingListener {
     @Override
     public void valueBound(HttpSessionBindingEvent event) {
         // 当前监听器实例放入某一个 session 对象中作为数据，绑定
+
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Hello extends HttpServlet {
         String username = req.getParameter("username");
         // 2.做出响应
         resp.getWriter().write("Hello " + username + "!");
+
         System.out.println("已经返回响应");
     }
 }

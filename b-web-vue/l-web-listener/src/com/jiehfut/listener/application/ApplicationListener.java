@@ -4,7 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebListener;
 
 
-@WebListener
+@WebListener // 配置监听器的方法二
 public class ApplicationListener implements ServletContextListener, ServletContextAttributeListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -38,6 +38,7 @@ public class ApplicationListener implements ServletContextListener, ServletConte
         System.out.println("应用域 " + application.hashCode() + " 添加了一个键值对：" + "key=" + key + ", value=" + value);
     }
 
+
     @Override
     public void attributeRemoved(ServletContextAttributeEvent scae) {
         // 监听应用域删除键值对
@@ -52,8 +53,8 @@ public class ApplicationListener implements ServletContextListener, ServletConte
         // 监听应用域修改键值对
         ServletContext application = scae.getServletContext();
         String key = scae.getName();
-        Object oldValue = scae.getValue();
-        Object newValue = application.getAttribute(key);
+        Object oldValue = scae.getValue(); // 获取旧的值
+        Object newValue = application.getAttribute(key); // 获取新的值
         System.out.println("应用域 " + application.hashCode() + " 修改了一个键值对" +
                 "\nKey=" + key + ", oldValue=" + oldValue +
                 "\nKey=" + key + ", value=" + newValue);
