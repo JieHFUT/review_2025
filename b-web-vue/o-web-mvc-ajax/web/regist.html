@@ -44,6 +44,7 @@
     </style>
 
     <script>
+        // onblur 事件：失去用户名标签焦点，与 onfocus 事件相反
         function checkUsername(){
             var usernameReg = /^[a-zA-Z0-9]{5,10}$/
             var usernameInput = document.getElementById("usernameInput")  
@@ -74,7 +75,7 @@
                 * 2.响应信息格式不规范
                 *       后端响应回来的信息应当有一个统一的格式，前后端共同遵守
                 *       后端对所有的响应都进行一个封装，给前端响应一个 JSON 串
-                *       {"":"", "":"",......}
+                *       {"":"", "":"", ......}
                 *       应该包括下面这些属性：
                 *       {
                 *           "code":"",           ===> 业务状态码，本次请求的业务是否成功，如果失败了，是什么原因造成的？（不是响应报文中的响应码）

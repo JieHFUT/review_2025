@@ -4,6 +4,7 @@ package jiehfut.schedule.controller;
  * ClassName: SysScheduleController
  * Package: jie.hfut.schedule.controller
  * Description: 作为笔记
+ *              这是 BaseController 的先前版本
  * 增加日程的请求: /schedule/add
  * 查询日程的请求: /schedule/find
  * 修改日程的请求: /schedule/update

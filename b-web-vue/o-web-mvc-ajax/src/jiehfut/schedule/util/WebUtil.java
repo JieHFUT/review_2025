@@ -8,13 +8,15 @@ import java.io.IOException;
 
 /**
  * 专门封装，用于向客户端响应 JSON 串的类
+ * 将任意一个对象转换为一个 json 对象，需要使用外部的依赖：三个 jackson jar 包
+ * 然后使用其中的 ObjectMapper 类将其转化为 json 对象
  */
 public class WebUtil {
 
     private static ObjectMapper objectMapper = null;
 
     public static void writeJson(HttpServletResponse resp, Result result) {
-        // 告诉客户端响应是一种 JSON 串
+        // 告诉客户端响应是一种 JSON 串，并且告诉前端使用 utf8 进行解码
         resp.setContentType("application/json;charset=utf-8");
 
         // 把 result 对象转换成为 JSON 串

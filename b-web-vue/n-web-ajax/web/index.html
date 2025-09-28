@@ -15,12 +15,14 @@
                     // 正确接收到响应
                     alert("接收到响应");
                     // request.responseText：代表后端返回的响应体中的数据
-                    console.log(request.responseText);    
+                    console.log(request.responseText);
 
+                    // 根据标签 id 获取标签
                     var inputEle = document.getElementById("message");
                     inputEle.value = request.responseText;
 
-                    
+                    // 跳转页面
+                    // window.location.href = "http://www.baidu.com";
                 }
             }
             // 3.设置发送请求的方式和请求的资源路径

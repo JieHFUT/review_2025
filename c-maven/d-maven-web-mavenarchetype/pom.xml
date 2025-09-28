@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jiehfut</groupId>
+  <artifactId>d-maven-web-mavenarchetype</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>d-maven-web-mavenarchetype Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!--设置一个自定义版本属性，来统一管理版本需求相同的依赖，例如 spring 的几个版本统一在这里设置不冲突版本-->
+    <!--统一规定依赖版本-->
+    <junit.version>5.10.2</junit.version> <!--下面的这个依赖就可以通过${junit.version}指明版本 -->
+
+
+
+  </properties>
+
+
+
+  <dependencies>
+
+    <!-- 这个 d 项目引用了 c 项目的依赖 -->
+    <!-- c 项目已经 install 到了本地仓库 -->
+    <dependency>
+      <groupId>com.jiehfut</groupId>
+      <artifactId>c-maven-web-plugin</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+    <!--类似这种默认依赖范围的，在编译，测试，运行的时候都可以使用，默认 compile-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.2.8</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+    <!--此依赖的范围是 test，所以在打 war 包的时候就不会将其打包进去 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!--自我依赖，这样的话直接打包会报错，因为 maven 在本地仓库中找不到去中央仓库找也找不到，
+        会报错，需要将这个项目打包放进自己的本地仓库，在 c-maven-web-plugin 项目中通过 mvn install 指令将 c-maven-web-plugin 安装在自己本地仓库
+        实际上要打包成为jar包才能被使用，打成war包是会报错的-->
+<!-- <dependency>
+      <groupId>com.jiehfut</groupId>
+      <artifactId>c-maven-web-plugin</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>-->
+
+
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.28</version>
+    </dependency>
+
+
+  </dependencies>
+
+  <build>
+    <!--maven 工程 build 构建相关信息设置-->
+    <!--自定义打包名称-->
+    <finalName>d-maven-web-mavenarchetype-1.0</finalName>
+    <!--制定构建打包时，指定包含文件格式和排除文件-->
+    <!--一般来说没有按照指定目录放置的配置文件就不会被打包到 target 中-->
+    <!--所以遇到这种情况，需要自己去配置打包目录-->
+    <!--设置要打包的资源位置 resources 标签-->
+    <resources>
+      <resource>
+        <!--设置资源所在目录-->
+        <directory>src/main/java</directory>
+        <includes>
+          <!--设置包含的资源类型：任意包下的任意的 .xml 文件-->
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+
+
+    <!-- jdk17 和 war包版本插件不匹配 -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
+      </plugin>
+      <!-- tomcat插件 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <!--Tomcat 的一些配置-->
+        <configuration>
+          <port>8090</port>
+          <path>/</path>
+          <uriEncoding>UTF-8</uriEncoding>
+          <server>tomcat7</server>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
+
+
+
+</project>

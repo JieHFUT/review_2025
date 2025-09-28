@@ -15,11 +15,17 @@ public class Result<T> {
         "message":"",        ===> 业务状态码的补充描述，是对业务状态码的说明。
         "data":{"":"","":""......}            ===> 用来装本次响应的数据
 
+       3.设置的错误的业务状态码
          SUCCESS(200, "success"),
          USERNAME_ERROR(501, "usernameError"),
          PASSWORD_ERROR(502, "passwordError"),
          NOTLOGIN(503, "notlogin"),
          USERNAME_USED(504, "usernameUsed");
+
+       4.各种构造响应体方法（实际外面只使用两种）
+         <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) 返回各种错误状态
+         <T> Result<T> ok(T data) 返回成功的状态码 => return build(data, ResultCodeEnum.SUCCESS);
+
      */
 
     private Integer code;
@@ -97,6 +103,7 @@ public class Result<T> {
         this.setMessage(msg);
         return this;
     }
+
     public Result<T> code(Integer code){
         this.setCode(code);
         return this;

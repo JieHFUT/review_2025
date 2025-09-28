@@ -8,6 +8,7 @@ package jiehfut.schedule.common;
  */
 public enum ResultCodeEnum {
 
+    // 这五个枚举对象调用下面的私有的构造方法
     SUCCESS(200, "success"),
     USERNAME_ERROR(501, "usernameError"),
     PASSWORD_ERROR(502, "passwordError"),

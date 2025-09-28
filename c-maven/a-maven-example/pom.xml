@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--此maven工程的坐标-->
+    <groupId>com.jiehfut</groupId>
+    <artifactId>a-maven-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!--设置打包方式，不设置默认 jar 包-->
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--管理我们这个工程的部署（deploy）的位置-->
+    <!--清理-编译-测试-报告-打包-安装-部署-->
+    <!--以下设置是将构建打包好的项目部署到 maven 私服中-->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-mine</id>
+            <name>Nexus Snapshot</name>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    
+
+
+
+</project>
