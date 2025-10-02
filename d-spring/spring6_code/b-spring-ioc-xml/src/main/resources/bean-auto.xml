@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置自动配置-->
+
+    <!--
+        1.创建三个类的对象
+        2.根据类型或者名称进行自动装配（autowire="byType" || autowire="byName"）
+          区别在于 byName 要保证类中属性名字要和 xml 中配置的 ID 名称保持一致
+    -->
+    <bean id="userController" class="com.jiehfut.auto.controller.UserController" autowire="byType"></bean>
+    <bean id="userService" class="com.jiehfut.auto.service.impl.UserServiceImpl" autowire="byName"></bean>
+    <bean id="userDao" class="com.jiehfut.auto.dao.impl.UserDaoImpl"></bean>
+
+</beans>

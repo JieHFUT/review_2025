@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mapper.EmpMapper">
+
+    <!--List<Emp> findAllEmp();-->
+    <select id="findAllEmpOld" resultType="emp">
+        <!--当属性名字和字段名字不一致的时候，1.设置别名即可，2.也可以进行全局配置，3.或者使用下面这种方法（resultMap）-->
+        select eid, emp_name empName, age, sex, email from t_emp
+    </select>
+
+
+    <!--List<Emp> findAllEmp();-->
+    <!--property：属性名（必须是 type 属性所设置的实体类类型中的属性名）   column：映射关系中的字段名-->
+    <resultMap id="empResultMap" type="Emp">
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="email" column="email"></result>
+    </resultMap>
+    <select id="findAllEmp" resultMap="empResultMap">
+        select * from t_emp
+    </select>
+
+
+
+
+
+
+
+
+
+    <!--
+        Emp getEmpAndDeptById(@Param("eid") Integer eid);
+        这个时候可以看到，由于员工类型中有一个部门属性，在数据库的员工表中没有能够返回部门对象的字段，所以只能使用 resultMap
+        进行两表联查
+        多对一的映射匹配的办法有以下三种：1.级联属性赋值  2.association  3.分步查询
+    -->
+
+    <!--1.处理多对一映射关系一：级联属性赋值-->
+    <resultMap id="empAndDeptResultMapOne" type="emp">
+        <!--即为将我们查询出来的关于部门的字段信息和 Emp 的部门属性创建关联信息-->
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="email" column="email"></result>
+
+        <result property="dept.did" column="did"></result>
+        <result property="dept.deptName" column="dept_name"></result>
+    </resultMap>
+    <select id="getEmpAndDeptByIdOne" resultMap="empAndDeptResultMapOne">
+        <!--查询某一个员工的所有信息，包括部门对象-->
+        select * from t_emp left join t_dept on t_emp.did = t_dept.did where t_emp.eid = #{eid}
+    </select>
+
+
+
+    <!--2.association-->
+    <resultMap id="empAndDeptResultMapTwo" type="emp">
+        <!--即为将我们查询出来的关于部门的字段信息和 Emp 的部门属性创建关联信息-->
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="email" column="email"></result>
+        <!--
+            对该属性对象进行属性匹配，获取一个完整的 Dept 对象
+            <association/> 专门用来处理多对一的映射关系
+            property：需要处理的多对一的映射关系的属性名
+            javaType：该属性的类型
+        -->
+        <association property="dept" javaType="Dept">
+            <id property="did" column="did"></id>
+            <result property="deptName" column="dept_name"></result>
+        </association>
+
+    </resultMap>
+    <select id="getEmpAndDeptById" resultMap="empAndDeptResultMapTwo">
+        <!--查询某一个员工的所有信息，包括部门对象-->
+        select * from t_emp left join t_dept on t_emp.did = t_dept.did where t_emp.eid = #{eid}
+    </select>
+
+
+
+    <!--3.分步查询-->
+    <!--第一步：对员工信息进行查询   Emp getEmpAndDeptByStepOne(@Param("eid") Integer eid);-->
+    <select id="getEmpAndDeptByStepOne" resultMap="empAndDeptByStepResultMapThree">
+        select * from t_emp where eid = #{eid}
+    </select>
+    <resultMap id="empAndDeptByStepResultMapThree" type="emp">
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="email" column="email"></result>
+
+        <association property="dept"
+                     select="com.jiehfut.mapper.DeptMapper.getEmpAndDeptByStepTwo"
+                     column="did"
+                     fetchType="eager">
+                     <!--select：写在部门中查询的 sql 的唯一标识：全类名.方法名-->
+                     <!--column：第二步查询的条件信息，供 DeptMapper.xml 使用-->
+                     <!--fetchType：开启全局延迟加载后，可以通过该属性设置 eager 手动关闭延迟加载-->
+        </association>
+    </resultMap>
+
+    <!--
+        分步查询既能查询员工的信息，又能查询部门的信息，可不可以选择使用一个查询还是两个查询
+        分步查询的好处是可以延迟加载，mybatis 默认不开启延迟加载的
+        在核心配置的 <settings> 标签中配置 <setting name="lazyLooadingEnabled" value="true"/>
+        开启延迟加载后，如果对查询结果只使用部分信息，就会动态的选择执行两个 sql 还是一个 sql
+        即为使用什么加载什么（全局配置），在 **Mapper.xml 中也可以使用 fetchType="eager" 单独设置对该查询关闭延迟加载
+    -->
+
+
+
+
+
+
+
+
+
+    <!--一对多的分步查询第二步-->
+    <!--List<Emp> getDeptAndEmpByStepTwo(@Param("did") Integer did);-->
+    <select id="getDeptAndEmpByStepTwo" resultType="Emp">
+        select * from t_emp where did = #{did}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

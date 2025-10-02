@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>page-test</title>
+</head>
+<body>
+    <h1> page-test <span th:text="${username}"></span> </h1>
+    <span th:text="${#strings.toUpperCase(username)}"></span><br>
+    <span th:text="${'preffix' + username + 'suffix'}"></span><br>
+    <span th:text="|preffix ${username} suffix|"></span>
+
+</body>
+</html>

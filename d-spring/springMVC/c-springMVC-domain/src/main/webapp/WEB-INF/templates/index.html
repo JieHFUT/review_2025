@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>首页</h1>
+    <a th:href="@{/testRequestByServletAPI}">testRequestByServletAPI => request domain</a><br>
+    <a th:href="@{/testModelAndView}">testModelAndView => request domain</a><br>
+    <a th:href="@{/testModel}">testModel => request domain</a><br>
+    <a th:href="@{/testMap}">testMap => request domain</a><br>
+    <a th:href="@{/testModelMap}">testModelMap => request domain</a><br>
+
+    <a th:href="@{/testSessionServletAPI}">testSessionServletAPI => session domain</a><br>
+
+    <a th:href="@{/testApplication}">testApplication => application domain</a><br>
+
+
+
+</body>
+</html>

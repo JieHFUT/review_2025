@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        使用 bean 标签完成 User 对象的创建
+        bean标签：
+            id 属性：唯一标识
+            class：创建对象所在类的全路径（包名称 + 类名称）
+
+        在 xml 配置文件中配置好我们需要什么样的对象，将其信息交给 IoC，该信息称为 Bean 的定义信息（BeanDefinition）
+        IoC 用来创建对象的抽象接口是：由 BeanDefinitionReader 读取加载（有不同的实现类）
+        将 bean 的定义信息加载到 IoC, 由 IoC 去实例化（实例化可以反射完成，IoC 容器通过工厂 + 反射完成），此时是一个空的对象
+        再由 IoC 对对象进行初始化，初始化完成之后，得到和 new 出来的本质上一样的对象，可以通过 cnotext.getBean("自己配置的class的标志") 拿到对象
+
+    -->
+    <bean id="user" class="com.jiehfut.xml.User"></bean>
+
+
+</beans>

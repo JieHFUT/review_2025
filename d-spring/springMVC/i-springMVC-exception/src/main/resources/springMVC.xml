@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--1.扫描组件-->
+    <context:component-scan base-package="com.jiehfut"></context:component-scan>
+    <!--2.配置 Thymeleaf 视图解析器-->
+    <bean id="viewResolver" class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+        <!--视图优先级-->
+        <property name="order" value="1"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="templateEngine">
+            <bean class="org.thymeleaf.spring6.SpringTemplateEngine">
+                <property name="templateResolver">
+                    <bean class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+
+                        <!-- 视图前缀 -->
+                        <property name="prefix" value="/WEB-INF/templates/"/>
+
+                        <!-- 视图后缀 -->
+                        <property name="suffix" value=".html"/>
+                        <property name="templateMode" value="HTML"/>
+                        <property name="characterEncoding" value="UTF-8" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+
+
+    <!--配置视图控制器 path（请求地址） 和 @RequestMapping 路径保持一致，view-name（视图资源）-->
+    <!--在当前的控制器方法中没有任何的其他请求处理，只需要设置一个视图名称，但是设置了视图控制器，其他控制器中的请求映射将全部失效-->
+    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
+
+    <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
+    <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
+    <mvc:default-servlet-handler/>
+
+    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
+    <mvc:annotation-driven/>
+
+
+    <!--配置文件上传解析器，springMVC 用于将上传的文件封装成为 MultipartFile -->
+    <!--由 spring 的 ioc 容器自己去访问获得该 bean，根据 id 获取-->
+    <!--由于 springMVC 是根据 ID 获取该 bean 的，所以我们需要按照设定设置一个 ID-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
+
+
+    <!--自定义异常信息可以使用配置或者注解实现，这是使用配置信息-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--key 里面写异常的全类名，双标签内写需要跳转的视图页面（不设置视图前缀，该视图仍然被 TemplateResolver 解析，加上前后缀）-->
+                <prop key="java.lang.ArithmeticException">error</prop>
+            </props>
+        </property>
+        <!--设置该标签属性就可以使用该键来存储我们当前的异常信息，默认存储在我们的请求域中的，以 value 属性中的值为键，值为，例如：java.lang.ArithmeticException: / by zero-->
+        <property name="exceptionAttribute" value="ex"></property>
+    </bean>
+
+</beans>

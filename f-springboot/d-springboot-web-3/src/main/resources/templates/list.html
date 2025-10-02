@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>persons</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+<body>
+    <!--引入公共的导航-->
+    <div th:insert="~{common :: myheader}"></div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">姓名</th>
+                <th scope="col">密码</th>
+                <th scope="col">年龄</th>
+                <th scope="col">邮箱</th>
+                <th scope="col">性别</th>
+                <th scope="col">级别</th>
+                <th scope="col">状态信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="person,status : ${persons}" th:object="${person}">
+                <th></th>
+                <th scope="row" th:text="${person.id}">id</th>
+                <td th:text="*{username}">username</td>
+                <td th:if="${#strings.isEmpty(person.email)}" th:text="'联系不上'">passowrd</td>
+                <td th:if="${not #strings.isEmpty(person.email)}" th:text="${person.password}">passowrd</td>
+                <td th:text="|${person.age} / ${person.age > 18 ? '成年':'未成年'}|">age</td>
+                <td th:text="${person.email}">email</td>
+                <td>[[${person.gender}]]</td>
+                <td th:switch="${person.type}">
+                    <button th:case="'部长'" type="button" class="btn btn-success">8级</button>
+                    <button th:case="'主任'" type="button" class="btn btn-info">7级</button>
+                    <button th:case="'总监'" type="button" class="btn btn-secondary">9级</button>
+                </td>
+
+                <td>
+                    index: [[${status.index}]] <br/>
+                    count: [[${status.count}]] <br/>
+                    size(总数量): [[${status.size}]] <br/>
+                    <!--current(当前对象): [[${status.current}]] <br/>-->
+                    even(true)/odd(false): [[${status.even}]] <br/>
+                    first: [[${status.first}]] <br/>
+                    last: [[${status.last}]] <br/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-ep+dxp/oz2RKF89ALMPGc7Z89QFa32C8Uv1A3TcEK8sMzXVysblLA3+eJWTzPJzT" crossorigin="anonymous"></script>
+</body>
+</html>

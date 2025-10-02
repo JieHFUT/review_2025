@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        使用注解方式创建 bean 对象
+        1.引入 spring-context 依赖
+        2.开启组件的扫描 通过 <context:component-scan> 元素开启 Spring Beans的自动扫描功能（上面的三行约束）
+        3.使用注解定义 bean，即为通过注解将类传递到容器中
+        4.依赖注入
+
+        以下三组配置取其一即可，另外两组注释掉
+    -->
+
+    <!--开启组件扫描：扫描这个包内的注解，实现其功能（如将其装配到容器中）-->
+    <context:component-scan base-package="com.jiehfut"></context:component-scan>
+
+
+
+
+
+    <context:component-scan base-package="com.jiehfut">
+        <!-- context:exclude-filter 标签：指定排除规则 -->
+        <!--
+            type：设置排除或包含的依据
+            type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+            type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+        -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="assignable" expression="com.jiehfut.test.User"/>
+    </context:component-scan>
+
+
+
+
+    <context:component-scan base-package="com.jiehfut" use-default-filters="false">
+        <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
+        <!-- use-default-filters 属性：取值false表示关闭默认扫描规则 -->
+        <!-- 此时必须设置 use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
+        <!--
+            type：设置排除或包含的依据
+            type="annotation"，根据注解排除，expression中设置要追加的注解的全类名
+            type="assignable"，根据类型排除，expression中设置要追加的类型的全类名
+        -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="assignable" expression="com.jiehfut.test.User"/>
+    </context:component-scan>
+
+
+</beans>

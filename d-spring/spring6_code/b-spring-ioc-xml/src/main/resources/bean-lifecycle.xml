@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean 对象的生命周期”-->
+    <bean id="user" class="com.jiehfut.lifecycle.User"
+          scope="singleton" init-method="initMethod"
+          destroy-method="destroyMethod">
+        <!--属性注入-->
+        <property name="name" value="zhangsan"></property>
+    </bean>
+
+
+    <!--todo:后置处理器-->
+    <!--bean 的后置处理器要在配置后才能生效，对所有的 bean 对象生效-->
+    <bean id="beanProcessor" class="com.jiehfut.lifecycle.BeanPrevPost">
+
+    </bean>
+
+</beans>

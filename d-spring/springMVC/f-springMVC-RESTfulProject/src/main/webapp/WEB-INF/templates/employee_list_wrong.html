@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>所有员工的数据显示</title>
+</head>
+<body>
+
+    <!--显示我们的员工信息-->
+    <table id = "dataTable" border="1" cellpadding="0" cellspacing="0" style="text-align: center">
+        <tr>
+            <th colspan="5">Employee Info</th>
+        </tr>
+        <tr>
+            <th>id</th>
+            <th>lastName</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>options</th>
+        </tr>
+        <!--后端传递过来的信息是员工类的集合-->
+        <tr th:each="employee : ${employeeList}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td th:text="${employee.gender}"></td>
+            <td>
+                <!--<a th:href="@{/employee/} + ${employee.id}">delete</a> 或者下面这种方式 -->
+                <a @cilck="deleteEmployee" th:href="@{'/employee/'+ ${employee.id}}">delete</a>
+                <a href="">update</a>
+            </td>
+        </tr>
+    </table>
+
+
+    <!--绑定删除的超链接与表单提交，使用 vue 实现，导入 vue.js 包-->
+    <form method="post" id="deleteForm">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+
+    <!--引入 vue-->
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+
+    <script type="text/javascript">
+        // 发送 axios 请求
+        var vue = new Vue({
+            el:"#dataTable",
+            methods:{
+                deleteEmployee : function (event) {
+                    // 1.获取表单
+                    var deleteForm = document.getElementById("deleteForm");
+                    // 2.触发点击事件的超链接的 href 属性赋值给表单的 action 属性
+                    deleteForm.action = event.target.href;
+                    // 3.提交表单
+                    deleteForm.submit();
+                    // 4.抑制 a 标签的默认转发
+                    event.preventDefault();
+                }
+            }
+        });
+    </script>
+
+
+</body>
+</html>

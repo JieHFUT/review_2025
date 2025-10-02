@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆成功页</title>
+</head>
+<body>
+    <h2> ==登陆成功== </h2>
+    <p>用户名称：<span th:text="${username}"></span></p>
+    <p>用户年龄：<span th:text="${age}"></span></p>
+    <table border="1px">
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>是否成年</th>
+        </tr>
+        <tr th:each="person : ${list}">
+            <td th:text="${person.id}"></td>
+            <td>[[${person.username}]]</td>
+            <td th:text="${person.age}"></td>
+            <td th:text="${person.age >= 18 ? '是' : '否'}"></td>
+        </tr>
+    </table>
+
+</body>
+</html>
+

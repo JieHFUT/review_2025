@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--
+        Map 格式的注入
+        1.创建两个对象
+        2.注入普通类型变量
+        3.在学生 bean 中注入 map 集合类型属性
+
+    -->
+
+    <bean id="teacherx" class="com.jiehfut.iocxml.map.Teacher">
+        <!--注入普通类型属性-->
+        <property name="tid" value="76"></property>
+        <property name="tname" value="zhansgan"></property>
+    </bean>
+
+    <bean id="teachery" class="com.jiehfut.iocxml.map.Teacher">
+        <!--注入普通类型属性-->
+        <property name="tid" value="36"></property>
+        <property name="tname" value="lisi"></property>
+    </bean>
+
+
+
+    <bean id="student" class="com.jiehfut.iocxml.map.Student">
+        <!--注入普通类型属性-->
+        <property name="sid" value="217456"></property>
+        <property name="sname" value="xiaoliang"></property>
+        <!--map 属性类型注入-->
+        <property name="teacherMap">
+            <map>
+                <entry>
+                    <key><value>00001</value></key>
+                    <!--如果 value 是普通值，那么可以通过 value 标签设置，否则通过 ref 标签设置-->
+                    <ref bean="teacherx"></ref>
+                </entry>
+                <entry>
+                    <key><value>00002</value></key>
+                    <!--如果 value 是普通值，那么可以通过 value 标签设置，否则通过 ref 标签设置-->
+                    <ref bean="teachery"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    
+</beans>

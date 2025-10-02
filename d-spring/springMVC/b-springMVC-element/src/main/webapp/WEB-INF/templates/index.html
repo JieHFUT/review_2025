@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>首页</h1> <br>
+    <a th:href="@{/class/testRequestMapping}">测试 testRequestMapping 注解</a>
+
+    <form th:action="@{class/testRequestMapping}" method="post">
+        <input type="submit" value="测试 method 属性，当前为 post 请求">
+    </form>
+
+    <form th:action="@{class/testPut}" method="put">
+        <input type="submit" value="测试 form 表单能否发送 put 请求">
+        <!--Method 'GET' is not supported.-->
+        <!--form 表单只能提交 GET && POST 请求，其他形式的请求默认转成 GET-->
+    </form>
+
+    <!--<a th:href="@{class/testParams?username=12345&&sex=male}">测试参数匹配</a>-->
+    <a th:href="@{class/testParams(username='zhangsan', sex='male')}">测试参数匹配</a><br>
+
+    <a th:href="@{class/ara/testAnt}">测试Ant风格路径，使用 r 代替 ?</a><br>
+
+    <a th:href="@{class/testRESTful/1/username}">测试RESTful，支持路径中的占位符</a>
+
+</body>
+</html>

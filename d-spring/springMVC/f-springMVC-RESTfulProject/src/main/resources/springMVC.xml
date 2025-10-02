@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--1.扫描组件-->
+    <context:component-scan base-package="com.jiehfut.restful.dao, com.jiehfut.restful.bean, com.jiehfut.restful.controller"></context:component-scan>
+    <!--2.配置 Thymeleaf 视图解析器-->
+    <bean id="viewResolver" class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+        <!--视图优先级-->
+        <property name="order" value="1"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="templateEngine">
+            <bean class="org.thymeleaf.spring6.SpringTemplateEngine">
+                <property name="templateResolver">
+                    <bean class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+
+                        <!-- 视图前缀 -->
+                        <property name="prefix" value="/WEB-INF/templates/"/>
+
+                        <!-- 视图后缀 -->
+                        <property name="suffix" value=".html"/>
+                        <property name="templateMode" value="HTML"/>
+                        <property name="characterEncoding" value="UTF-8" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+
+
+    <!--配置视图控制器 path（请求地址） 和 @RequestMapping 路径保持一致，view-name（视图资源）-->
+    <!--在当前的控制器方法中没有任何的其他请求处理，只需要设置一个视图名称，但是设置了视图控制器，其他控制器中的请求映射将全部失效-->
+    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
+    <!--设置用户点击添加按钮后跳转到响应的视图 "/toAdd" => "employee_add"-->
+    <mvc:view-controller path="/toAdd" view-name="employee_add"></mvc:view-controller>
+
+    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
+    <mvc:annotation-driven/>
+
+
+
+    <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
+    <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
+    <!--
+        静态资源在 web 阶段表明：静态资源是通过 Default servlet 接收的，
+        Tomcat 中 Default servlet 的访问路由设置是“/”，和 DispatherServlet 冲突
+        由于自己设置的 web.xml 优先，所以所有的请求（包括静态）都会通过 DispatherServlet 去处理（每次把请求地址去控制器匹配相应的映射）
+        但是由于静态资源没有控制层的请求映射，所以不配置下面信息就会导致静态资源访问不了
+    -->
+    <mvc:default-servlet-handler/>
+
+
+
+
+
+
+
+    <!--
+        Tomcat 中的 web.xml 配置信息，若与自己工程中配置的 web.xml 有冲突，就近原则，以自己配置的为准
+
+        <welcome-file-list>
+            路径上下文首先默认首先找 index.html，没有的话找 index.htm，还没有就找 index.jsp
+            <welcome-file>index.html</welcome-file>
+            <welcome-file>index.htm</welcome-file>
+            <welcome-file>index.jsp</welcome-file>
+        </welcome-file-list>
+
+        <servlet>
+            <servlet-name>default</servlet-name>
+            <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+            <init-param>
+                <param-name>debug</param-name>
+                <param-value>0</param-value>
+            </init-param>
+            <init-param>
+                <param-name>listings</param-name>
+                <param-value>false</param-value>
+            </init-param>
+            // 服务器启动的时候与初始化
+            <load-on-startup>1</load-on-startup>
+        </servlet>
+
+        <servlet-mapping>
+            <servlet-name>default</servlet-name>
+            // 和 DispatherServlet 发生了冲突，以自己设置的 DispatherServlet 为准
+            <url-pattern>/</url-pattern>
+        </servlet-mapping>
+
+
+
+
+
+        <servlet>
+            <servlet-name>jsp</servlet-name>
+            <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+            <init-param>
+                <param-name>fork</param-name>
+                <param-value>false</param-value>
+            </init-param>
+            <init-param>
+                <param-name>xpoweredBy</param-name>
+                <param-value>false</param-value>
+            </init-param>
+            <load-on-startup>3</load-on-startup>
+        </servlet>
+
+        <servlet-mapping>
+            <servlet-name>jsp</servlet-name>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspx</url-pattern>
+        </servlet-mapping>
+
+
+    -->
+</beans>

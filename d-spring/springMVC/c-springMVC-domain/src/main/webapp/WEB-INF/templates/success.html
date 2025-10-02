@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SUCCESS</title>
+</head>
+<body>
+    <h1>SUCCESS</h1><br>
+    <!--转发到此处：获取请求域中的参数-->
+    <!--请求域中的 key 是不能直接写在文本中的，对标签内容操作需要通过 thymeleaf 操作，对 th: 中属性 ${} 中的数据进行解析-->
+    <!--如果是请求域中的数据，直接写请求域中的 key；如果是 session 域中的数据，就通过 session.key；如果是应用域，就通过 application.key  -->
+    <p th:text="${requestDomainKeya}"></p>
+    <p th:text="${requestDomainKeyb}"></p>
+    <p th:text="${requestDomainKeyc}"></p>
+    <p th:text="${requestDomainKeyd}"></p>
+    <p th:text="${requestDomainKeye}"></p>
+
+    <p th:text="${session.sessionDomainKeya}"></p>
+
+    <p th:text="${application.applicationDomainKeya}"></p>
+
+
+
+
+
+
+
+
+</body>
+</html>

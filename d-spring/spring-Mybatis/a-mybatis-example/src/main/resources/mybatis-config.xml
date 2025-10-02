@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+        在 mybatis 中，引入的标签顺序必须满足下面的核心配置标签顺序
+        The content of element type "configuration" must match
+        "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,
+        reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)".
+    -->
+    <!--引入 jdbc.properties 文件-->
+    <properties resource="jdbc.properties"></properties>
+    <!--引入类型别名的问题，简化 mapper.xml 文件中写的文件路径，且类型别名不区分大小写-->
+    <typeAliases>
+        <!--如果不设置 alias 属性，将会有一个默认的别名：类名-->
+        <typeAlias type="com.jiehfut.pojo.User" alias="pojo-user"></typeAlias>
+        <!--或者直接给某一个包设置别名，其下所有的类都会有默认的别名：类名-->
+        <package name="com.jiehfut.pojo"/>
+    </typeAliases>
+
+
+
+
+
+
+    <!--
+        environments：配置连接多个数据库的环境
+        属性：
+            default：设置默认使用的环境的ID
+
+    -->
+    <environments default="development">
+        <!--
+            environment：配置某一个具体的环境
+                ID：表示连接数据库的环境的唯一标识，不能重复
+            transactionManager：设置事务的管理方式
+                type（JDBC|MANAGED）
+                JDBC 表示执行 sql 的时候使用的是 JDBC 的原生的事务管理方式，事务的提交或者回滚需要手动处理、
+                MANAGED 表示被管理，例如被 spring 管理
+            dataSource：用来设置数据源的类型
+                type：设置数据源的类型（POOLED|UNPOOLED|JNDI）
+                POOLED 表示使用数据库连接池缓存数据库连接
+                UNPOOLED 表示不使用数据库连接池
+                JNDI 表示使用上下文中的数据源
+
+        -->
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+        <!--<dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="959452"/>
+            </dataSource>-->
+            <!--通过 properties 文件配置数据库信息-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url"
+                          value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--引入映射文件-->
+    <mappers>
+    <!--<mapper resource="mappers/UserMapper.xml"/>-->
+        <!--以包为单位引入映射文件，mapper 接口所在的包要和映射文所在的包一致，mapper 接口要和映射文件的名字一样-->
+        <package name="com.jiehfut.mapper"/>
+
+    </mappers>
+
+
+</configuration>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--用于引用数据的类型注入-->
+    <!--
+        1.创建三个对象
+        2.注入普通的类型属性
+        3.使用 util: 进行类型定义
+        4.在学生 bean 引用 util: 类型进行定义 bean，完成 list、map引用类型注入
+
+
+        要使用 util: 标签要加上这两行
+        xmlns:util="http://www.springframework.org/schema/util"
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/beans/spring-util.xsd
+
+    -->
+    <bean id="lessonx" class="com.jiehfut.iocxml.map.Lesson">
+        <property name="lname" value="JVM虚拟机"></property>
+    </bean>
+
+    <bean id="lessony" class="com.jiehfut.iocxml.map.Lesson">
+        <property name="lname" value="java并发编程的魅力"></property>
+    </bean>
+
+
+    <bean id="teacherx" class="com.jiehfut.iocxml.map.Teacher">
+        <property name="tid" value="0001"></property>
+        <property name="tname" value="zhangsan"></property>
+    </bean>
+    <bean id="teachery" class="com.jiehfut.iocxml.map.Teacher">
+        <property name="tid" value="0002"></property>
+        <property name="tname" value="lisi"></property>
+    </bean>
+
+
+
+
+    <!--学生的 bean -->
+    <bean id="student" class="com.jiehfut.iocxml.map.Student">
+        <property name="sid" value="01"></property>
+        <property name="sname" value="xiaomin"></property>
+        <!--核心部门：注入两个引用类型（list && map）注入，使用标签 util: 标签-->
+        <property name="lessonList" ref="lessonList"></property>
+        <property name="teacherMap" ref="teacherMap"></property>
+    </bean>
+
+
+    <!--
+        使用util:list、util:map 签必须引入相应的命名空间
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    -->
+    <util:list id="lessonList">
+        <ref bean="lessonx"></ref>
+        <ref bean="lessony"></ref>
+    </util:list>
+    <util:map id="teacherMap">
+        <entry>
+            <key><value>0001</value></key>
+            <ref bean="teacherx"></ref>
+        </entry>
+        <entry>
+            <key><value>0002</value></key>
+            <ref bean="teachery"></ref>
+        </entry>
+    </util:map>
+
+</beans>

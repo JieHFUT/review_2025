@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mapper.DynamicSQLMapper">
+
+    <!--把表中经常查询出来的字段使用一个 sql 片段来进行接收-->
+    <sql id="empColumns">eid, emp_name, age, sex, email</sql>
+
+    <!--
+        可能的多条件查询：List<Emp> getEmpByCondition(Emp emp);  empName sex email age
+        1.使用 if 标签
+        2.使用 where 标签
+        3.使用 trim 标签
+        4.使用 choose when otherwise 标签，相当于 if(){}  else if(){}  else if(){}  else{}
+          when 标签至少要有一个，otherwise 标签最多只能有一个
+        5.使用 foreach 标签
+    -->
+
+
+
+
+
+
+    <!--
+        即为如果满足 if 中设置的条件就会将其拼接到 sql 语句中去
+        select * from t_emp where 1 = 1 and age = ? and sex = ?
+        Emp(eid=2, empName=null, age=32, sex=男, email=42529@163.com, dept=null)
+        Emp(eid=5, empName=null, age=32, sex=男, email=234@gmail, dept=null)
+    -->
+    <select id="getEmpByCondition-one" resultType="Emp">
+        select <include refid="empColumns"></include> from t_emp where 1 = 1
+        <if test="empName != null and empName != ''">
+            and emp_name = #{empName}
+        </if>
+        <if test="age != null and age != ''">
+            and age = #{age}
+        </if>
+        <if test="sex != null and sex != ''">
+            and sex = #{sex}
+        </if>
+        <if test="email != null and email != ''">
+            and email = #{email}
+        </if>
+    </select>
+
+
+
+    <!--为了解决 sql 语句中都不成立多出来一个 where 或者第一个不成立多出来一个 and，需要将 where 也进行动态生成-->
+    <!--where 标签可以动态生成 where 语句并且可以将语句前面（and age = #{age}）的多余的 and，or 给去除掉-->
+    <!--需要注意的是，where 标签不能将其中内容后面（emp_name = #{empName} and）的多余的 and or 去掉-->
+    <select id="getEmpByCondition-one-" resultType="Emp">
+        select * from t_emp
+        <where>
+            <if test="empName != null and empName != ''">
+                emp_name = #{empName}
+            </if>
+            <if test="age != null and age != ''">
+                and age = #{age}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+
+    <!--
+        为了解决在判断的内容的前后都能添加 and，or，可以使用 trim 标签
+        prefix：将 trim 标签中内容前面或者后面添加指定内容
+        suffix：将 trim 标签中内容前面或者后面添加指定内容
+        suffixOverrides：将 trim 标签中内容前面或者后面去除指定内容
+        prefixOverrides：将 trim 标签中内容前面或者后面去除指定内容
+        标签中有内容的时候
+            prefix：将 trim 标签中内容前面或者后面添加指定内容
+            suffix：将 trim 标签中内容前面或者后面添加指定内容
+            suffixOverrides：将 trim 标签中内容前面或者后面去除指定内容
+            prefixOverrides：将 trim 标签中内容前面或者后面去除指定内容
+        标签中没有内容的时候
+            trim 标签也没有作用
+    -->
+    <select id="getEmpByCondition" resultType="Emp">
+        select * from t_emp
+        <trim prefix="where" suffixOverrides="and|or">
+            <if test="empName != null and empName != ''">
+                emp_name = #{empName} and
+            </if>
+            <if test="age != null and age != ''">
+                age = #{age} and
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex} and
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email}
+            </if>
+        </trim>
+    </select>
+
+
+
+
+    <!--List<Emp> getEmpByChoose(Emp emp);-->
+    <!--choose when otherwise 不需要添加 and && or，哪个条件成立了就会将其拼接到 sql 语句中，只会拼接第一个-->
+    <select id="getEmpByChoose" resultType="Emp">
+        select <include refid="empColumns"></include> from t_emp
+        <where>
+            <choose>
+                <when test="empName != null and empName != ''">
+                    emp_name = #{empName}
+                </when>
+                <when test="age != null and age != ''">
+                    age = #{age}
+                </when>
+                <when test="sex != null and sex != ''">
+                    sex = #{sex}
+                </when>
+                <when test="email != null and email != ''">
+                    email = #{email}
+                </when>
+                <otherwise>
+                    did = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+
+    <!--int deleteMoreByArray(@Param("eids") Integer[] eids);-->
+    <!--
+        数组参数的访问的默认名称是：Available parameters are [array, arg0]
+        ** 使用数组来批量删除信息
+        collection：设置需要循环的数组或者集合
+        item：数组中的每一条信息
+        separator：每次循环之间的分隔
+    -->
+    <delete id="deleteMoreByArray-Old">
+        delete from t_emp where eid in
+        <foreach collection="eids" item="eid" separator="," open="(" close=")">
+            #{eid}
+        </foreach>
+    </delete>
+    <!--批量删除的第二种写法-->
+    <delete id="deleteMoreByArray">
+        delete from t_emp where
+        <foreach collection="eids" item="eid" separator="or">
+            eid = #{eid}
+        </foreach>
+    </delete>
+
+
+
+
+    <!--int insertMoreByList(List<Emp> emps);-->
+    <!--
+        通过 List 集合进行批量插入
+        Available parameters are [arg0, collection, list]
+        collection：设置需要循环的数组或者集合
+        item：数组中的每一条信息
+        separator：每次循环之间的分隔
+    -->
+    <insert id="insertMoreByList">
+        insert into t_emp values
+        <foreach collection="emps" item="emp" separator=",">
+            (null, #{emp.empName}, #{emp.age}, #{emp.sex}, #{emp.email}, null)
+        </foreach>
+    </insert>
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <h1>首页</h1>
+    <!--使用表单发送一个带请求体的请求-->
+    <form th:action="@{/testRequestBody}" method="post">
+        username:<input type="text" name="username"><br>
+        password:<input type="text" name="password"><br>
+        <input type="submit" value="测试@RequestBody注解"><br>
+    </form>
+
+    <!--使用表单发送一个带请求体的请求-->
+    <form th:action="@{/testRequestEntity}" method="post">
+        username:<input type="text" name="username"><br>
+        password:<input type="text" name="password"><br>
+        <input type="submit" value="测试@RequestEntity注解"><br>
+    </form>
+
+    <a th:href="@{/testResponse}">通过 servletAPI 的 response 对象直接响应数据</a><br>
+    <a th:href="@{/testResponseBody}">通过 springMVC @ResponseBody 注解直接响应数据</a><br>
+
+    <a th:href="@{/testResponseUser}">通过 springMVC @ResponseBody 注解直接响应 User 对象</a><br>
+    <!--浏览器不会直接展示 java 对象，如果浏览器不对 java 对象进行处理，报 406 错误，浏览器需要将其转换为 JSON 显示，或者后端将 java 对象转换成为 JSON 格式再发过来-->
+
+
+    <!--ajax 请求-->
+    <div id="app">
+        <a @click="testAxios" th:href="@{/textAxios}">测试 SpringMVC 来处理 ajax（axios）</a>
+    </div>
+
+    <!--引入 vue.js && axios.js 文件-->
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+
+    <script type="text/javascript">
+        new Vue({
+            el:"#app",
+            methods:{
+                testAxios:function (event){
+                    axios({
+                        method:"post",
+                        url:event.target.href,
+                        params:{
+                            username:"admin",
+                            password:"123456"
+                        }
+                    }).then(function (response){
+                        alert(response.data);
+                    })
+                    event.preventDefault();
+                }
+            }
+        })
+    </script>
+
+
+</body>
+</html>

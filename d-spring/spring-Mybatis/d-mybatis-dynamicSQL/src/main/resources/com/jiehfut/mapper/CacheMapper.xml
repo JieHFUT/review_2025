@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mapper.CacheMapper">
+
+    <!--开启二级缓存 SqlSessionFactory 缓存-->
+    <!--设置二级缓存的类型-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <!--<cache blocking="" eviction="" flushInterval="" readOnly="" size="" type=""/>-->
+    <!--
+        二级缓存必须在SqlSession关闭或提交之后有效，
+        也就是在 sqlsession 没有关闭的时候，缓存在一级缓存中
+        在提交 commit 或者关闭 close 一级缓存后，数据才会缓存在二级缓存中
+        （二级缓存所转换的实体类类型必须实现序列化的接口）
+        eviction：缓存回收策略（默认是 LRU：移除最长时间不被使用的对象）
+        flushInterval：刷新时间（默认情况是仅仅调用语句（增删改）的时候刷新）
+        size：缓存最多可以存储多少个对象
+        readOnly: （true：只能从二级缓存中读取数据，给所有调用者返回相同的事例，直接返回序列化的对象） ====> 快
+                  （false：读写缓存，既能读又能写，是将序列化的对象拷贝一份，可以修改拷贝的对象，但是缓存中的不受影响）===> 慢，安全
+    -->
+
+    <!--缓存的查询顺序-->
+    <!--先二级缓存，再一级缓存，都没有查询数据库-->
+    <!--
+        先查询二级缓存，因为二级缓存中可能会有其他程序已经查出来的数据，可以拿来直接使用。
+        如果二级缓存没有命中，再查询一级缓存
+        如果一级缓存也没有命中，则查询数据库
+        SqlSession关闭之后，一级缓存中的数据会写入二级缓存
+    -->
+
+
+    <!--缓存只对查询对象有效-->
+    <!--Emp getEmpById(@Param("eid")Integer eid);-->
+    <select id="getEmpById" resultType="Emp">
+        select * from t_emp where eid = #{eid}
+    </select>
+
+    <!--void insertEmp(Emp emp);-->
+    <insert id="insertEmp">
+        insert into t_emp values (null, #{empName}, #{age}, #{sex}, #{email}, null)
+    </insert>
+
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.jiehfut</groupId>
+    <artifactId>i-ssm-springboot-example</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>i-ssm-springboot-example</name>
+    <description>i-ssm-springboot-example</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+         <!--
+                starter 配置称为场景，每个场景启动器都会把当前场景使用的 jar 包全部引入进来
+
+                spring-boot-starter-xxx
+                每一个场景启动器都有一个基础场景启动器：spring-boot-starter
+
+                例如 spring-boot-starter-web
+                        => spring-boot-starter
+                        => spring-boot-starter-json
+                        => spring-boot-starter-tomcat
+                        => spring-web
+                        => spring-webmvc
+                springboot 官方提供的依赖：spring-boot-starter-xxx，如 spring-boot-starter-thymeleaf
+                           三方提供的依赖：xxx-spring-boot-starter，如 mybatis-spring-boot-starter
+
+                springboot 依赖为什么不用写版本号：父项目 spring-boot-starter-parent 管理了版本信息
+                springboot 中写父项目中定义过的依赖就不用写版本，只有官方该 springboot 版本没有收录的依赖，我们如果
+                在项目中引入该依赖，需要自己定义版本信息：如 hutool-json
+                    1.官方没有管理的依赖：自己写版本
+                    2.官方已经管理的依赖：不用写版本，如果仍然自己写版本，以自己的版本为准（maven 依赖的就近优先原则）
+                    3.使用 <xxx.version>2.34.1</xxx.version> 声明某个依赖的属性覆盖官方版本
+
+                约定大于配置
+                1.只要导入了某个场景，容器中就会自动导入该场景的核心组件
+                2.如果不想要该自动配置的组件，可以自己进行更换组件
+                    如 springboot 默认的数据源是：
+            -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+            <version>5.8.35</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.20</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter-test</artifactId>
+            <version>3.0.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

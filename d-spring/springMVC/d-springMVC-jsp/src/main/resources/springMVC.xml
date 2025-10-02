@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--1.扫描组件-->
+    <context:component-scan base-package="com.jiehfut"/>
+    <!--2.配置 Jsp 的视图解析器，Jsp 可以直接访问-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/templates/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+
+
+    <!--配置视图控制器 path 和 @RequestMapping 路径保持一致-->
+    <!--在当前的控制器方法中没有任何的其他请求处理，只需要设置一个视图名称，但是设置了视图控制器，其他控制器中的请求映射将全部失效-->
+<!--    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
+    &lt;!&ndash;所以需要配置视图控制器后，设置开启mvc注解驱动的标签&ndash;&gt;
+    <mvc:annotation-driven/>-->
+
+
+</beans>

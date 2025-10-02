@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="empx" class="com.jiehfut.iocxml.list.Emp">
+        <property name="ename" value="zhangsan"></property>
+        <property name="age" value="19"></property>
+    </bean>
+
+    <bean id="empy" class="com.jiehfut.iocxml.list.Emp">
+        <property name="ename" value="lisi"></property>
+        <property name="age" value="29"></property>
+    </bean>
+
+    <!--list 集合注入-->
+    <bean id="dept" class="com.jiehfut.iocxml.list.Dept">
+        <!--普通属性注入-->
+        <property name="dname" value="项目管理部"></property>
+        <!--集合属性注入-->
+        <property name="empList">
+            <list>
+                <ref bean="empx"></ref>
+                <ref bean="empy"></ref>
+            </list>
+        </property>
+    </bean>
+</beans>

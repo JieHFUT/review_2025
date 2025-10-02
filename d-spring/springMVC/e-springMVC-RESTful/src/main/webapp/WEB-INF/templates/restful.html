@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>RESTFUL</title>
+</head>
+<body>
+    <h1>RESTFUL</h1><br>
+
+    <a th:href="@{/user}">查询所有的用户信息</a>
+    <a th:href="@{/user/1}">根据ID查询用户信息</a>
+    <hr>
+    <form th:action="@{/user}" method="post">
+        username: <input type="text" name="username"><br>
+        password: <input type="password" name="password"><br>
+        <input type="submit" value="addUser"><br>
+    </form>
+    <hr>
+
+    <!--使用 HiddenHttpMethodFilter 来实现 PUT DELETE 请求-->
+    <!--下面是实现 PUT 请求，用隐藏域来设置请求方式-->
+    <form th:action="@{/user}" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        username: <input type="text" name="username"><br>
+        password: <input type="password" name="password"><br>
+        <input type="submit" value="update"><br>
+    </form>
+    <hr>
+
+    <!--
+        一般来说删除都是超链接方式点击，而不是表单方式提交：需要在超链接中绑定点击事件，在点击事件中
+        1.阻止超链接的默认跳转
+        2.获得一个表单（无数据），将表单请求方式设置为 POST + 隐藏域
+    -->
+
+    
+
+
+
+</body>
+</html>

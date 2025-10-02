@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--1.引入外部 bean 的方式-->
+    <!--
+        （1）创建两个类的对象 dept emp
+        （2）在 emp 的 bean 的标签里面，使用 property 引入 dept 的 bean
+    -->
+    <bean id="dept" class="com.jiehfut.iocxml.special.Dept">
+        <property name="dname" value="安保部门"></property>
+    </bean>
+
+    <bean id="emp" class="com.jiehfut.iocxml.special.Emp">
+        <!--emp 类普通属性注入-->
+        <property name="ename" value="tom"></property>
+        <property name="age" value="22"></property>
+        <!--emp 内的对象类型属性 private Dept dept，使用 ref 引入部门的 bean 的 id 值 -->
+        <property name="dept" ref="dept"></property>
+    </bean>
+
+
+
+
+
+
+    <!--2.内部 bean 注入-->
+    <bean id="emp2" class="com.jiehfut.iocxml.special.Emp">
+        <!--emp 类普通属性注入-->
+        <property name="ename" value="jerry"></property>
+        <property name="age" value="20"></property>
+        <!--emp 内的对象类型属性 private Dept dept，使用内部 bean 的方式注入 -->
+        <property name="dept">
+            <bean id="dept2" class="com.jiehfut.iocxml.special.Dept">
+                <property name="dname" value="财务部门"></property>
+            </bean>
+        </property>
+    </bean>
+
+
+
+
+    <!--3.级联赋值-->
+    <bean id="dept3" class="com.jiehfut.iocxml.special.Dept">
+        <property name="dname" value="开发部门"></property>
+    </bean>
+
+    <bean id="emp3" class="com.jiehfut.iocxml.special.Emp">
+        <!--emp 类普通属性注入-->
+        <property name="ename" value="duck"></property>
+        <property name="age" value="17"></property>
+        <!--emp 内的对象类型属性 private Dept dept，使用级联赋值 -->
+        <property name="dept" ref="dept3"></property>
+        <property name="dept.dname" value="测试部门"></property>
+    </bean>
+
+
+</beans>

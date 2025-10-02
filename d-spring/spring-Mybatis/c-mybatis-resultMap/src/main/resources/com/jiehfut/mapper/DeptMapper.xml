@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mapper.DeptMapper">
+    <!--分步查询的第二步：对部门信息进行查询-->
+    <!--Dept getEmpAndDeptByStepTwo(@Param("did") Integer did);-->
+    <select id="getEmpAndDeptByStepTwo" resultType="Dept">
+        select * from t_dept where did = #{did}
+    </select>
+
+
+    <!--一对多的映射查询，1.两表联查 collection  2.分步查询  3.-->
+
+
+    <!--Dept getDeptAndEmp(@Param("did") Integer did);-->
+    <!--1.两表联查-->
+    <resultMap id="deptAndEmpResultMap" type="Dept">
+        <id property="did" column="did"></id>
+        <result property="deptName" column="dept_name"></result>
+        <!--
+            使用 collection 标签处理一对多的映射关系
+            ofType：表示该属性中对应的集合中的数据类型
+        -->
+        <collection property="empList" ofType="Emp">
+            <id property="eid" column="eid"></id>
+            <result property="empName" column="emp_name"></result>
+            <result property="age" column="age"></result>
+            <result property="sex" column="sex"></result>
+            <result property="email" column="email"></result>
+        </collection>
+    </resultMap>
+    <select id="getDeptAndEmp" resultMap="deptAndEmpResultMap">
+        select * from t_dept left join t_emp on t_dept.did = t_emp.did where t_dept.did = #{did}
+    </select>
+
+
+    <!--2.分步查询-->
+    <!--第一步，查询部门信息：Dept getDeptAndDeptByStepOne(@Param("did") Integer did);-->
+    <select id="getDeptAndDeptByStepOne" resultMap="deptAndEmpByStepResultap">
+        select * from t_dept where did = #{did}
+    </select>
+    <resultMap id="deptAndEmpByStepResultap" type="Dept">
+        <id property="eid" column="eid"></id>
+        <result property="empName" column="emp_name"></result>
+        <collection property="empList"
+                    select="com.jiehfut.mapper.EmpMapper.getDeptAndEmpByStepTwo"
+                    column="did">
+        </collection>
+    </resultMap>
+    
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

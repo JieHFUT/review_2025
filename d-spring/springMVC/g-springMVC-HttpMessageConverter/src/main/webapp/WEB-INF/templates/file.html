@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FileUpAndDown</title>
+</head>
+<body>
+    <a th:href="@{/testDown}">测试文件下载 luffy.jpg</a>><br>
+    <!--默认的 enctype 是 application/x-www-form-urlencoded  name=value -->
+    <!--enctype="multipart/form-data" 以二进制的方式传输到服务器-->
+    <form th:action="@{/testUpNoRepeat}" method="post" enctype="multipart/form-data">
+        头像：<input type="file" name="photo"><br>
+             <input type="submit" value="上传">
+    </form>
+</body>
+</html>

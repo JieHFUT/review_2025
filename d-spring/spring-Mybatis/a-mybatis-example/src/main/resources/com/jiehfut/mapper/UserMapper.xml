@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiehfut.mapper.UserMapper">
+
+    <!--int insertUser()-->
+    <insert id="insertUser">
+        insert into t_user values (null, 'admin','123456',23,'男','32425987@qq.com')
+    </insert>
+    <!--void updateUser()-->
+    <update id="updateUser">
+        update t_user set username = '张三' where id = 2
+    </update>
+    <!--void deleteUser()-->
+    <delete id="deleteUser">
+        delete from t_user where id =  1
+    </delete>
+    <!--User selectUserById(int id)-->
+    <!--
+        resultType 设置的是默认的映射关系   即为查询出结果后会自动把结果的字段名字作为 resultType 的属性名赋值，匹配不到就不赋值
+        resultMap  设置的是自定义的映射关系 如果字段名字和属性名不一样，使用 resultMap
+    -->
+    <select id="selectUserById" resultType="com.jiehfut.pojo.User">
+        select * from t_user where id = 2;
+    </select>
+
+    <!--List<User> selectAllUser-->
+    <select id="selectAllUser" resultType="pojo-user">
+        select * from t_user;
+    </select>
+
+
+
+</mapper>

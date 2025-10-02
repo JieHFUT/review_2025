@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        private String bname;
+        private String author;
+        private String nullValue;
+    -->
+
+    <!--1.基于 setter 方法注入-->
+    <bean id="book" class="com.jiehfut.iocxml.di.Book">
+        <!--property：属性，在这个标签中会调用 setter 方法对属性进行注入，spring 会把 value 看成字面量赋值-->
+        <property name="bname" value="前端开发"></property>
+        <property name="author" value="王仁杰"></property>
+
+
+        <!--otherValue 属性为 null 值，设置方法如下-->
+        <property name="nullValue"> <null></null> </property>
+
+        <!--转义实体 xml 实体来代替，（使用 &lt 代表 <）（使用 &gt 代表 >） -->
+        <!--或者不使用 xml 实体代替，使用 CDATA 节，（使用  <![CDATA[a < b]]>  来代替 a < b）-->
+    </bean>
+
+    <!--2.基于构造方法进行依赖注入-->
+    <bean id="bookCon" class="com.jiehfut.iocxml.di.Book">
+        <!--constructor-arg：构造器参数，可以使用参数名称，也可以使用索引来进行注入-->
+        <constructor-arg name="bname" value="后端开发"></constructor-arg>
+        <constructor-arg index="1" value="大傻春"></constructor-arg>
+    </bean>
+</beans>

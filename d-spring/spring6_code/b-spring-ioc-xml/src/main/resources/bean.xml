@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--xml方式进行类的管理：配置User类的配置-->
+    <bean id="user" class="com.jiehfut.iocxml.User"></bean>
+
+    <!--一个接口实现类的获取过程-->
+    <bean id="userDaoImpl" class="com.jiehfut.iocxml.bean.UserDaoImpl"></bean>
+    <bean id="userDaoImpl2" class="com.jiehfut.iocxml.bean.UserDaoImpl2"></bean>
+
+    <!---->
+
+
+
+</beans>
+
+
+<!--获取 bean 的三种方式-->

@@ -1,0 +1,18 @@
+1.获取bean的三种方式 User => bean.xml
+2.setter && construct（字面量赋值，null值，xml实体，CDATA 节） 方式进行依赖注入 di => bean-di.xml
+3.对象属性注入(ref 引入另外一个组件为属性，内部 bean 注入，级联赋值) special => bean-special.xml
+4.数组类型注入 array => bean-array.xml
+5.为集合属性赋值
+    为 List 集合属性赋值 list => bean-list.xml
+    为 Map 集合属性注入 map => bean-map.xml
+    引用类型的 bean 注入 map (使用util:list、util:map标签) => bean-di-ref.xml
+6.p 命名空间 p => bean-p.xml
+7.组件的作用域(singleton, prototype...) scope => bean-scope.xml
+8.组件的生命周期() lifecycle => bean-lifecycle.xml
+9.FactoryBean(getObject && getObjectType) factorybean => bean-factorybean.xml
+10.基于 xml 的自动装配(配置自动配置) auto => bean-auto.xml
+11.引入外部属性文件 jdbc(value = ${jdbc.url}) => bean-jdbc.xml
+
+
+
+NoUniqueBeanDefinitionException

@@ -1,0 +1,1 @@
+import{u as c,c as n,w as e,r as t,o as _,a as u,g as l}from"./index-D66qDaNj.js";const b={__name:"404",setup(p){const o=c(),r=()=>{o.push("/")};return(i,m)=>{const s=t("el-button"),a=t("el-result");return _(),n(a,{icon:"error",title:"404","sub-title":"抱歉, 你访问的页面不存在"},{extra:e(()=>[u(s,{type:"primary",onClick:r},{default:e(()=>[l("回到首页")]),_:1})]),_:1})}}};export{b as default};
