@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 
-// 0001
+// 0001 请求行 请求头 请求体
 @WebServlet("/httpServletRequest")
 public class HttpServletRequestTest extends HttpServlet {
 

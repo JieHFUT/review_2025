@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-// 0003
+// 0003 响应行 响应体
 @WebServlet("/httpServletResponse")
 public class HttpServletResponseTest extends HttpServlet {
 
