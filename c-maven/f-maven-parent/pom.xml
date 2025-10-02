@@ -9,8 +9,11 @@
     <version>1.0-SNAPSHOT</version>
     <!--由于父工程是不需要参与打包的，所以打包方式为 pom，父工程也不需要 src 文件夹，可以删除-->
     <packaging>pom</packaging>
+
+
     <modules>
-        <!--父工程对子工程进行构建管理与维护，一键管理，一键构建，对父工程进行了什么操作，子工程也会进行同样的操作-->
+        <!--这个标签的作用是进行工程聚合-->
+        <!--父工程对子工程进行构建管理与维护，一键管理，一键构建（优化构建顺序），对父工程进行了什么操作，子工程也会进行同样的操作-->
         <!--
             例如直接对父工程进行打包操作，也会对子工程按照顺序进行构建打包
             [INFO] f-maven-parent                                                     [pom]
@@ -26,6 +29,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
     <!--在父工程中进行依赖管理一般使用 dependencyManagement 标签-->
     <dependencyManagement>
         <dependencies>

@@ -18,6 +18,12 @@
     </properties>
 
 
+
+
+
+
+
+
     <!--从 maven 私服中使用别人部署的 jar 包-->
 
     <!--a-maven-example 已经部署在 maven 私服中的 http://localhost:8081/repository/maven-snapshots/-->

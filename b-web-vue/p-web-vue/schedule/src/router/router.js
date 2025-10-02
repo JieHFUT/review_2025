@@ -30,6 +30,7 @@ const router = createRouter({
     ]
 })
 
+
 // 通过路由的全局前置守卫，判断是否可以访问 showSchedule
 router.beforeEach((to, from, next) => {
     if (to.path === "/showSchedule") {

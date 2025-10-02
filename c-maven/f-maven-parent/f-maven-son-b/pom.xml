@@ -19,10 +19,12 @@
     </properties>
 
     <!--子工程自己设置需要继承那些依赖，和平常的依赖不同，不再需要设置版本号-->
+    <!--如果设置了版本号，就使用子工程的版本-->
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+            <version>1.2.7</version>
         </dependency>
     </dependencies>
 
