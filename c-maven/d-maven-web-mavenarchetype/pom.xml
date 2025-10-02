@@ -26,11 +26,11 @@
 
     <!-- 这个 d 项目引用了 c 项目的依赖 -->
     <!-- c 项目已经 install 到了本地仓库 -->
-    <dependency>
-      <groupId>com.jiehfut</groupId>
-      <artifactId>c-maven-web-plugin</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.jiehfut</groupId>-->
+<!--      <artifactId>c-maven-web-plugin</artifactId>-->
+<!--      <version>1.0-SNAPSHOT</version>-->
+<!--    </dependency>-->
 
 
 
@@ -82,9 +82,10 @@
   <build>
     <!--maven 工程 build 构建相关信息设置-->
     <!--自定义打包名称-->
-    <finalName>d-maven-web-mavenarchetype-1.0</finalName>
+    <finalName>d-maven-web-mavenarchetype-2.0.war</finalName>
     <!--制定构建打包时，指定包含文件格式和排除文件-->
     <!--一般来说没有按照指定目录放置的配置文件就不会被打包到 target 中-->
+    <!--resources目录下面的文件会被打包进去-->
     <!--所以遇到这种情况，需要自己去配置打包目录-->
     <!--设置要打包的资源位置 resources 标签-->
     <resources>
@@ -97,6 +98,7 @@
         </includes>
       </resource>
     </resources>
+
 
 
     <!-- jdk17 和 war包版本插件不匹配 -->
