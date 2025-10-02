@@ -24,6 +24,9 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.2.8</version>
+
+            <!--设置这个依赖不允许被传递给下一个项目-->
+            <!--<optional>true</optional>-->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->

@@ -103,12 +103,16 @@
 
     <!-- jdk17 和 war包版本插件不匹配 -->
     <plugins>
+      <!--辅助打包插件-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.2</version>
       </plugin>
+
+
       <!-- tomcat插件 -->
+      <!--可以直接通过插件运行项目-->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
