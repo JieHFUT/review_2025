@@ -19,9 +19,7 @@
     <junit.version>5.10.2</junit.version> <!--下面的这个依赖就可以通过${junit.version}指明版本 -->
 
 
-
   </properties>
-
 
 
   <dependencies>
@@ -72,14 +70,12 @@
 
 
 
-
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.28</version>
     </dependency>
-
 
   </dependencies>
 
