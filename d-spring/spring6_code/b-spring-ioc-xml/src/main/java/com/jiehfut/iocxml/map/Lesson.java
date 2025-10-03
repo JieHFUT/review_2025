@@ -17,6 +17,7 @@ public class Lesson {
     public String getLname() {
         return lname;
     }
+
     public void setLname(String lname) {
         this.lname = lname;
     }

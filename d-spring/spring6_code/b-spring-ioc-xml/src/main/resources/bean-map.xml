@@ -34,12 +34,16 @@
         <property name="teacherMap">
             <map>
                 <entry>
-                    <key><value>00001</value></key>
+                    <key>
+                        <value>00001</value>
+                    </key>
                     <!--如果 value 是普通值，那么可以通过 value 标签设置，否则通过 ref 标签设置-->
                     <ref bean="teacherx"></ref>
                 </entry>
                 <entry>
-                    <key><value>00002</value></key>
+                    <key>
+                        <value>00002</value>
+                    </key>
                     <!--如果 value 是普通值，那么可以通过 value 标签设置，否则通过 ref 标签设置-->
                     <ref bean="teachery"></ref>
                 </entry>

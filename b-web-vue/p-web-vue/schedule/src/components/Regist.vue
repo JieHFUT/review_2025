@@ -8,7 +8,7 @@
 
 
   // 响应式数据,保存用户输入的表单信息
-  let registUser =reactive({
+  let registUser = reactive({
     username:'',
     userPwd:''
   })

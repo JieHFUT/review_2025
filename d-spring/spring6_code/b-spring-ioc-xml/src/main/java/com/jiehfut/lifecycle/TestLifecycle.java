@@ -11,7 +11,10 @@ public class TestLifecycle {
         User user = context.getBean("user", User.class);
         System.out.println("6.bean 对象创建完成，可以使用 " + user + " ...");
         // 使用实现类 ClassPathXmlApplicationContext 对象调用 close() 方法
+        // ApplicationContext context = new ClassPathXmlApplicationContext("bean-lifecycle.xml");
+        // 而不要使用接口去关闭
         context.close();
+
 
         /**
          1.调用无参构造创建 bean 对象...
@@ -31,7 +34,7 @@ public class TestLifecycle {
          5.后置处理器在 bean 初始化之后执行...
             user::com.jiehfut.lifecycle.User@5ed190be
          6.bean 对象创建完成，可以使用 com.jiehfut.lifecycle.User@5ed190be ...
-         2024-11-29 18:06:48 572 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Closing org.springframework.context.support.ClassPathXmlApplicationContext@3542162a, started on Fri Nov 29 18:06:48 CST 2024
+           2024-11-29 18:06:48 572 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Closing org.springframework.context.support.ClassPathXmlApplicationContext@3542162a, started on Fri Nov 29 18:06:48 CST 2024
          7.bean 对象销毁，调用指定的销毁方法...
          */
     }

@@ -12,7 +12,7 @@ public class TestMap {
         Student student = (Student) context.getBean("student",Student.class);
 
         System.out.println(student.run());
-        student.teacherMap();
+        student.teacherMap(); // 输出 map 中的所有 teacher
 
         /**
          Student{sid='217456', sname='xiaoliang'}

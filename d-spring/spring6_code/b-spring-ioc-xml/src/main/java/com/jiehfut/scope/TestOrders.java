@@ -29,5 +29,12 @@ public class TestOrders {
 
         Orders orders2 = (Orders) context.getBean("orders", Orders.class);
         System.out.println(orders == orders2); // false
+
+        /**
+             2025-10-03 14:03:50 609 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4879f0f2
+             2025-10-03 14:03:50 715 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 1 bean definitions from class path resource [bean-scope.xml]
+             com.jiehfut.scope.Orders@6ca320ab
+             false
+         */
     }
 }

@@ -3,7 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+    <!--
+        private String dname;
+        一个部门有很多员工
+        private List<Emp> empList;
+    -->
     <bean id="empx" class="com.jiehfut.iocxml.list.Emp">
         <property name="ename" value="zhangsan"></property>
         <property name="age" value="19"></property>

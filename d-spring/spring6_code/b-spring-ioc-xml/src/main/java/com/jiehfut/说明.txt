@@ -1,3 +1,4 @@
+iocxml 文件夹
 1.获取bean的三种方式 User => bean.xml
 2.setter && construct（字面量赋值，null值，xml实体，CDATA 节） 方式进行依赖注入 di => bean-di.xml
 3.对象属性注入(ref 引入另外一个组件为属性，内部 bean 注入，级联赋值) special => bean-special.xml
@@ -7,6 +8,8 @@
     为 Map 集合属性注入 map => bean-map.xml
     引用类型的 bean 注入 map (使用util:list、util:map标签) => bean-di-ref.xml
 6.p 命名空间 p => bean-p.xml
+
+
 7.组件的作用域(singleton, prototype...) scope => bean-scope.xml
 8.组件的生命周期() lifecycle => bean-lifecycle.xml
 9.FactoryBean(getObject && getObjectType) factorybean => bean-factorybean.xml

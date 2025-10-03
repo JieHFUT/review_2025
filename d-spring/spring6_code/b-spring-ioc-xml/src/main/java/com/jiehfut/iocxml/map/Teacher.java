@@ -1,6 +1,7 @@
 package com.jiehfut.iocxml.map;
 
 public class Teacher {
+    
     public String tid;
     public String tname;
 

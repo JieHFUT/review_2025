@@ -23,10 +23,13 @@
         <!--或者不使用 xml 实体代替，使用 CDATA 节，（使用  <![CDATA[a < b]]>  来代替 a < b）-->
     </bean>
 
+
+
     <!--2.基于构造方法进行依赖注入-->
     <bean id="bookCon" class="com.jiehfut.iocxml.di.Book">
         <!--constructor-arg：构造器参数，可以使用参数名称，也可以使用索引来进行注入-->
         <constructor-arg name="bname" value="后端开发"></constructor-arg>
+        <!--索引是第几个属性，从 0 开始，下面的 1 代表第二个属性-->
         <constructor-arg index="1" value="大傻春"></constructor-arg>
     </bean>
 </beans>

@@ -45,6 +45,8 @@
     userPwdMsg.value="ok"
     return true
   }
+
+
   // 登陆的时候发送请求，将 loginUser 转换为一个 JSON 串发送到服务器
   async function login(){
     // 校验表单格式数据正确

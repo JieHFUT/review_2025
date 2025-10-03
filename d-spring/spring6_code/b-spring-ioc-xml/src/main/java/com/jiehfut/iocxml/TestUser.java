@@ -30,5 +30,6 @@ public class TestUser {
         User userByIdAndClass = context.getBean("user", User.class);
 
         // 上面的三种获取 bean 的方式获取的 user 对象地址一样
+        // 根据类型获取 bean 要求只能有一个实例的 bean：否则报错 NoUniqueBeanDefinitionException
     }
 }

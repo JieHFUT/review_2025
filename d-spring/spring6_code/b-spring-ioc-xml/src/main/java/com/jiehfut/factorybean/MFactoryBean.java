@@ -14,4 +14,6 @@ public class MFactoryBean implements FactoryBean<User> {
     public Class<?> getObjectType() {
         return User.class;
     }
+
+
 }

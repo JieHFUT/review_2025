@@ -29,6 +29,8 @@ public class TestUser {
         // 3.使用对象调用方法进行测试
         user.add();
 
+
+
         /*
             如何使用反射创建的对象：
             1.加载 .xml 配置文件
@@ -38,9 +40,9 @@ public class TestUser {
             5.创建好的对象被统一管理到一个 map 中 （DefaultListableBeanFactory 类中有一个 map 属性
                                              private final Map<String, BeanDefinition> beanDefinitionMap;）
                                              其中 String 就是自己设定xml配置中唯一的标识
-                                             beanDefinitionMap 是指类的描述信息（bean对象）
+                                             beanDefinition 是指类的描述信息（bean对象）
             6.Spring容器加载到Bean类时 , 会把这个类的描述信息, 以包名加类名的方式存到 beanDefinitionMap 中
-                                     （是否单例、Bean 类名、scope、isPrimary、是否懒加载 isLazyInit）
+                                     （是否单例、Bean 类名、scope 作用域、isPrimary是否单例、是否懒加载 isLazyInit）
               Map<String,BeanDefinition> , 其中 String是Key, 默认是类名首字母小写
               BeanDefinition, 存的是类的定义(描述信息) , 我们通常叫 BeanDefinition 接口为 : bean的定义对象。
         */
@@ -64,7 +66,8 @@ public class TestUser {
          */
     }
 
-    // 通过反射创建对象
+
+    // 通过反射创建对象（回顾反射）
     @Test
     public void testUserObjectByReflection() throws Exception {
         // 获取类 Class 对象

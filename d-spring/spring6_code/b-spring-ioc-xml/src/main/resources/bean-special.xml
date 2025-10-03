@@ -26,6 +26,9 @@
 
 
 
+
+
+
     <!--2.内部 bean 注入-->
     <bean id="emp2" class="com.jiehfut.iocxml.special.Emp">
         <!--emp 类普通属性注入-->
@@ -42,6 +45,12 @@
 
 
 
+
+
+
+
+
+
     <!--3.级联赋值-->
     <bean id="dept3" class="com.jiehfut.iocxml.special.Dept">
         <property name="dname" value="开发部门"></property>
@@ -51,7 +60,9 @@
         <!--emp 类普通属性注入-->
         <property name="ename" value="duck"></property>
         <property name="age" value="17"></property>
+
         <!--emp 内的对象类型属性 private Dept dept，使用级联赋值 -->
+        <!--相当于更改属性值了-->
         <property name="dept" ref="dept3"></property>
         <property name="dept.dname" value="测试部门"></property>
     </bean>
