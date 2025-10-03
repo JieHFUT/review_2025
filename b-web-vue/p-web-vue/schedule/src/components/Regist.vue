@@ -29,6 +29,7 @@
       usernameMsg.value = "不合法"
       return false
     }
+
     // 继续校验用户名是否被占用
     // await request.post(`user/checkUsernameUsed?username=${registUser.username}`) 拿到的是整个 response 对象
     // 结构表达式拿到的是 {data} 是后端发送过来的 JSON 字符串转换的对象
@@ -45,6 +46,8 @@
       return true
     }
   }
+
+
   // 校验密码的方法
   function checkUserPwd(){
     // 定义正则
@@ -81,6 +84,7 @@
     reUserPwdMsg.value="OK"
     return true
   }
+
   // 下面是点击注册按钮时候，如果用户名或者密码不支持，不会发送请求
   async function regist() {
     // 校验所有的输入框是否合法
