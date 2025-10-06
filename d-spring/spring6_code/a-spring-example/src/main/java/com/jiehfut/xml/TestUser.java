@@ -50,6 +50,7 @@ public class TestUser {
         // 测试手动写日志，可以将其打印到日志中
         logger.info("logger 调用成功！！！！！！！！！！！！！");
 
+
         /**
          * 2024-12-26 08:46:13 224 [main] DEBUG org.springframework.context.support.ClassPathXmlApplicationContext - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@239b0f9d
          * 2024-12-26 08:46:13 380 [main] DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loaded 1 bean definitions from class path resource [bean.xml]
