@@ -12,8 +12,9 @@ public class UserController {
     @Qualifier 根据名称进行匹配
 
     // 1.通过属性注入 service
-    @Autowired // 根据类型找到对应的实现类的对象，完成注入
+    @Autowired // 根据类型找到对应的实现类的对象，完成注入 => 去寻找
     private UserService userService;
+
 
     // 2.通过 setter 方法注入
     private UserService userService;
@@ -22,6 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
+
     // 3.通过构造方法中注入
     private UserService userService;
     @Autowired
@@ -29,10 +31,12 @@ public class UserController {
         this.userService = userService;
     }
 
+
     // 4.形参上注入
     public UserController(@Autowired UserService userService) {
         this.userService = userService;
     }
+
 
     // 5.只有一个有参构造，没有第二个构造器的时候可以将 @Autowired 省略
     private UserService userService;

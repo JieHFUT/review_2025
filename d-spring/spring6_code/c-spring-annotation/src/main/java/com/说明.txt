@@ -1,0 +1,39 @@
+1.jiehfut
+    test
+    autowired
+    resource
+
+2.allannotation
+
+
+
+
+
+表示这个注解可以在哪里使用
+@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Autowired {
+	required 的值为 true 就要求这个被注入的 bean 必须是存在的
+	required 的值为 false 不要求这个被注入的 bean 必须是存在的
+	boolean required() default true;
+}
+
+
+
+@Target({TYPE, FIELD, METHOD})
+@Retention(RUNTIME)
+@Repeatable(Resources.class)
+public @interface Resource {
+    String name() default "";
+    String lookup() default "";
+    Class<?> type() default java.lang.Object.class;
+    enum AuthenticationType {
+	    CONTAINER,
+	    APPLICATION
+    }
+    AuthenticationType authenticationType() default AuthenticationType.CONTAINER;
+    boolean shareable() default true;
+    String mappedName() default "";
+    String description() default "";
+}

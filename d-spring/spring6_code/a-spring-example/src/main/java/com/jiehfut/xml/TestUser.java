@@ -47,6 +47,7 @@ public class TestUser {
               BeanDefinition, 存的是类的定义(描述信息) , 我们通常叫 BeanDefinition 接口为 : bean的定义对象。
         */
 
+
         // 测试手动写日志，可以将其打印到日志中
         logger.info("logger 调用成功！！！！！！！！！！！！！");
 

@@ -18,6 +18,10 @@
     -->
 
     <!--开启组件扫描：扫描这个包内的注解，实现其功能（如将其装配到容器中）-->
+    <!--扫描到了这个包里的注解，根据注解来完成对象的创建
+            1.如果注解在类上(@Component @Controller @Service...)，就会将该类进行创建在容器中，进行 自动装配
+            2.如果注解在属性上（@Autowire @Resource），就会进行属性注入
+    -->
     <context:component-scan base-package="com.jiehfut"></context:component-scan>
 
 
@@ -26,14 +30,17 @@
 
     <context:component-scan base-package="com.jiehfut">
         <!-- context:exclude-filter 标签：指定排除规则 -->
-        <!--
+        <!-- 排除哪些内容不进行扫描
             type：设置排除或包含的依据
             type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
             type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
         -->
+        <!--@Controller 注解不进行扫描-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!--User 这个类不进行扫描-->
         <context:exclude-filter type="assignable" expression="com.jiehfut.test.User"/>
     </context:component-scan>
+
 
 
 
@@ -47,7 +54,10 @@
             type="annotation"，根据注解排除，expression中设置要追加的注解的全类名
             type="assignable"，根据类型排除，expression中设置要追加的类型的全类名
         -->
+
+        <!--表示只会扫描注解 @Controller-->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <!--表示只会扫描类 User-->
         <context:include-filter type="assignable" expression="com.jiehfut.test.User"/>
     </context:component-scan>
 
