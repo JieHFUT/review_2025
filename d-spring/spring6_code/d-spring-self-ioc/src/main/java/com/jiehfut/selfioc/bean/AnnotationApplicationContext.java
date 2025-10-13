@@ -21,6 +21,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
 
     // 创建一个 map 集合，用于放置 bean 对象
     private Map<Class, Object> beanFactory = new HashMap<Class, Object>();
+
     // 方便截取绝对路径到使用路径
     private String rootPath;
 
@@ -33,6 +34,8 @@ public class AnnotationApplicationContext implements ApplicationContext {
     }
 
     /**
+     * 包的扫描规则
+     *
      * 设置包的扫描规则：如果当前包以及其子包，如果哪个类有 @bean 注解，把这个类通过反射进行实例化
      * 创建其有参数的构造，传递包路径，设置包扫描规则
      * @param basePackage : 用户配置时设置的把该路径下注解的类载入"IoC"中，如：com.jiehfut.selfioc
@@ -106,6 +109,8 @@ public class AnnotationApplicationContext implements ApplicationContext {
             }
         }
     }
+
+
 
 
     // 进行属性注入，已知实例化的对象都存储在 map 集合中

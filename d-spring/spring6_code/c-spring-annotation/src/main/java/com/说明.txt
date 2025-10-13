@@ -4,6 +4,7 @@
     resource
 
 2.allannotation
+    全注解编程
 
 
 
