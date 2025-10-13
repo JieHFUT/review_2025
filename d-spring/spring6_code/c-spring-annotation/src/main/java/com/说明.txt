@@ -11,6 +11,7 @@
 
 表示这个注解可以在哪里使用
 @Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
+
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Autowired {
