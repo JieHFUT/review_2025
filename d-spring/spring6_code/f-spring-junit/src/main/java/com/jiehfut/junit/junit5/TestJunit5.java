@@ -13,7 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 // @ContextConfiguration("classpath:bean.xml")
 // 或者下面一个注解
 @Component
-@SpringJUnitConfig(locations = "classpath:bean.xml")
+@SpringJUnitConfig(locations = "classpath:bean.xml") // 取代了之前 ApplicationContext context = new ClassPathXmlApplicationContext("xxx.xml");
 public class TestJunit5 {
 
     // 直接注入

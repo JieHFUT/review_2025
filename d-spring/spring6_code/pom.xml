@@ -40,7 +40,7 @@
             <version>6.0.20</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-        <!--2.引入测试相关的依赖，去除依赖的范围，在编译时也可用-->
+        <!--2.引入测试 junit5 相关的依赖，去除依赖的范围，在编译时也可用-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -93,7 +93,7 @@
             <artifactId>spring-test</artifactId>
             <version>6.0.2</version>
         </dependency>
-        <!--10.junit 测试-->
+        <!--10.junit4 测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

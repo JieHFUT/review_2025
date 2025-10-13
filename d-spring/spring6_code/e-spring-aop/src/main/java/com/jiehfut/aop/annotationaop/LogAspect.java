@@ -99,7 +99,9 @@ public class LogAspect {
     public void pointCut() {}
 
     // 切面的优先级 @Order() 来控制
-
+    // 相同目标方法上同时存在多个切面时，切面的优先级控制切面的内外嵌套顺序
+    // 值越小，优先级越高
+    // @Order(较小的数)：优先级高
 
 
 
