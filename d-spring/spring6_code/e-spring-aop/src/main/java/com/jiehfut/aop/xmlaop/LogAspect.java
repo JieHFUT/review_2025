@@ -11,6 +11,13 @@ import java.util.Arrays;
 @Component // 表示在 ioc 容器中进行管理
 public class LogAspect {
 
+    /**
+         AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领域中的面向切面编程，
+         它是面向对象编程的一种补充和完善，它以通过预编译方式和运行期动态代理方式实现，在不修改源代码的情况下，
+         给程序动态统一添加额外功能的一种技术。利用AOP可以对业务逻辑的各个部分进行隔离，
+         从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率
+     */
+
     // 1.前置
     public void beforeMethod(JoinPoint joinPoint) {
         // 使用 joinPoint 可以获得增强方法的相关信息

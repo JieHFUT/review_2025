@@ -94,4 +94,136 @@ public class TestUser {
     }
 
 
+    /**
+     * 1.xxx.xml 文件中有<bean>xxx<bean/>标签
+     * 2.由 BeanDefinitionReader 读取加载（有不同的实现类）xml 文件，将其解析为 BeanDefinition 接口的一个实现类对象
+     * 3.将该定义信息注册到 beanFactory 接口的一个实现类工厂中
+     *   DefaultListableBeanFactory 类中有一个 map 属性
+     *   private final Map<String, BeanDefinition> beanDefinitionMap;）
+     *   其中 String 就是自己设定xml配置中唯一的标识
+     *   beanDefinition 是指类的描述信息（bean对象）
+     * 4.当客户端调用 beanFactory 接口的 getBean()方法时，如果Bean是单例且尚未初始化，则容器会实例化Bean，并注入其依赖
+     *
+     *
+     *
+     *
+     *
+     * 1. BeanFactory
+     * BeanFactory是Spring框架中最基本的IoC容器，它提供了IoC容器最基本的功能。它使用延迟加载策略，只有在客户端请求一个Bean时才会对Bean进行初始化。
+     *
+     * 主要作用：
+     * 负责配置、创建和管理Bean。
+     *
+     * 提供了基础的依赖注入支持。
+     *
+     * 装配流程（以XmlBeanFactory为例，已过时，但有助于理解）：
+     * 加载配置文件：读取XML配置文件。
+     *
+     * 解析Bean定义：将XML中的<bean>元素解析成BeanDefinition对象，并注册到BeanFactory中。
+     *
+     * 依赖注入：当客户端调用getBean()方法时，如果Bean是单例且尚未初始化，则容器会实例化Bean，并注入其依赖。
+     *
+     * 代码示例（已过时，仅用于说明）：
+     * java
+     * BeanFactory factory = new XmlBeanFactory(new ClassPathResource("applicationContext.xml"));
+     * MyBean myBean = (MyBean) factory.getBean("myBean");
+     * 流程详解：
+     * 第一步：通过ClassPathResource加载XML配置文件。
+     *
+     * 第二步：XmlBeanFactory初始化，内部会创建一个DefaultListableBeanFactory，然后使用XmlBeanDefinitionReader读取配置资源，将每个Bean定义解析为BeanDefinition并注册到DefaultListableBeanFactory中。
+     *
+     * 第三步：当调用getBean时，容器会先检查Bean是否已经初始化（对于单例），如果没有，则实例化Bean，并填充属性（依赖注入）。
+     *
+     * 2. ApplicationContext
+     * ApplicationContext是BeanFactory的子接口，它提供了更多的企业级功能。它在启动时就预加载所有的单例Bean，属于立即加载策略。此外，它还提供了消息资源处理、事件发布、应用层上下文等功能。
+     *
+     * 主要作用：
+     * 继承BeanFactory的功能，并在此基础上扩展。
+     *
+     * 提供文本解析、AOP、事务管理等功能。
+     *
+     * 装配流程（以ClassPathXmlApplicationContext为例）：
+     * 加载配置文件：读取XML配置文件。
+     *
+     * 解析Bean定义：将XML中的Bean定义解析成BeanDefinition，并注册到容器中。
+     *
+     * BeanFactory后处理：调用BeanFactoryPostProcessor对Bean定义进行修改。
+     *
+     * Bean后处理：调用BeanPostProcessor对Bean实例进行增强。
+     *
+     * 初始化单例Bean：容器启动时立即初始化所有非懒加载的单例Bean。
+     *
+     * 代码示例：
+     * java
+     * ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+     * MyBean myBean = context.getBean(MyBean.class);
+     * 流程详解：
+     * 第一步：创建ClassPathXmlApplicationContext实例，指定配置文件。
+     *
+     * 第二步：调用refresh()方法（在父类AbstractApplicationContext中）启动容器。
+     *
+     * 在这个方法中，会创建BeanFactory（默认是DefaultListableBeanFactory），并加载Bean定义。
+     *
+     * 然后调用BeanFactoryPostProcessor（例如PropertySourcesPlaceholderConfigurer）对Bean定义进行修改，比如替换占位符。
+     *
+     * 接着注册BeanPostProcessor，这些处理器会在Bean实例化前后执行。
+     *
+     * 最后初始化所有非懒加载的单例Bean，包括实例化、填充属性、初始化（调用初始化方法、应用BeanPostProcessor的后处理）等。
+     *
+     * 3. ClassPathXmlApplicationContext
+     * ClassPathXmlApplicationContext是ApplicationContext的一个具体实现，它从类路径下加载XML配置文件。
+     *
+     * 主要作用：
+     * 从类路径中加载XML配置文件，创建ApplicationContext。
+     *
+     * 装配流程：
+     * 构造函数：在构造函数中设置配置文件路径，并调用refresh()方法。
+     *
+     * 刷新上下文：refresh()方法中完成以下步骤：
+     *
+     * 准备刷新：初始化启动时间、激活状态等。
+     *
+     * 获取BeanFactory：创建DefaultListableBeanFactory。
+     *
+     * 加载Bean定义：使用XmlBeanDefinitionReader读取XML文件，解析并注册Bean定义。
+     *
+     * 后处理BeanFactory：调用所有注册的BeanFactoryPostProcessor。
+     *
+     * 注册Bean后处理器：注册所有BeanPostProcessor。
+     *
+     * 初始化消息源、事件广播器等。
+     *
+     * 初始化所有非懒加载的单例Bean。
+     *
+     * 完成刷新：发布上下文刷新事件。
+     *
+     * 代码示例：
+     * java
+     * ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+     * 流程详解：
+     * 首先，在创建ClassPathXmlApplicationContext时，会调用其构造函数，构造函数中会调用refresh()方法。
+     *
+     * refresh()方法是在AbstractApplicationContext中定义的，它包含了完整的容器启动流程。
+     *
+     * 创建BeanFactory：obtainFreshBeanFactory()方法会创建BeanFactory（DefaultListableBeanFactory）并加载Bean定义。
+     *
+     * 然后调用invokeBeanFactoryPostProcessors(beanFactory)执行BeanFactoryPostProcessor，这些处理器可以修改Bean定义。
+     *
+     * 接着调用registerBeanPostProcessors(beanFactory)注册BeanPostProcessor，这些处理器在Bean初始化前后被调用。
+     *
+     * 然后调用onRefresh()方法（子类可以重写），初始化一些特殊的Bean。
+     *
+     * 最后调用finishBeanFactoryInitialization(beanFactory)初始化所有非懒加载的单例Bean。
+     *
+     * 总结
+     * BeanFactory：基础容器，延迟加载。使用getBean()时才会初始化Bean。
+     *
+     * ApplicationContext：扩展了BeanFactory，提供了更多功能，立即加载（在启动时初始化所有单例Bean）。
+     *
+     * ClassPathXmlApplicationContext：ApplicationContext的具体实现，从类路径加载XML配置。
+     *
+     * 在Spring应用中，通常使用ApplicationContext，因为它提供了更全面的功能。而BeanFactory通常在资源受限的环境下使用，比如移动设备。
+     */
+
+
 }

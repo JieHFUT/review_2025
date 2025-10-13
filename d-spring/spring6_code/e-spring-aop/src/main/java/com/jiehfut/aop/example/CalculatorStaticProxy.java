@@ -7,6 +7,7 @@ public class CalculatorStaticProxy implements Calculator {
      * 代理 CalculatorImpl 类
      */
     private CalculatorImpl calculator;
+
     public CalculatorStaticProxy(CalculatorImpl calculator) {
         this.calculator = calculator;
     }

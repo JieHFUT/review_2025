@@ -46,11 +46,17 @@ public class AnnotationApplicationContext implements ApplicationContext {
         // 1.把点替换成斜杠
         String packagePath = basePackage.replaceAll("\\.", "\\\\");
         // 2.获取包的绝对路径（编译之后的 target 文件中），packagePath：com\jiehfut\selfioc
-        // 通过线程获得一个枚举对象
+        // 通过当前线程获得一个类加载器，得到打包后部署的包中的绝对路径
         Enumeration<URL> urls = Thread.currentThread().getContextClassLoader().getResources(packagePath);
         while (urls.hasMoreElements()) {
             URL url = urls.nextElement(); // 获得在 target 中的绝对路径（从盘符开始）
+
+            // 上面绝对路径中 '\' 变成了转义的 '%5c' 下面将其转义回来
+            // E:/code/all-moudles-review/d-spring/spring6_code/d-spring-self-ioc/target/classes/com%5cjiehfut%5cselfioc
             String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
+
+
+            // 获取有效路径 E:/code/all-moudles-review/d-spring/spring6_code/d-spring-self-ioc/target/classes/
             rootPath = filePath.substring(0, filePath.length()-packagePath.length());
             // 3.根据包路径进行包扫描的过程
             loadBean(new File(filePath));
@@ -63,6 +69,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
 
     /**
      * 包进行扫描的过程
+     * loadBean(new File(E:/code/all-moudles-review/d-spring/spring6_code/d-spring-self-ioc/target/classes/));
      * @param file，传入的是绝对路径（从盘符开始）创建的 File 类
      */
     private void loadBean(File file) throws Exception {
@@ -88,7 +95,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
                         // 4.4.判断是否有注解 @Bean，有的话就实例化
                         Class clazz = Class.forName(allName);
                         if (!clazz.isInterface()) {
-                            // 不是接口，判断是否有注解
+                            // 不是接口，判断类上是否有注解
                             Bean annotation = (Bean) clazz.getAnnotation(Bean.class);
                             if (annotation != null) {
                                 // 该类上有注解，将其实例化

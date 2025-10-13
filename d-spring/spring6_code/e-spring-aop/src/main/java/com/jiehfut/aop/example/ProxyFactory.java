@@ -11,7 +11,7 @@ public class ProxyFactory {
     // 需要代理的目标对象
     private Object target;
 
-    public  ProxyFactory(Object target) {
+    public ProxyFactory(Object target) {
         this.target = target;
     }
 
@@ -39,20 +39,21 @@ public class ProxyFactory {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 try {
-                    System.out.println("[动态代理][日志] "+method.getName()+"，参数："+ Arrays.toString(args));
+                    System.out.println("[动态代理][日志] "+ method.getName()+"，参数："+ Arrays.toString(args));
                     //////////************/////////////
                     result = method.invoke(target, args);
                     //////////************/////////////
-                    System.out.println("[动态代理][日志] "+method.getName()+"，结果："+ result);
+                    System.out.println("[动态代理][日志] "+ method.getName()+"，结果："+ result);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("[动态代理][日志] "+method.getName()+"，异常："+e.getMessage());
+                    System.out.println("[动态代理][日志] "+ method.getName()+"，异常："+e.getMessage());
                 } finally {
-                    System.out.println("[动态代理][日志] "+method.getName()+"，方法执行完毕");
+                    System.out.println("[动态代理][日志] "+ method.getName()+"，方法执行完毕");
                 }
                 return result;
             }
         };
+
         return Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
     }
 }

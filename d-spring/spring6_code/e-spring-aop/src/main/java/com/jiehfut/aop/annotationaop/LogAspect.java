@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Aspect // 表示是一个切面类
 @Component // 表示在 ioc 容器中进行管理
 public class LogAspect {
-    // 1.设置切入点和通知类型：value：切入点表达式配置切入点：即对哪个目标方法进行前置通知
+    // 1.设置切入点和通知类型：value：切入点表达式配置切入点：即对哪个目标方法进行增强（前置通知）
     // "execution(public int com.jiehfut.aop.annotationaop.CalculatorImpl.add(int, int ))"
     // "访问修饰符 增强方法返回类型 增强方法所在类全路径.方法名称（方法参数）"
 
@@ -29,9 +29,10 @@ public class LogAspect {
 
 
     // 1.前置 @Before(value = "切入点表达式配置切入点")、
+    // 这个切入点表达式配置是匹配连接点的，哪些目标对象的哪些方法需要使用该通知
     @Before(value = "execution(public int com.jiehfut.aop.annotationaop.CalculatorImpl.add(int, int ))")
     public void beforeMethod(JoinPoint joinPoint) {
-        // 使用 joinPoint 可以获得增强方法的相关信息
+        // 使用 joinPoint 可以获得增强方法（也就是目标对象的方法有什么参数等）的相关信息
         String name = joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
         System.out.println("Logger-->前置通知，方法名称是：" + name + "，参数是：" + Arrays.toString(args));
@@ -51,7 +52,7 @@ public class LogAspect {
     }
 
 
-    // 3.返回 @AfterReturning、增强方法可以得到目标方法的返回值：returning = "result"
+    // 3.返回 @AfterReturning、增强方法可以得到目标方法的返回值（命名一个变量）：returning = "result"
     @AfterReturning(value = "execution(* com.jiehfut.aop.annotationaop.CalculatorImpl.*(..))", returning = "result")
     public void afterReturning(JoinPoint joinPoint, Object result) {
         // 使用 joinPoint 可以获得增强方法的相关信息
@@ -90,6 +91,7 @@ public class LogAspect {
         }
         return result;
     }
+
 
 
     // 重用切入点表达式
