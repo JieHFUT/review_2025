@@ -55,12 +55,13 @@ public class UserController {
 
          protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
              HttpServletRequest requestToUse = request; // 获取请求对象
-                                       获取请求方式为 POST 往下执行                                 恒成立
+                                       如果获取请求方式为 POST 则往下执行                                 恒成立
              if ("POST".equals(request.getMethod()) && request.getAttribute("jakarta.servlet.error.exception") == null) {
-                String paramValue = request.getParameter(this.methodParam); // 获取参数 => 常量："_method" => value
+                String paramValue = request.getParameter(this.methodParam); // 获取参数的值 => 前端设置的常量："_method" => value
                  if (StringUtils.hasLength(paramValue)) {  // 若不为空
                     String method = paramValue.toUpperCase(Locale.ENGLISH); // 大写转换（PUT DELETE PATCH）
                     if (ALLOWED_METHODS.contains(method)) { // ALLOWED_METHODS 是一个 List<String>：PUT DELETE PATCH
+                                                            // 如果前端设置的真正请求方式 _method 在这个集合中
                       requestToUse = new HttpMethodRequestWrapper(request, method); // 创建了一个新的请求对象放行，method 就是大写的 PUT DELETE PATCH
                     }
                  }
@@ -68,6 +69,8 @@ public class UserController {
         filterChain.doFilter((ServletRequest)requestToUse, response);
         }
      }
+
+     OncePerRequestFilter 类中有方法 doFilter 方法，在该方法中去执行过滤器方法
 
      总的来说就是将 POST 请求方式替换成为 "_method" 对应的 value 值并且大写，让俺后重新创建请求对象并且放行
 

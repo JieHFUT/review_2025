@@ -38,6 +38,7 @@
     <!--设置用户点击添加按钮后跳转到响应的视图 "/toAdd" => "employee_add"-->
     <mvc:view-controller path="/toAdd" view-name="employee_add"></mvc:view-controller>
 
+
     <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
     <mvc:annotation-driven/>
 
@@ -46,10 +47,18 @@
     <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
     <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
     <!--
-        静态资源在 web 阶段表明：静态资源是通过 Default servlet 接收的，
+        静态资源在 web 阶段表明：静态资源是通过 Default servlet 接收的，这个在 tomcat 的 web.xml 配置
         Tomcat 中 Default servlet 的访问路由设置是“/”，和 DispatherServlet 冲突
         由于自己设置的 web.xml 优先，所以所有的请求（包括静态）都会通过 DispatherServlet 去处理（每次把请求地址去控制器匹配相应的映射）
         但是由于静态资源没有控制层的请求映射，所以不配置下面信息就会导致静态资源访问不了
+
+        在Servlet容器（如Tomcat）中，DefaultServlet是一个默认的Servlet，用于处理静态资源（如HTML、图片、CSS、JS文件）的请求。
+        当客户端发起一个请求，而该请求没有匹配到任何其他Servlet时，通常就会由DefaultServlet来处理。它的主要作用是提供静态内容。
+        在Spring MVC中，如果DispatcherServlet映射为“/”（即处理所有请求），那么对于静态资源的请求，如果不做特殊处理，
+        也会被DispatcherServlet处理，而DispatcherServlet可能会找不到对应的处理器而导致404。因此，我们通常需要配置静态资源处理，有时会涉及到DefaultServlet。
+        在Spring MVC中，我们可以通过配置mvc:default-servlet-handler/来启用DefaultServlet来处理静态资源。
+        这样，当DispatcherServlet找不到处理器时，就会将请求转交给DefaultServlet。
+        所以，DefaultServlet响应的是静态资源请求。
     -->
     <mvc:default-servlet-handler/>
 
@@ -86,7 +95,9 @@
 
         <servlet-mapping>
             <servlet-name>default</servlet-name>
-            // 和 DispatherServlet 发生了冲突，以自己设置的 DispatherServlet 为准
+            /////// 和 DispatherServlet 发生了冲突，以自己设置的 DispatherServlet 为准
+            /////// 但是 DispatherServlet 是将请求去控制器中去找路由映射，但是我们没有写
+            /////// 所以设置静态文件让 default servlet 处理
             <url-pattern>/</url-pattern>
         </servlet-mapping>
 
@@ -94,6 +105,7 @@
 
 
 
+        // 这个是处理对 jsp 的访问的
         <servlet>
             <servlet-name>jsp</servlet-name>
             <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>

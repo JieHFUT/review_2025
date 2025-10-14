@@ -28,7 +28,7 @@ public class HttpController {
 
 
 
-    // 测试请求 RequestEntity 获取一个完整的请求报文
+    // 测试请求 RequestEntity<T> 获取一个完整的请求报文（包括请求头，请求行，请求体）
     @RequestMapping(value = "/testRequestEntity", method = RequestMethod.POST)
     public String testRequestEntity(RequestEntity<String> requestEntity) {
         // 当前 RequestEntity 表示整个报文信息
@@ -79,7 +79,7 @@ public class HttpController {
         /**
          * 在 springMVC中，java 对象转换成为 JSON 格式字符串
          *
-         * 1.导入 jackson 依赖
+         * 1.导入 jackson 依赖 jackson-databind
          * 2.开始 mvc 的注解驱动 <mvc:annotation-driven/>
          * 3.在控制层方法上使用 @ResponseBody 标识
          * 4.直接将 java 对象作为控制器方法的返回值响应给前端

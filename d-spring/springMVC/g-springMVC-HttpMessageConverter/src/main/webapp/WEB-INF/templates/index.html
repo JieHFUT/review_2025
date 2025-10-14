@@ -6,11 +6,18 @@
 </head>
 <body>
     <h1>首页</h1>
-    <!--使用表单发送一个带请求体的请求-->
+    <!--使用表单发送一个带请求体的请求 - get-->
+    <form th:action="@{/testRequestBody}" method="get">
+        username:<input type="text" name="username"><br>
+        password:<input type="text" name="password"><br>
+        <input type="submit" value="测试@RequestBody注解-get"><br>
+    </form>
+
+    <!--使用表单发送一个带请求体的请求 - post-->
     <form th:action="@{/testRequestBody}" method="post">
         username:<input type="text" name="username"><br>
         password:<input type="text" name="password"><br>
-        <input type="submit" value="测试@RequestBody注解"><br>
+        <input type="submit" value="测试@RequestBody注解-post"><br>
     </form>
 
     <!--使用表单发送一个带请求体的请求-->

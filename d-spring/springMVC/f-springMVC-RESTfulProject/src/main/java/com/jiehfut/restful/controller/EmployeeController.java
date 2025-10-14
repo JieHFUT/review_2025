@@ -18,6 +18,15 @@ public class EmployeeController {
     @Autowired
     private EmployeeDao employeeDao;
 
+    /**
+     增删改查
+     getAllEmployee - get - 查询
+     getEmployeeById - get - 查询
+     deleteEmployee - delete - 删除
+     addEmployee - post - 添加
+     updateEmployee - put - 更新
+     */
+
     @RequestMapping(value = "/employee", method = RequestMethod.GET)
     public String getAllEmployee(Model model) {
         Collection<Employee> employeeList = employeeDao.getAll();
