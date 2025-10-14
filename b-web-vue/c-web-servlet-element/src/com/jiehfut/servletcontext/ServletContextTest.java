@@ -20,10 +20,11 @@ public class ServletContextTest extends HttpServlet {
 
         System.out.println("获取 servletContext 对象的参数");
 
-        // 获取 servletContext 下面三个本质上是同一个对象，应用域
+        // 获取 servletContext 下面四个本质上是同一个对象，应用域
         ServletContext servletContext1 = getServletContext();
         ServletContext servletContext2 = req.getServletContext();
         ServletContext servletContext3 = getServletConfig().getServletContext();
+        ServletContext servletContext4 = req.getSession().getServletContext();
 
         // 获取配置的公共参数
         String key = "key";

@@ -58,6 +58,7 @@ public class RequestMappingController {
     }
 
 
+
     // 1.根据请求地址来匹配请求
     // 2.根据请求方式来匹配请求
     // method 属性是根据请求方式（GET POST...）来匹配请求的，可以使用派生注解
@@ -147,7 +148,6 @@ public class RequestMappingController {
 
 
 
-
     // springmvc 支持路径中的占位符 {} 为占位符
     @RequestMapping("testRESTful/{classes}/{username}")
     public String testRESTful(@PathVariable("classes") Integer classes,
@@ -160,6 +160,7 @@ public class RequestMappingController {
         // username:username
         return "success";
     }
+
 
 
     /**

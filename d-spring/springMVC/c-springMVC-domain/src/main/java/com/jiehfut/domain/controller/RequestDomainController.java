@@ -12,9 +12,18 @@ import java.util.Map;
 @Controller
 public class RequestDomainController {
 
+    /**
+     * 请求域中参数的设置，获取，删除的方法
+     * 1.通过形参 HttpServletRequest
+     * 2.通过 ModelAndView 模型
+     * 3.通过 Model 模型
+     * 4.通过 Map 模型
+     * 5.通过 ModelMap 模型
+     * 本质上 2345 都是通过同一个类 BindingAwareModelMap 来具体实现，是请求转发的过程
+     */
 
     /**
-     * 通过 ServletRequest 的原生 API 来测试请求域参数
+     * 1.通过 ServletRequest 的原生 API 来测试请求域参数
      * @param request 请求中的 ruquest 对象
      * @return
      */
@@ -26,9 +35,12 @@ public class RequestDomainController {
 
 
     /**
-     * 设置返回值为 ModelAndView 对象给前端控制器，实现请求域的数据共享
+     * 2.设置返回值为 ModelAndView 对象给前端控制器，实现请求域的数据共享
      * 在控制器方法中创建 ModelAndView 对象，在控制器方法中返回该对象实现数据共享
-     * view="success" model={key=value, ...}
+     *
+     * ModelAndView{view对象-视图, ModelMap对象-键值对数组}
+     * ModelMap 的某个子类可以存储键值对
+     * view="success" model={key=value, key2=value2... ModelMap}
      * @return
      */
     @RequestMapping("/testModelAndView")
@@ -45,7 +57,7 @@ public class RequestDomainController {
 
     /**
      * 设置 Model 对象，实现请求域的数据共享
-     * Model 对象实际上是一个{key1=value1,ley2=value2... , Model}
+     * Model 对象实际上是一个{key1=value1,key2=value2... Model}
      * @param model
      * @return
      */
@@ -72,7 +84,7 @@ public class RequestDomainController {
     /**
      * 设置 ModelMap 对象，实现请求域的数据共享
      * 在控制器方法中创建形参，形参具有向请求域中共享数据的功能
-     * ModelMap 对象实际上是一个{key1=value1,ley2=value2... , ModelMap}
+     * ModelMap 对象实际上是一个{key1=value1,ley2=value2... }
      * @return
      */
     @RequestMapping("/testModelMap")

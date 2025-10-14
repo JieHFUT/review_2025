@@ -38,7 +38,7 @@ public class TestParamController {
     @RequestMapping("/testParamsString")
     public String testParams(@RequestParam("username") String username, String password, String hobby) {
         // 保证形式参数名称和请求中的参数名称保持一致即可，如果参数名不一致，则不同的参数默认被置为空值
-        // 如果参数名字不一致，也可以通过注解 @RequestParam 来声明一致
+        // 如果参数名字不一致，也可以通过注解 @RequestParam 来声明一致，该注解中命名匹配前端请求中的参数一致即可
         System.out.println("username = " + username + ", password = " + password + ", hobby = " + hobby);
         // username = zhangsan, password = 43523451, hobby = b,c
         return "success";
@@ -110,6 +110,7 @@ public class TestParamController {
 
     /**
      * 直接将请求中的参数用实体类对象来接收
+     * 使用 User 对象直接存储请求中的参数，只要请求中的参数的名称和实体类中的属性名称保持一致即可
      * @return
      */
     @RequestMapping("/testbean")
@@ -135,29 +136,6 @@ public class TestParamController {
      * 在 Tomcat 中组件的初始化顺序：servletContext 监听器 => 过滤器 filter => servlet
      * 所以在 过滤器 中设置统一编码字符集 => web.xml
      */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -24,6 +24,7 @@
 
 
     <!--配置 filter 过滤器，在过滤器中统一设置请求中的字符集-->
+    <!--找到最早启动的组件设置 post 请求的乱码问题-->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -45,9 +46,11 @@
 
     <!--
         源码
+        CharacterEncodingFilter 会继承一个 doFilter 方法，在其父类中 doFilter 方法会调用 doFilterInternal 方法
+
         public class CharacterEncodingFilter extends OncePerRequestFilter {
             @Nullable // 可以为空
-            private String encoding;
+            private String encoding; 上面进行配置
             private boolean forceRequestEncoding; // 默认 false
             private boolean forceResponseEncoding; // 默认 false
 
@@ -55,10 +58,11 @@
                 String encoding = this.getEncoding();
                 // 如果你设置了编码格式，此属性不为空，就会执行下面的给请求（响应）设置编码的操作
                 if (encoding != null) {
-                    // 想设置请求的编码就必需设置 forceResponseEncoding 的值为 true
+                    // 想设置请求的编码就必需设置 forceRequestEncoding 的值为 true
                     if (this.isForceRequestEncoding() || request.getCharacterEncoding() == null) {
                         request.setCharacterEncoding(encoding);
                     }
+
                     // 想设置响应的编码就必需设置 forceResponseEncoding 的值为 true
                     if (this.isForceResponseEncoding()) {
                         response.setCharacterEncoding(encoding);
@@ -66,5 +70,8 @@
                 }
                 filterChain.doFilter(request, response);
             }
+
+
+
     -->
 </web-app>
