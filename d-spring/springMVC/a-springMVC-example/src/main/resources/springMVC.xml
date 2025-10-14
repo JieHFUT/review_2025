@@ -8,8 +8,11 @@
     <!--2.配置扫描组件-->
     <context:component-scan base-package="com.jiehfut.mvc"></context:component-scan>
 
-    <!--3.配置Thymeleaf视图解析器 -->
+    <!--3.配置Thymeleaf视图解析器：负责页面的跳转 -->
+    <!--将请求转向这个配置文件：由该配置中的前端控制器 DispatcherServlet 类处理-->
+    <!--通过 bean 标签，定义一个 ThymeleafViewResolver 实例-->
     <bean id="viewResolver" class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+        <!--下面是对这个实例对象的属性进行依赖注入-->
         <!--视图优先级-->
         <property name="order" value="1"/>
         <property name="characterEncoding" value="UTF-8"/>
@@ -17,7 +20,7 @@
             <bean class="org.thymeleaf.spring6.SpringTemplateEngine">
                 <property name="templateResolver">
                     <bean class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
-
+                        <!--这个实例对象中解析策略-->
                         <!-- 视图前缀 -->
                         <property name="prefix" value="/WEB-INF/templates/"/>
 
@@ -25,6 +28,8 @@
                         <property name="suffix" value=".html"/>
                         <property name="templateMode" value="HTML"/>
                         <property name="characterEncoding" value="UTF-8" />
+
+                        <!---->
                     </bean>
                 </property>
             </bean>

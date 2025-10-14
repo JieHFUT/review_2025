@@ -11,9 +11,10 @@ public class HelloController {
     // @RequestMapping() 请求映射的注解，将我们当前的请求和控制器方法建立映射关系
     @RequestMapping(value = "/")
     public String index() {
-        // 返回视图名称
+        // 返回视图名称，经过视图解析器的处理，就会去访问 前缀+视图名称+后缀 的路由
         return "index";
     }
+
 
     @RequestMapping("/target")
     public String toTarget() {

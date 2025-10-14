@@ -7,10 +7,11 @@
     <!--1.配置 SpringMVC 的前端控制器，对浏览器发送的请求进行统一处理-->
     <servlet>
         <servlet-name>SpringMVC</servlet-name>
+        <!--请求被该类 DispatcherServlet 处理-->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <!--配置 SpringMVC 配置文件的位置和名称-->
         <init-param>
-            <!-- contextConfigLocation为固定值 -->
+            <!-- contextConfigLocation为固定值：上下文配置路径 -->
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:springMVC.xml</param-value>
         </init-param>
@@ -18,7 +19,9 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
     <servlet-mapping>
+        <!--匹配请求的 url-->
         <servlet-name>SpringMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>

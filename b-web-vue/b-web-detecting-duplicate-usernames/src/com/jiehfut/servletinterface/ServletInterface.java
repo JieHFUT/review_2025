@@ -29,7 +29,7 @@ public class ServletInterface {
          void init(ServletConfig var1) throws ServletException;
 
          获得 ServletConfig 对象的方法，配置信息的保存，形成一个配置对象
-         ServletConfig 是一个接口，获取配置对象
+         ServletConfig 是一个接口，获取配置对象，获取实现应用上下文？
          ServletConfig getServletConfig();
 
          接收用户请求，用于向客户端响应的方法
