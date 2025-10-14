@@ -10,6 +10,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.List;
 
+
+// 使用注解来获取 bean 对象时，不用再获取应用上下文
 @Component
 @SpringJUnitConfig(locations = "classpath:bean-jdbc.xml")
 public class JDBCTemplateTest {
@@ -19,6 +21,10 @@ public class JDBCTemplateTest {
      * [JdbcTemplate] 是 [Spring框架] 提供的一个工具类，用于简化 [JDBC] 编程。
      * 它通过封装 JDBC 操作，减少了样板代码的编写，使得开发者可以更专注于业务逻辑的实现，
      * 而不是处理繁琐的数据库连接和异常处理‌
+     *
+     * 1.编写 sql 语句
+     * 2.调用 JdbcTemplate 的方法，传入相关参数
+     * 3.执行 sql 操作
      */
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -30,7 +36,7 @@ public class JDBCTemplateTest {
         // (sql, "lisi", 14, "男")
         // (sql, "wangwu", 35, "女")
         // (sql, "zhaoliu", 43, "男")
-        int rows = jdbcTemplate.update(sql, "zhaoliu", 43, "男");
+        int rows = jdbcTemplate.update(sql, "lisi", 12, "男");
         System.out.println("rows = " + rows);
     }
 

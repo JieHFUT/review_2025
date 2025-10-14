@@ -35,7 +35,7 @@ public class SpringConfig {
     }
 
 
-    @Bean(name = "jdbcTemlate")
+    @Bean(name = "jdbcTemplate")
     public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         return jdbcTemplate;
