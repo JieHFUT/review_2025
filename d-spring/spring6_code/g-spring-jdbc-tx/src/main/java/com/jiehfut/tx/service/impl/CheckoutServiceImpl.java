@@ -26,6 +26,8 @@ public class CheckoutServiceImpl implements CheckoutService {
     /**
      * 一次性买多本书的方法
      * 用来演示事务的传播行为
+     * REQUIRED：支持当前事务，如果不存在就新建一个
+     * 这种行为也是默认的事务传播行为
      * @param bookId
      * @param userId
      */

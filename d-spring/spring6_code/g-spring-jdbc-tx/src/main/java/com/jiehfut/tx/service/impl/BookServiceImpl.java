@@ -198,6 +198,8 @@ public class BookServiceImpl implements BookService {
     - NESTED：如果当前正有一个事务在进行中，则该方法应当运行在一个嵌套式事务中。被嵌套的事务可以独立于外层事务进行提交或回滚。如果外层事务不存在，行为就像REQUIRED一样。
             【有事务的话，就在这个事务里再嵌套一个完全独立的事务，嵌套的事务可以独立的提交和回滚。没有事务就和REQUIRED一样。】
 
+    CheckoutServiceImpl：一次购买多本数据展示事务的传播行为
+
 */
 
 

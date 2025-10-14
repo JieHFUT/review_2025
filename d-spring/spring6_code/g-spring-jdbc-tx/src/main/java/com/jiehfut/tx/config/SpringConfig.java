@@ -19,12 +19,13 @@ import javax.sql.DataSource;
  * @Create 2024/12/2 22:23
  * @Version 1.0
  */
-@Configuration
-@ComponentScan("com.jiehfut") // 组件扫描
+@Configuration  // 声明这是一个配置类
+@ComponentScan("com.jiehfut") // 开启组件扫描
 @EnableTransactionManagement  // 表示开启事务管理
 public class SpringConfig {
 
     @Bean
+    // 装配数据源对象
     public DataSource getDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -36,6 +37,7 @@ public class SpringConfig {
 
 
     @Bean(name = "jdbcTemplate")
+    // 装配 JdbcTemplate 对象，并且对其进行依赖注入（数据源）
     public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         return jdbcTemplate;
@@ -43,6 +45,7 @@ public class SpringConfig {
 
 
     @Bean
+    // 配置事务管理器，对其进行依赖注入（数据源）
     public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);
