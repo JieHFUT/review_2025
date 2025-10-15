@@ -6,12 +6,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+
+/**
+ * @RestController 使用在控制类上
+ * @RestController = @Controller + 每个方法的 @ResponseBody
+ *
+ */
+
 
 @Controller
 public class HttpController {
@@ -25,6 +29,15 @@ public class HttpController {
         // 无论是 GET && POST 请求，请求只是传输数据的位置不一样，但是传输数据的格式是一样的
         return "success";
     }
+
+
+    // 测试请求体信息 @RequestBody
+    @RequestMapping(value = "/testRequestBody2", method = RequestMethod.POST)
+    public String testRequestBody2(@RequestBody User user) {
+        System.out.println("请求体：user = " + user);
+        return "success";
+    }
+
 
 
 
@@ -100,10 +113,6 @@ public class HttpController {
         System.out.println("username = " + username + ", password = " + password);
         return "hello, axios";
     }
-
-
-
-
 
 
 }

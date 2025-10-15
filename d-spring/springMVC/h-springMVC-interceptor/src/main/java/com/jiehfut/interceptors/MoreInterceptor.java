@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class MoreInterceptor implements HandlerInterceptor {
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 针对控制器方法执行之前执行，返回值为是否进行拦截

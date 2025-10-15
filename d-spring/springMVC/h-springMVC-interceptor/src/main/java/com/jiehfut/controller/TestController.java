@@ -43,6 +43,7 @@ public class TestController {
 
      渲染视图完毕后执行
      this.processDispatchResult(processedRequest, response, mappedHandler, mv, (Exception)dispatchException);
+     ===> 里面有一个 render(mv, request, reponse) 渲染视图的方法
      */
 
 

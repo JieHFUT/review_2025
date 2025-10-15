@@ -40,6 +40,7 @@
         <!--将前端控制器 DispatcherServlet 的生命周期中的初始化提前到服务器启动的时候-->
         <load-on-startup>1</load-on-startup>
 
+
         <!-- 配置文件上传相关信息 -->
         <multipart-config>
             <max-file-size>10485760</max-file-size>
@@ -51,6 +52,8 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+
 
 
     <!--5.配置 HiddenHttpMethodFilter 过滤器：隐藏的 http 的请求方式-->

@@ -21,6 +21,7 @@ import java.util.UUID;
 public class FileUpAndDownController {
     /**
      * 实现文件的上传和下载，使用向客户端响应 ResponseEntity 对象，作为整个响应报文
+     *
      * 由 springMVC 借用 jackson 依赖将其转换为 json 格式
      */
 
@@ -70,6 +71,7 @@ public class FileUpAndDownController {
     public String testUp(MultipartFile photo, HttpSession session) throws Exception {
         System.out.println(photo.getName()); // photo
         System.out.println(photo.getOriginalFilename()); // 核心硬件评测.png
+
         ServletContext servletContext = session.getServletContext();
         // 将图片放在服务器的 picture 目录下
         String photoPath = servletContext.getRealPath("picture");
@@ -99,13 +101,13 @@ public class FileUpAndDownController {
         // 将 UUID 作为文件名称
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         // 将 uuid 和后缀名字拼接的结果作为最终的文件名称
-        String finalName = uuid + suffix;
+        String finalName = uuid + suffix; // 64000df26a2a42128d6cba602087e2ba.png
 
 
         ServletContext servletContext = session.getServletContext();
         // 将图片放在服务器的 picture 目录下，通过 servletContext 来获得服务器中 picture 目录的路径名称
         String photoPath = servletContext.getRealPath("picture");
-        // photoPath = E:\code\spring_code\springMVC\g-springMVC-HttpMessageConverter\target\g-springMVC-HttpMessageConverter-1.0-SNAPSHOT\picture
+        // photoPath = D:\Program Files\apache-tomcat-10.1.33\webapps\g_springMVC_HttpMessageConverter_war\picture
         System.out.println("photoPath = " + photoPath);
         File file = new File(photoPath);
         // 判断路径是否存在
@@ -113,7 +115,7 @@ public class FileUpAndDownController {
             file.mkdir();
         }
         String finalPath = photoPath + File.separator + finalName; // File.separator 是文件分隔符
-        // finalPath = E:\code\spring_code\springMVC\g-springMVC-HttpMessageConverter\target\g-springMVC-HttpMessageConverter-1.0-SNAPSHOT\picture\核心硬件评测.png
+        // finalPath = D:\Program Files\apache-tomcat-10.1.33\webapps\g_springMVC_HttpMessageConverter_war\picture\64000df26a2a42128d6cba602087e2ba.png
         System.out.println("finalPath = " + finalPath);
         photo.transferTo(new File(finalPath)); // 该方法实际上封装的就是先读再写
         return "success";

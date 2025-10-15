@@ -36,19 +36,18 @@
     <!--在当前的控制器方法中没有任何的其他请求处理，只需要设置一个视图名称，但是设置了视图控制器，其他控制器中的请求映射将全部失效-->
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
 
+    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
+    <mvc:annotation-driven/>
+
     <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
     <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
     <mvc:default-servlet-handler/>
-
-    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
-    <mvc:annotation-driven/>
 
 
     <!--配置文件上传解析器，springMVC 用于将上传的文件封装成为 MultipartFile -->
     <!--由 spring 的 ioc 容器自己去访问获得该 bean，根据 id 获取-->
     <!--由于 springMVC 是根据 ID 获取该 bean 的，所以我们需要按照设定设置一个 ID-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
-
 
 
 
