@@ -7,6 +7,7 @@
 <body>
     <h1>出现数学运算异常</h1>
     <!--获取出现该异常的时候获取放置在请求域中的信息-->
+    <p th:text="${ex}"></p> <!--默认异常信息以配置中的 value 值为键-->
     <p th:text="${msg}"></p> <!--java.lang.ArithmeticException: / by zero-->
 </body>
 </html>

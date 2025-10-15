@@ -25,7 +25,7 @@ public class TestController {
     /**
      DispacherServlet 类中处理拦截器的过程
 
-     拦截器在控制器方法执行前执行，mappedHandler是处理器，即处理执行链，包含了当前的控制器方法 & 涉及到的拦截器（包括 springMVC 自己创建的一个拦截器）
+     拦截器在控制器方法执行前执行，mappedHandler是处理器（控制器），即处理执行链，包含了当前的控制器方法 & 涉及到的拦截器（包括 springMVC 自己创建的一个拦截器）
      mappedHandler 中包括 handler（控制器方法） interceptorList（存放的是拦截器集合），在 applyPreHandle 中按照配置的顺序进行执行
      if (!mappedHandler.applyPreHandle(processedRequest, response)) {
          return;
@@ -91,7 +91,7 @@ public class TestController {
      if (mappedHandler != null) {
         mappedHandler.triggerAfterCompletion(request, response, (Exception)null);
      }
-     所有拦截器都通过，在 triggerAfterCompletion 中，也去反序执行
+     所有（只要谁放行，谁就会渲染通过）拦截器都通过，在 triggerAfterCompletion 中，也去反序执行
      void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, @Nullable Exception ex) {
          for(int i = this.interceptorIndex; i >= 0; --i) {
              HandlerInterceptor interceptor = (HandlerInterceptor)this.interceptorList.get(i);

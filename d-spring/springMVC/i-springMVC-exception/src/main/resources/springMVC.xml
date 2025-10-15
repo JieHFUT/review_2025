@@ -36,12 +36,14 @@
     <!--在当前的控制器方法中没有任何的其他请求处理，只需要设置一个视图名称，但是设置了视图控制器，其他控制器中的请求映射将全部失效-->
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
 
+    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
+    <mvc:annotation-driven/>
+
     <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
     <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
     <mvc:default-servlet-handler/>
 
-    <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
-    <mvc:annotation-driven/>
+
 
 
     <!--配置文件上传解析器，springMVC 用于将上传的文件封装成为 MultipartFile -->
@@ -50,14 +52,20 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></bean>
 
 
+
     <!--自定义异常信息可以使用配置或者注解实现，这是使用配置信息-->
+    <!--这是异常的解析器，类似之前的文件上传的解析器-->
+    <!--配置一个映射关系，出现匹配的异常的时候就会映射到下面这个视图-->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!--exceptionMappings 设定的异常映射-->
         <property name="exceptionMappings">
             <props>
+                <!--出现下面这种异常就跳转到这个视图-->
                 <!--key 里面写异常的全类名，双标签内写需要跳转的视图页面（不设置视图前缀，该视图仍然被 TemplateResolver 解析，加上前后缀）-->
                 <prop key="java.lang.ArithmeticException">error</prop>
             </props>
         </property>
+        <!--跳转到这个视图后如何获得异常信息？将异常信息放在请求域中-->
         <!--设置该标签属性就可以使用该键来存储我们当前的异常信息，默认存储在我们的请求域中的，以 value 属性中的值为键，值为，例如：java.lang.ArithmeticException: / by zero-->
         <property name="exceptionAttribute" value="ex"></property>
     </bean>

@@ -25,6 +25,7 @@ import java.util.Properties;
  * ClassName: WebConfig
  * Package: com.jiehfut.config
  * Description:
+ *
  * 该类使用 @Configuration 注解，用来代替 springMVC 的组件
  * 1.扫描组件
  * 2.视图解析器
@@ -68,6 +69,8 @@ public class WebConfig implements WebMvcConfigurer {
         return springResourceTemplateResolver;
     }
 
+
+
     //生成模板引擎并为模板引擎注入模板解析器
     @Bean
     public SpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
@@ -75,6 +78,7 @@ public class WebConfig implements WebMvcConfigurer {
         templateEngine.setTemplateResolver(templateResolver);
         return templateEngine;
     }
+
 
     //生成视图解析器并未解析器注入模板引擎
     @Bean
@@ -84,6 +88,7 @@ public class WebConfig implements WebMvcConfigurer {
         viewResolver.setTemplateEngine(templateEngine);
         return viewResolver;
     }
+
 
 
     // 设置默认的 servlet 可用
@@ -103,6 +108,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(testInterceptor).addPathPatterns("/**");
         // 添加去除拦截的路径
         registry.addInterceptor(testInterceptor).excludePathPatterns("/");
+
+        // .... 下面可以添加第二个 第三个.. 拦截器
     }
 
 
@@ -129,7 +136,6 @@ public class WebConfig implements WebMvcConfigurer {
         resolvers.add(exceptionResolver);
     }
 
-
     // 文件上传解析器
     // 6.文件上传解析器
     @Bean
@@ -137,8 +143,6 @@ public class WebConfig implements WebMvcConfigurer {
         StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
         return multipartResolver;
     }
-
-
 
 
 }

@@ -51,17 +51,20 @@
 
 
 
-
-    <!--针对 "/testInterceptor" 控制器的拦截器-->
+    <!--拦截器配置方式一：针对 "/testInterceptor" 控制器的拦截器-->
 <!--<mvc:interceptors>
         <bean class="com.jiehfut.interceptors.TestInterceptor"></bean>  该种配置会让该拦截器拦截所有的请求
     </mvc:interceptors>-->
 
-    <!--使用 @Component 将拦截器交给 IOC 管理-->
+
+
+    <!--拦截器配置方式二：使用 @Component 将拦截器交给 IOC 管理-->
 <!--<mvc:interceptors>
         <ref bean="testInterceptor"></ref> 该种配置会让该拦截器拦截所有的请求
     </mvc:interceptors>-->
 
+
+    <!--拦截器配置方式三-->
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/*"/>

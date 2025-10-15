@@ -10,8 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
  * ClassName: TestInterceptor
  * Package: com.jiehfut.interceptors
  * Description:
- * 针对 "/testInterceptor" 控制器的拦截器
- * 需要在 springMVC 中进行配置才能使用
+ *
+ *   针对 "/testInterceptor" 控制器的拦截器
+ *   需要在 springMVC 中进行配置才能使用
  * @Author jieHFUT
  * @Create 2024/12/8 15:46
  * @Version 1.0
@@ -25,6 +26,7 @@ public class TestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 针对控制器方法执行之前执行，返回值为是否进行拦截
         System.out.println("TestInterceptor ===> preHandle...");
+        // 返回值：返回 true 表示放行，返回 false 表示拦截
         return true;
     }
 

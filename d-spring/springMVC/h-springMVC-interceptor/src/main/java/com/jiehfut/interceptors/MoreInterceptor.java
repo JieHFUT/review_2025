@@ -10,8 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
  * ClassName: TestInterceptor
  * Package: com.jiehfut.interceptors
  * Description:
- * 针对 "/testInterceptor" 控制器的拦截器
- * 需要在 springMVC 中进行配置才能使用
+ *   第二个拦截器
+ *   针对 "/testInterceptor" 控制器的拦截器
+ *   需要在 springMVC 中进行配置才能使用
  * @Author jieHFUT
  * @Create 2024/12/8 15:46
  * @Version 1.0
