@@ -148,6 +148,8 @@ public class RequestMappingController {
 
 
 
+
+
     // springmvc 支持路径中的占位符 {} 为占位符
     @RequestMapping("testRESTful/{classes}/{username}")
     public String testRESTful(@PathVariable("classes") Integer classes,

@@ -40,6 +40,8 @@
     <!--所以需要配置视图控制器后，设置开启mvc注解驱动的标签-->
     <mvc:annotation-driven/>
 
+
+    <!--当有 css img js 等资源的时候需要开放对静态资源的访问-->
     <!--开放对静态资源的访问，由于所有的请求都被设置的前端控制器处理的，静态资源是通过默认的 servlet 处理-->
     <!--SpringMVC 找不到对应的资源后，由默认的 servlet 去找，如果还找不到，就由默认的 servlet 报错 -->
     <mvc:default-servlet-handler/>

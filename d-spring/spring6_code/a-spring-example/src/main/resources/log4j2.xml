@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <!--该文件文件名称为固定不可更改-->
+    <!--引入依赖：log4j-core-->
     <loggers>
         <!--
             level指定日志级别，从低到高的优先级：

@@ -41,8 +41,8 @@ public class TestUser {
 
             5.创建好的对象被统一管理到一个 map 中 （DefaultListableBeanFactory 类中有一个 map 属性
                                              private final Map<String, BeanDefinition> beanDefinitionMap;）
-                                             其中 String 就是自己设定xml配置中唯一的标识
-                                             beanDefinition 是指类的描述信息（bean对象）
+                                             其中 String 就是自己设定xml配置中唯一的标识 id
+                                               beanDefinition 是指类的描述信息（bean对象）
             6.Spring容器加载到Bean类时 , 会把这个类的描述信息, 以包名加类名的方式存到 beanDefinitionMap 中
                                      （是否单例、Bean 类名、scope 作用域、isPrimary是否单例、是否懒加载 isLazyInit）
               Map<String,BeanDefinition> , 其中 String是 Key, 默认是类名首字母小写
@@ -119,7 +119,7 @@ public class TestUser {
      * 装配流程（以XmlBeanFactory为例，已过时，但有助于理解）：
      * 加载配置文件：读取XML配置文件。
      *
-     * 解析Bean定义：将XML中的<bean>元素解析成BeanDefinition对象，并注册到BeanFactory中。
+     * 解析 Bean定义：将XML中的<bean>元素解析成BeanDefinition对象，并注册到BeanFactory中。
      *
      * 依赖注入：当客户端调用getBean()方法时，如果Bean是单例且尚未初始化，则容器会实例化Bean，并注入其依赖。
      *
@@ -214,6 +214,7 @@ public class TestUser {
      * 然后调用onRefresh()方法（子类可以重写），初始化一些特殊的Bean。
      *
      * 最后调用finishBeanFactoryInitialization(beanFactory)初始化所有非懒加载的单例Bean。
+     *
      *
      * 总结
      * BeanFactory：基础容器，延迟加载。使用getBean()时才会初始化Bean。
