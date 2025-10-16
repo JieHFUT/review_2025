@@ -69,6 +69,8 @@ public class HttpController {
     }
 
 
+
+
     // springMVC 向浏览器响应数据
     @ResponseBody
     @RequestMapping(value = "/testResponseBody")
@@ -76,6 +78,8 @@ public class HttpController {
         // 有 @ResponseBody 注解的控制方法，下面的 "success" 不是转发到视图，而是响应字符串到浏览器
         return "success";
     }
+
+
 
 
     // springMVC 向浏览器响应 User 对象

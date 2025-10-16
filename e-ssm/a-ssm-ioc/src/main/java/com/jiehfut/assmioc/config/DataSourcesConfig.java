@@ -16,6 +16,8 @@ public class DataSourcesConfig {
      *
      * 1.定义环境标识：dev test prod
      * 2.激活环境标识：明确的告诉 spring 当前处于什么环境，不声明就是 Default 环境标识
+     *   # 在 application.properties 配置环境中自定义环境标识
+     *   spring.profiles.active=dev
      * 3.
      */
 
@@ -28,6 +30,7 @@ public class DataSourcesConfig {
         dataSources.setPassword("root");
         return dataSources;
     }
+
 
     @Bean
     @Profile("test")

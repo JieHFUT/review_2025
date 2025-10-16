@@ -61,6 +61,8 @@ public class PersonConfig {
         person.setGender("female");
         return person;
     }
+
+
     @Bean("jobs")
     @Conditional(MacCondition.class) // 满足条件就把 jobs 的组件注册到 ioc 容器中
     public Person jobs() {

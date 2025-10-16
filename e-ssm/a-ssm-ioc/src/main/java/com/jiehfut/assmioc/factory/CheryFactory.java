@@ -20,7 +20,7 @@ public class CheryFactory implements FactoryBean<Car> {
         System.out.println("chery factory 正在制造汽车..."); // 什么时候使用什么时候创建对象
         return new Car("chery", "small", "red");
     }
-
+    
 
     @Override
     /**
@@ -31,10 +31,9 @@ public class CheryFactory implements FactoryBean<Car> {
     }
 
 
-
     @Override
     /**
-     * 是否是单例
+     * 是否是单例，默认是单例的
      * return true：是单例的
      * return false：不是单例的
      */

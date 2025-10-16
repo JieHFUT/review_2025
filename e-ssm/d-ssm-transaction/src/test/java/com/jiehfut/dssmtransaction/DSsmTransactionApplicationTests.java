@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -67,7 +68,7 @@ class DSsmTransactionApplicationTests {
 
     
     @Test
-    public void testCheckout(){
+    public void testCheckout() throws IOException {
         // 买书结账
         userService.checkout("zhangsan", 1, 10);
     }

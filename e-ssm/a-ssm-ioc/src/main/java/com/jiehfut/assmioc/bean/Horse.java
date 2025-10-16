@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @PropertySource("classpath:conf/horse.properties") // 声明配置数据来源
-                                              // @PropertySource 的意思就是把指定的文件导入容器中，可以将注解放在 app.config 中
+                                                   // @PropertySource 的意思就是把指定的文件导入容器中，可以将注解放在 app.config 中
+                                                   // 相当于使用 @Value 把配置文件中所有属性进行赋值，使用这个注解可以导入非 application.properties 配置文件
 public class Horse {
 
     /**
@@ -18,7 +19,7 @@ public class Horse {
     @Value("${horse.id:888}")
     private int id;
 
-    @Value("${horse.name:tiaotiao}")
+    @Value("${horse.name:tiaotiao")
     private String name;
 
     @Value("${horse.age:6}")

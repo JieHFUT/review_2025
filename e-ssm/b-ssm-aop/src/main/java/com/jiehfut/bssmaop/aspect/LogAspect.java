@@ -87,7 +87,7 @@ import java.util.Arrays;
 // 日志切面类
 @Order(2) // 多切面执行顺序
 @Aspect // 表示是一个切面类
-@Component // 表示在 ioc 容器中进行管理
+@Component // 表示该组件在 ioc 容器中进行管理
 public class LogAspect {
     // 1.设置切入点和通知类型：value：切入点表达式配置切入点：即对哪个目标方法进行前置通知
     // "execution(public int com.jiehfut.aop.annotationaop.CalculatorImpl.add(int, int ))"
@@ -104,6 +104,7 @@ public class LogAspect {
     @Before(value = "execution(public int com.jiehfut.bssmaop.calculator.impl.CalculatorImpl.add(int, int ))")
     public void beforeMethod(JoinPoint joinPoint) {
 
+        // 获取调用该通知方法的对象方法的签名
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         signature.getMethod(); // 方法名称
         signature.getReturnType();// 返回值类型

@@ -23,7 +23,7 @@ public class Chicken {
     @Value("胖大鸡")
     private String name;
 
-    @Value("${chicken.age}")
+    @Value("${chicken.age:2}") // :是如果没有取到这个值，使用 : 后面的默认值
     private int age;
 
     @Value("#{10*26}")

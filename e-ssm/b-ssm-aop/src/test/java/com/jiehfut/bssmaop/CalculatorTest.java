@@ -42,6 +42,9 @@ public class CalculatorTest {
         calculator4.add(2, 3);
 
 
+        /**
+         *
+         */
         CalculatorImpl calculator = (CalculatorImpl) DynamicProxyStatic.getProxyInstance(new CalculatorImpl());
         calculator.add(2, 3);
     }

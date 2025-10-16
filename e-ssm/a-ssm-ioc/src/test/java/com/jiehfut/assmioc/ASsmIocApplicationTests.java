@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
 
+// 测试主程序下
 @SpringBootTest
 class ASsmIocApplicationTests {
 

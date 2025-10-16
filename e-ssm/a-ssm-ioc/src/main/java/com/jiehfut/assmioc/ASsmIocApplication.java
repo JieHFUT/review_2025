@@ -20,12 +20,14 @@ import java.util.Map;
  * 程序启动的入口
  */
 
+
 @SpringBootApplication
 public class ASsmIocApplication {
 
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext ioc = SpringApplication.run(ASsmIocApplication.class, args);
         System.out.println("ioc = " + ioc);
+
 
         System.out.println("=====ioc 容器创建完成========");
         Dog dog = ioc.getBean(Dog.class);
@@ -239,6 +241,7 @@ public class ASsmIocApplication {
         System.out.println("ioc = " + ioc);
         // ioc = org.springframework.context.annotation.AnnotationConfigApplicationContext@528c868
 
+        // 配置文件中配置了 Person 组件
 
         // 2.ioc 容器中有哪些组件（一个类就算一个组件）
         String[] beanDefinitionNames = ioc.getBeanDefinitionNames();
@@ -246,11 +249,13 @@ public class ASsmIocApplication {
             System.out.println(beanDefinitionName);
         }
 
+
         // TODO:获取容器中的组件对象：组件的四大特性：名字，类型，对象，作用域
         Object person = ioc.getBean("person");
         System.out.println("按照名字拿到组件对象：" + person);
         // 按照名字拿到组件对象：PersonConfig(name=person, age=0, gender=男)
         // 如果组件不存在：NoSuchBeanDefinitionException
+
 
         // TODO:按照组件类型获取对象
         // PersonConfig person1 = (PersonConfig) ioc.getBean(PersonConfig.class);
