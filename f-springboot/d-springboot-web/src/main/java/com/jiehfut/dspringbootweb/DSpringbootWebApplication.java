@@ -9,11 +9,12 @@ public class DSpringbootWebApplication {
     /**
      * 1.spring-boot-starter-web 场景
      * 2.引入了 spring-boot-starter 场景 => 引入了 spring-boot-autoconfigure 功能
+     *
      * 3.@SpringBootApplication 启动的时候开启 @EnableAutoConfiguration
      * 4.@EnableAutoConfiguration 开启自动配置是通过 @Import(AutoConfigurationImportSelector.class) 批量导入组件
      * 5.AutoConfigurationImportSelector 类通过加载文件（META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports）里面的所有组件
-     *
-     *
+
+       下面是与 web 有关的自动配置类
      * org.springframework.boot.autoconfigure.web.client.RestClientAutoConfiguration
      * org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfiguration
      * org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration
@@ -32,9 +33,21 @@ public class DSpringbootWebApplication {
      * org.springframework.boot.autoconfigure.web.servlet.MultipartAutoConfiguration
      * org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
      *
-     * 这些配置类又绑定了配置文件的一堆配置项
-     * SpringMVC => spring.mvc
-     * Web       => spring.web
+     * 这些自动配置类（@ConditinoalOnxxx）在一定条件下以组件形式注入容器
+     *                                       然后其绑定了配置文件（@EnableConfigurationProperties），
+     *                                       将配置组件注入容器中，配置组件有一堆配置项，通过这个注解向容器中注入该配置类并且绑定自己的配置文件
+     *                                       配置文件头部通过 @ConfigurationProperties 声明配置类属性绑定的前缀
+     *
+     *
+     * WebMvcAutoConfiguration 在容器中放了两个过滤器
+     *                         在容器中放了 WebMvcConfigurer 组件；给 SpringMVC添加各种定制功能
+     *                         （请求参数解析器 && 跨域处理 && 格式化器 && 拦截器 && 静态资源处理器 && 返回值处理器 && 视图控制器 && 异步支持器 && 内容协商
+     *                           异常解析器 && 消息转换器 && 路径匹配 && 消息转换）
+     *
+     *
+     *
+     * WebMvcProperties => spring.mvc
+     * WebProperties  => spring.web
      * 文件上传    => spring.servlet.multipart
      * 服务器     => server
      *
