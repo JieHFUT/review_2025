@@ -48,8 +48,9 @@ public class DSpringbootWebApplication {
      *
      * WebMvcProperties => spring.mvc
      * WebProperties  => spring.web
-     * 文件上传    => spring.servlet.multipart
-     * 服务器     => server
+     * 文件上传 自动配置类   => spring.servlet.multipart
+     * 服务器 自动配置类     => server
+     * ......
      *
      *
      * @param args
