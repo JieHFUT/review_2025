@@ -52,6 +52,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
+
         <!--三方 jar 包需要自己引入-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -66,6 +68,7 @@
         <!--
             导入 redis 场景为例，导入该场景以后 RedisAutoConfiguration 自动配置类就注入容器中了
             与 redis 有关配置 @EnableConfigurationProperties(RedisProperties.class)
+
             @EnableConfigurationProperties(RedisProperties.class)
             @Import({ LettuceConnectionConfiguration.class, JedisConnectionConfiguration.class })
             public class RedisAutoConfiguration {

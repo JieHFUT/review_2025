@@ -14,7 +14,4 @@ public class HelloControlelr {
         return "hello,springboot 3";
     }
 
-    
-
-
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SLogging {
 
     // 1.一个类可以拥有一个日志类，拿到当前类的日志记录器，可以使用注解注入
+    // 2.lombok 提供了一个注解 @Slf4j，使用该注解就会在这个类底层创建一个 log 属性，等同于 logger
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @GetMapping("/self-log")

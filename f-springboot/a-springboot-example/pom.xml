@@ -24,6 +24,8 @@
 
     </dependencies>
 
+
+
     <!-- SpringBoot应用打包插件-->
     <build>
         <plugins>

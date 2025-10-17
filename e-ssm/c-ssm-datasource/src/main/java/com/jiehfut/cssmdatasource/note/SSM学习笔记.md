@@ -223,3 +223,5 @@ public class NamedBeanHolder<T> implements NamedBean {
 > =======如果不是简单制造的单实例，复杂的工厂制造 Bean 最晚制造，调用工厂的 getObject()=======
 > ```
 
+
+

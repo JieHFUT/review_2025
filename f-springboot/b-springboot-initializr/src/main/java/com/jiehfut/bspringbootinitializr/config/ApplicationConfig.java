@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Configuration // 声明这是一个配置类
 @ComponentScan("com.jiehfut.bspringbootinitializr") // 配置项目的包扫描路径
 @EnableConfigurationProperties(Conf1.class) // 该注解有两个作用（一般用于第三方组件导入）:
-                                            // 1.开启 Conf1 的组件的配置绑定  2.默认把这个组件放到容器中
+                                            // 1.（重要）开启 Conf1 的组件的配置绑定  2.默认把这个组件放到容器中
 public class ApplicationConfig {
 
     // 1.第三方的组件进行注入

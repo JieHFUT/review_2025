@@ -63,11 +63,19 @@ public class RequestMappingLimitController {
         return "header-limit";
     }
 
+    /**
+     * 浏览器必须携带的是请求是 json 类型
+     * @return
+     */
     @RequestMapping(value = "/consumes-limit", consumes = {"application/json"})
     public String consumesLimit() {
         return "consumes-limit";
     }
 
+    /**
+     * 响应的类型必须是
+     * @return
+     */
     @RequestMapping(value = "/produces-limit", produces = {"text/plain;charset=utf-8"})
     public String producesLimit() {
         return "produces-limit";
