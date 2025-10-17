@@ -46,6 +46,8 @@ public class PayCntroller {
     }
 
 
+
+
     @DeleteMapping("/pay/del/{id}")
     @Operation(summary = "删除", description = "根据主键 ID 删除流水记录")
     public ResultData<String> deletePay(@PathVariable("id") Integer id) {
@@ -53,15 +55,21 @@ public class PayCntroller {
         return delete == 1 ? ResultData.success("删除成功") : ResultData.fail("-1", "删除失败");
     }
 
+
+
+
     @PutMapping("/pay/update")
     @Operation(summary = "更新", description = "更新流水记录")
     public ResultData<String> updatePay(@RequestBody PayDTO payDTO) {
         Pay pay = new Pay();
-        // BeanUtils 进行对拷
+        // BeanUtils 进行对拷（匹配的属性进行赋值）
         BeanUtils.copyProperties(payDTO, pay);
         int update = payService.update(pay);
         return update == 1 ? ResultData.success("更新成功") : ResultData.fail("-1", "更新失败");
     }
+
+
+
 
     @GetMapping("/pay/get/{id}")
     @Operation(summary = "根据主键 ID 来获取一条流水记录")
@@ -74,6 +82,8 @@ public class PayCntroller {
         Pay pay = payService.findById(id);
         return ResultData.success(pay);
     }
+
+
 
     @GetMapping("/pay/get")
     @Operation(summary = "获取全部流水", description = "获取全部流水记录")
@@ -98,6 +108,7 @@ public class PayCntroller {
     @Value("${server.port}")
     private String port;
 
+    // 从 consul 分布式配置中心获取
     @GetMapping("/pay/get/info")
     public String getInfoByConsul(@Value("${jiehfut.info}") String jiehfutInfo) {
         return "jiehfutInfo = " + jiehfutInfo + "; port = " + port;
@@ -111,6 +122,7 @@ public class PayCntroller {
      *   （1）首先你的 consul 的安装目录必需不含中文和任何空格
      *   （2）在你的安装目录下面创建一个文件 consul_start.bat & 一个用于持久化的文件
      *   （3）文件里面内容：
+
      *   （4）右键管理员运行该文件
      */
 

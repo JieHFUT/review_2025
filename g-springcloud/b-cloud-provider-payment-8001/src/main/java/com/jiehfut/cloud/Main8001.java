@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @EnableDiscoveryClient // 第三步（第一步在 pom.xml，第二步在 application.yml）
 @RefreshScope // 主启动类添加该注解实现分布式配置的动态刷新（也可使用在 bootstrap.yaml - spring.cloud.consul.config.watch.wait-time=1 设置自动更改时间）
-@MapperScan("com.jiehfut.cloud.mapper") //import tk.mybatis.spring.annotation.MapperScan;
+              // 也就是在 consul 中修改了配置文件，在微服务中立刻也跟着修改
+@MapperScan("com.jiehfut.cloud.mapper") // import tk.mybatis.spring.annotation.MapperScan;
 public class Main8001 {
 
     public static void main(String[] args) {

@@ -26,6 +26,7 @@ public enum ReturnCodeEnum {
     /**access_denied**/
     RC401("401","匿名用户访问无权限资源时的异常"),
     RC404("404","404页面找不到的异常"),
+
     /**服务异常**/
     RC500("500","系统异常，请稍后重试"),
     RC375("375","数学运算异常，请稍后重试"),
@@ -59,6 +60,7 @@ public enum ReturnCodeEnum {
         }
         return null;
     }
+
     // 遍历枚举V2 - stream 流式计算遍历
     public static ReturnCodeEnum getReturnCodeEnumV2(String code)
     {

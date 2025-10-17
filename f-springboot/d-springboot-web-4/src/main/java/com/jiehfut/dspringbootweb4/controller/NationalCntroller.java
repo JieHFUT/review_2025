@@ -28,6 +28,5 @@ public class NationalCntroller {
         Locale locale = req.getLocale();
         messageSource.getMessage("login", null, locale);
     }
-    
 
 }

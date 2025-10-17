@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
 /**
- * 统一的全局异常处理器
+ * 捕捉全局异常信息，发生异常就会被该类捕捉，
+ * 统一的全局异常处理器（底层是拦截器）
  * 异常直接响应服务器内部异常
  *
  */
@@ -25,6 +26,6 @@ public class GlobalExceptionHandler {
         System.out.println("#### 进入全局异常处理 ####");
         log.error("全局异常处理，处理信息是：" + e.getMessage());
 
-        return ResultData.fail(ReturnCodeEnum.RC500);
+        return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Swagger3Config {
 
-    @Bean
+    @Bean // 请求以 pay 开头的都是支付模块
     public GroupedOpenApi PayApi() {
         return GroupedOpenApi.builder().group("支付微服务模块").pathsToMatch("/pay/**").build();
     }
@@ -23,6 +23,7 @@ public class Swagger3Config {
     public GroupedOpenApi OtherApi() {
         return GroupedOpenApi.builder().group("其它微服务模块").pathsToMatch("/other/**", "/others").build();
     }
+
     /*@Bean
     public GroupedOpenApi CustomerApi()
     {

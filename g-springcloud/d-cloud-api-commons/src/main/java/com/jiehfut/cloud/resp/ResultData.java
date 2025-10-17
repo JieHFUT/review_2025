@@ -17,9 +17,10 @@ import lombok.experimental.Accessors;
                          // 代替了默认的返回值void，直接链式操作对象（如 user.setName("aaa").setAge(18).set().set()）
 public class ResultData<T> {
 
-    private String code;/** 结果状态 ,具体状态码参见枚举类 ReturnCodeEnum.java*/
+    private String code; /** 结果状态 ,具体状态码参见枚举类 ReturnCodeEnum.java*/
     private String message;
     private T data;
+    // 此次响应的时间戳
     private long timestamp;
 
     public ResultData (){

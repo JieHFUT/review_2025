@@ -70,7 +70,7 @@ public class OrderController {
      */
     @GetMapping("/consumer/pay/get/{id}")
     public ResultData getPayInfo(@PathVariable("id") Integer id){
-        return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/"+id, ResultData.class, id);
+        return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/"+id, ResultData.class);
     }
 
     /**
@@ -92,6 +92,15 @@ public class OrderController {
 
 
 
+
+
+
+
+
+
+
+
+
     /**
      * 8001 & 8002 等微服务已经注册进入（注册中心已经完成分布式配置并且完成数据持久化）注册中心
      * 消费者（客户端）发出的请求需要经过客户端负载均衡后自己选择向哪一个微服务请求
@@ -101,6 +110,8 @@ public class OrderController {
     public String getInfoByConsul() {
         return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/info", String.class);
     }
+
+
 
 
     /**

@@ -35,7 +35,7 @@ public class DSpringbootWebApplication {
      *
      * 这些自动配置类（@ConditinoalOnxxx）在一定条件下以组件形式注入容器
      *                                       然后其绑定了配置文件（@EnableConfigurationProperties），
-     *                                       将配置组件注入容器中，配置组件有一堆配置项，通过这个注解向容器中注入该配置类并且绑定自己的配置文件
+     *                                       将一些配置组件 xxxProperties 注入容器中，配置组件有一堆配置项，通过这个注解向容器中注入该配置类并且绑定自己的配置文件
      *                                       配置文件头部通过 @ConfigurationProperties 声明配置类属性绑定的前缀
      *
      *
@@ -46,12 +46,17 @@ public class DSpringbootWebApplication {
      *
      *
      *
-     * WebMvcProperties => spring.mvc
-     * WebProperties  => spring.web
-     * 文件上传 自动配置类   => spring.servlet.multipart
-     * 服务器 自动配置类     => server
-     * ......
+     * 所有的 web 自动配置类会在容器中注入四个属性类（以及一堆其他组件）
+     * WebMvcAutoConfiguration 自动配置类  WebMvcProperties MVC 场景 => spring.mvc
+     * WebMvcAutoConfiguration 自动配置类  WebProperties Web场景 => spring.web
+     * 文件上传 自动配置类  xxxProperties => spring.servlet.multipart
+     * 服务器 自动配置类    xxxProperties => server
      *
+     *
+     *
+     * 上面这些个自动配置类在以组件形式注入容器中后，会向容器中注入一些组件以丰富 web 的功能
+     * springboot 自动配置了所有的 web 场景，如果我们想要修改一些功能的默认值，
+     * 就需要自己写一些配置类覆盖原有的规则（自己写的配置类需要 @Configuration, 配置类需要实现 WebMvcConfigurer 接口，并且不要标注 @EnableWebMvc）
      *
      * @param args
      */

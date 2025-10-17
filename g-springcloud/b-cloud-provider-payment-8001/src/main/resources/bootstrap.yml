@@ -1,7 +1,10 @@
+# 这是引入服务注册中心 consul 依赖后给该微服务进行命名
 spring:
   application:
     name: cloud-payment-service
     ####Spring Cloud Consul for Service Discovery
+
+  # 表示这个微服务要入住到哪个注册中心
   cloud:
     consul: # 服务注册中心
       host: localhost
@@ -10,12 +13,14 @@ spring:
         service-name: ${spring.application.name}
       config: # 分布式配置
         # default value is ","，we update '-'
+        # 改变 consul 分布式配置的分割符
         profile-separator: '-'
         format: YAML
-        watch: # 设置分布式配饰动态刷新时间
+        watch: # 设置分布式配置动态刷新时间（consul 中配置修改后，微服务中同步修改的时间，不设置的话默认是 55 秒）
           wait-time: 1
 
-  # 下面是在 consul 服务中建立文件夹，在里面放键值对
+
+  # 下面是在 consul 服务中建立文件夹，在 data 文件里面放键值对或者 json 等
   # config/cloud-payment-service/data
   #       /cloud-payment-service-dev/data
   #       /cloud-payment-service-prod/data

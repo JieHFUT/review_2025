@@ -46,6 +46,9 @@
             <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
 
+
+
+
         <!--SpringCloud consul config：分布式配置-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -60,6 +63,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
             <exclusions>
+                <!--去除启动时控制台打印的首行多余日志-->
                 <exclusion>
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>

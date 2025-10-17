@@ -43,8 +43,9 @@ spring:
     url: jdbc:mysql://localhost:3306/springcloud?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
     username: root
     password: 959452
+
   profiles:
-    active: dev # 多环境配置加载内容 dev/prod,不写就是默认 default 配置
+    active: dev # 多环境配置加载内容 dev/prod/test,不写就是默认 default 配置
 
 # ========================mybatis===================
 mybatis:

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * 1.新建该控制方法
  * 2.断路器的 feign 接口：PayFeignApi
  * 3.断路器在消费者（客户端）配置
- *   （1）
+ *   （1）建 moudle
  *   （2）改 pom
  *   （3）写 yml
  */
