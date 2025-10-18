@@ -3,15 +3,21 @@ server:
 
 spring:
   application:
+    # 配置服务名称
     name: cloud-consumer-openfeign-order
+
+#####################################################################
   cloud:
+    # 将该微服务注册到服务注册中心去
     consul:
       host: localhost
       port: 8500
       discovery:
         prefer-ip-address: true #优先使用服务ip进行注册
         service-name: ${spring.application.name}
-    # 消费者的超时配置
+
+########################################################################
+    # 1.高级特性一 - 消费者的超时配置（请求多久超时就报错）
     openfeign:
       client:
         config:
@@ -21,17 +27,21 @@ spring:
             connectTimeout: 3000
             #读取超时时间
             readTimeout: 3000
-          # 指定超时配置：指定是哪一个微服务，指定优先
+          # 指定超时配置：指定是哪一个微服务，指定优先（优先于上面的全局配置）
           cloud-payment-service:
             #连接超时时间
             connectTimeout: 20000
             #读取超时时间
             readTimeout: 20000
-      # 开始进行 Apache HttpClient5 配置（对 openfeign 的原生的代替）
+###########################################################################
+
+      # 3.高级特性三 - 开始进行 Apache HttpClient5 配置（对 openfeign 的原生的代替 - 用来提高发送请求的效率）
       httpclient:
         hc5:
           enabled: true
-      # 开启 openfeign 的（请求、响应）的压缩功能
+###########################################################################
+
+      # 4.高级特性四 - 开启 openfeign 的（请求、响应）的压缩功能，节约带宽
       compression:
         request:
           enabled: true
@@ -39,6 +49,8 @@ spring:
           mime-types: text/xml,application/xml,application/json #触发压缩数据类型
         response:
           enabled: true
+############################################################################
+
       # 开启 circuitbreaker 断路器和分组激活 spring.cloud.openfeign.circuitbreaker.enabled
       circuitbreaker:
         enabled: true

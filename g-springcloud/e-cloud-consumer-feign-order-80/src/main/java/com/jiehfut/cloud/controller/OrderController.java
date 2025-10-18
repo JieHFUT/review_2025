@@ -45,7 +45,9 @@ public class OrderController {
      *     public String getInfoByConsul();
      */
 
+
     @Resource
+    // 公共模块中的 feign 接口
     private PayFeignApi payFeignApi;
 
 
@@ -82,7 +84,7 @@ public class OrderController {
              * 1.全局配置：某一个消费者调用其他微服务（如支付，用户，订单）全部都是默认超时多少
              * 2.指定配置：某一个消费者调用每一个微服务分别设置超时时间
              */
-            ResultData.fail(ReturnCodeEnum.RC500);
+            ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
         }
         return payInfo;
     }

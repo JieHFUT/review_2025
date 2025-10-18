@@ -17,13 +17,19 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class FeignConfig {
-    // 修改 Retryer 内属性实现重试
+
+    // 2.高级特性二 - 修改 Retryer 内属性实现重试（重试机制）
     @Bean
     public Retryer myRetryer() {
 
         // return Retryer.NEVER_RETRY; // Feign 默认配置是不走重试策略的
 
-        // 最大请求次数为 3(1+2)，初始间隔时间为 100ms，即100ms以后启动这个配置，重试间最大间隔时间为 1s
+        /**
+         * 最大请求次数为 3(1+2)，初始间隔时间为 100ms，即 100ms以后启动这个配置，重试间最大间隔时间为 1s
+         * long period, 服务启动之后多久开始启动这个配置
+         * long maxPeriod, 每次重试的间隔时间
+         * int maxAttempts, 最多发送几次请求
+         */
         return new Retryer.Default(100,1,3);
     }
 
@@ -47,9 +53,9 @@ public class FeignConfig {
     /**
      * Feign 提供了日志打印功能，我们可以通过配置来调整日志级别 - yml
      * 从而了解 Feign 中 Http 请求的细节，
-     * 说白了就是对 Feign接口的调用情况进行监控和输出
+     * todo: 说白了就是对 Feign接口的调用情况进行监控和输出
      * public enum Level {
-     *     NONE, - No logging.
+     *     NONE, - No logging. todo: 默认级别
      *     BASIC, - Log only the request method and URL and the response status code and execution time.
      *     HEADERS, - Log the basic information along with request and response headers.
      *     FULL - Log the headers, body, and metadata for both requests and responses.
@@ -77,7 +83,7 @@ public class FeignConfig {
 
 
 
-    // 配置日志 bean 组件
+    // 5.高级特性五 - 配置日志 bean 组件
 
     @Bean
     Logger.Level feignLoggerLevel() {

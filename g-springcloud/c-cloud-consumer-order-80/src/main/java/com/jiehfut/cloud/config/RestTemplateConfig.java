@@ -18,11 +18,12 @@ import org.springframework.web.client.RestTemplate;
 // 下面的注解是进行切换负载均衡算法的行为，对哪一个微服务进行负载均衡的模式修改
 @LoadBalancerClient(
         // 下面的 value 值大小写一定要和 consul 里面的名字一样，必须一样
+        // 如果不使用这个注解，默认是轮询访问方式
         value = "cloud-payment-service", configuration = RestTemplateConfig.class)
 public class RestTemplateConfig {
 
     @Bean
-    @LoadBalanced // consul 默认使                                                                     用负载均衡方法：使用 @LoadBalanced 注解赋予 RestTemplate 负载均衡的能力
+    @LoadBalanced // consul 默认使用负载均衡方法：使用 @LoadBalanced 注解赋予 RestTemplate 负载均衡的能力
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
@@ -37,6 +38,9 @@ public class RestTemplateConfig {
         return new RandomLoadBalancer(loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class), name);
     }
 }
+
+
+
 
 
 // RestTemplate 的配置类，将该类注入容器，获得组件

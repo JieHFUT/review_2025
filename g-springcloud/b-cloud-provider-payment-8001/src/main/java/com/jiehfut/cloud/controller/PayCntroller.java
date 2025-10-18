@@ -76,8 +76,12 @@ public class PayCntroller {
     public ResultData<Pay> getPayById(@PathVariable("id") Integer id) {
         // 主动暂停 62 秒测试 openfeign 的超时功能
         System.out.println("此次根据 id 获取流水记录是端口：" + port + "; time = " + DateUtil.now());
-        try { TimeUnit.SECONDS.sleep(62); } catch (InterruptedException e) { e.printStackTrace();}
-        // 测试结果表示 openfeign 的默认超时时间是 60 s
+        try {
+            TimeUnit.SECONDS.sleep(62);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 测试结果表示 openfeign 的默认超时时间是 60 s，响应超过 60 秒报错 RetryableException
 
         Pay pay = payService.findById(id);
         return ResultData.success(pay);
@@ -104,6 +108,15 @@ public class PayCntroller {
      * 3.本地在 consul 服务中进行 key-value 数值填写（包括文件夹）
      * 4.测试从 consul 中读取配置信息（config/cloud-payment-service/data）
      *   data 中是一个 yaml 文件，jiehfut.info
+     *
+     * applicaiton.yml是用户级的资源配置项
+     * bootstrap.yml是系统级的，优先级更加高
+     *
+     * Spring Cloud会创建一个“Bootstrap Context”，作为Spring应用的`Application Context`的父上下文。初始化的时候，`Bootstrap Context`负责从外部源加载配置属性并解析配置。这两个上下文共享一个从外部获取的`Environment`。
+     *
+     *  Bootstrap 属性有高优先级，默认情况下，它们不会被本地配置覆盖。 `Bootstrap context`和`Application Context`有着不同的约定，所以新增了一个`bootstrap.yml`文件，保证`Bootstrap Context`和`Application Context`配置的分离。
+     *  application.yml文件改为bootstrap.yml,这是很关键的或者两者共存
+     * 因为bootstrap.yml是比application.yml先加载的。bootstrap.yml优先级高于application.yml
      */
     @Value("${server.port}")
     private String port;
@@ -120,7 +133,7 @@ public class PayCntroller {
      * 3.如何做到 consul 服务关闭后重启仍然保存配置的 key-value 键值对
      *   consul 的配置持久化 ?
      *   （1）首先你的 consul 的安装目录必需不含中文和任何空格
-     *   （2）在你的安装目录下面创建一个文件 consul_start.bat & 一个用于持久化的文件
+     *   （2）在你的安装目录下面创建一个文件 consul_start.bat & 一个用于持久化的文件夹 mydata
      *   （3）文件里面内容：
 
      *   （4）右键管理员运行该文件

@@ -44,6 +44,10 @@
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
+
+
+
+
         <!--resilience4j-ratelimiter（限流的依赖）-->
         <dependency>
             <groupId>io.github.resilience4j</groupId>
@@ -67,6 +71,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+
         <!--
             httpclient5
             openfeign 默认使用的是 HttpURLConnection，使用 Apache HttpClient5 替换，以提高性能

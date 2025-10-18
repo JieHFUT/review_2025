@@ -21,6 +21,8 @@ import java.util.List;
 @FeignClient(value = "cloud-gateway") // 暴露的接口被调用后，会调用网关进行处理
 public interface PayFeignApi {
 
+    // 增删改查 + 分布式配置
+
     @PostMapping("/pay/add")
     public ResultData<String> addPay(@RequestBody PayDTO payDTO);
 
@@ -38,6 +40,7 @@ public interface PayFeignApi {
 
     @GetMapping("/pay/get/info")
     public String getInfoByConsul();
+
 
     /**
      * 使用断路器的 feign 接口

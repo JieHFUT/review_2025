@@ -120,6 +120,8 @@ public class OrderController {
      */
     @Resource
     private DiscoveryClient discoveryClient;
+
+
     @GetMapping("/consumer/discovery")
     public String discovery() {
         List<String> services = discoveryClient.getServices(); // 获取所有的服务微服务清单
@@ -153,13 +155,17 @@ public class OrderController {
      * RoundRobinLoadBalancer：轮询集群方式
      * RandomLoadBalancer：随机找一个微服务进行请求
      *
+     *
+     *
      * 这两个接口都实现了 ReactorServiceInstanceLoadBalancer 空接口
      * public interface ReactorServiceInstanceLoadBalancer extends ReactorLoadBalancer<ServiceInstance> { }
      * public interface ReactorLoadBalancer<T> extends ReactiveLoadBalancer<T> {}
      *
+     *
      * The ReactiveLoadBalancer implementation that is used by default is RoundRobinLoadBalancer.
      * To switch to a different implementation, either for selected services or all of them, you can use the custom LoadBalancer configurations mechanism.
      * For example, the following configuration can be passed via @LoadBalancerClient annotation to switch to using the RandomLoadBalancer:
+     *
      *
      * public class CustomLoadBalancerConfiguration {
      * 	  @Bean

@@ -10,7 +10,7 @@ public class TestUser {
 
     // 创建 Logger 对象
     private Logger logger = LoggerFactory.getLogger(TestUser.class);
-
+    
 
     @Test
     public void testUserObject(){
