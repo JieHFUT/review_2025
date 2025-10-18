@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-/**
+ /**
+ * 断路器在消费者（客户端）配置
+ *   （1）建 moudle
+ *   （2）改 pom - 2 个依赖（relience4j && aop）
+ *   （3）写 yml
+ *
  * 测试断路器的控制层 - 兜底（即为降级）
  * Resilience4j CircuitBreaker 的例子
  * 在 PayFeignApi 接口类中已经有下面接口
@@ -25,13 +30,15 @@ public class OrderCircuitController {
     private PayFeignApi payFeignApi;
 
     @GetMapping(value = "/feign/pay/circuit/{id}") // 已经在断路器的 feign 接口声明 && 8001（PayCircuitController）
-    // 声明（断路器）要调用哪个微服务（在 yml 中配置的启动熔断器的微服务），如果产生了服务异常，给一个兜底的服务降级的方法（服务）
+    // 声明（断路器）要调用哪个微服务（在 yml 中配置的启动熔断器的微服务），如果产生了服务因异常熔断了（open 状态），跳转到一个兜底的服务降级的方法（服务）
     @CircuitBreaker(name = "cloud-payment-service", fallbackMethod = "myCircuitFallback")
     public String myCircuitBreaker(@PathVariable("id") Integer id) {
         // 该微服务正常调用走接口调用服务
         return payFeignApi.myCircuit(id);
     }
+
     // 异常或者服务降级情况兜底：myCircuitFallback 就是服务降级后的兜底处理方法
+    // 异常会转向该处理，open 状态也会转向该处理
     public String myCircuitFallback(Integer id, Throwable t) {
         // 这里是容错处理逻辑，返回备用结果
         return "myCircuitFallback，系统繁忙，请稍后再试-----/(ㄒoㄒ)/~~";
@@ -61,8 +68,10 @@ public class OrderCircuitController {
      }
      */
 
+
+
     /**
-     * resilience4j bulkhead 的例子（隔离机制-信号量仓壁）
+     * resilience4j bulkhead 的例子（隔离机制-信号量仓壁 设置并发数量和等待时间实现隔离）
      * 1. 8001-PayCircuitController.myBulkhead
      * 2. commons-apis-PayFeignApi
      * 3. 80-pom-(resilience4j-bulkhead)
@@ -72,8 +81,8 @@ public class OrderCircuitController {
      * @return
      */
     @GetMapping(value = "/feign/pay/bulkhead/{id}")
-    //                 该隔离使用在哪个微服务上（.yml）             调不通方法，直接兜底出结果       指定使用信号量
-    @Bulkhead(name = "cloud-payment-service",fallbackMethod = "myBulkheadFallback",type = Bulkhead.Type.SEMAPHORE)
+    //                 该隔离使用在哪个微服务上（.yml）             调不通方法，直接兜底出结果       指定使用信号量方式
+    @Bulkhead(name = "cloud-payment-service",fallbackMethod = "myBulkheadFallback", type = Bulkhead.Type.SEMAPHORE)
     public String myBulkhead(@PathVariable("id") Integer id) {
         return payFeignApi.myBulkhead(id);
     }
@@ -83,7 +92,7 @@ public class OrderCircuitController {
 
 
     /**
-     * 隔离机制，通过设置线程池 && 排队队列，实现隔离
+     * 隔离机制（通过设置线程池 && 排队队列，实现隔离）
      * 与信号量隔离请求路径一样即可，这里做演示，设置不一样
      * @param id
      * @return 与信号量返回不一样 CompletableFuture<String>
@@ -101,6 +110,12 @@ public class OrderCircuitController {
     public CompletableFuture<String> myBulkheadPoolFallback(Throwable t, Integer id) {
         return CompletableFuture.supplyAsync(() -> "Bulkhead.Type.THREADPOOL，系统繁忙，请稍后再试-----/(ㄒoㄒ)/~~");
     }
+
+
+
+
+
+
 
 
     /**

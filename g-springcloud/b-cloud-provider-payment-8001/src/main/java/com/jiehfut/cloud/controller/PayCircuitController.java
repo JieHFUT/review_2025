@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * 2.断路器的 feign 接口：PayFeignApi
  * 3.断路器在消费者（客户端）配置
  *   （1）建 moudle
- *   （2）改 pom
+ *   （2）改 pom - 2 个依赖（relience4j && aop）
  *   （3）写 yml
  */
 @RestController
