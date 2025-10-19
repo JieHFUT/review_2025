@@ -24,7 +24,7 @@
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing</artifactId>
         </dependency>
-        <!--micrometer-tracing-bridge-brave适配zipkin的桥接包 2-->
+        <!--micrometer-tracing-bridge-brave 适配zipkin的桥接包 2-->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-brave</artifactId>
@@ -47,7 +47,7 @@
 
 
 
-
+<!--########################################################################################-->
         <!--resilience4j-ratelimiter（限流的依赖）-->
         <dependency>
             <groupId>io.github.resilience4j</groupId>
@@ -59,7 +59,7 @@
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-bulkhead</artifactId>
         </dependency>
-<!--#########################################################################################-->
+<!--#########################-->
         <!--断路器的依赖引入-->
         <!--resilience4j-circuitbreaker-->
         <dependency>

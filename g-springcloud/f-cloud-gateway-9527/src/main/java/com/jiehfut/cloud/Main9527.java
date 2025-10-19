@@ -9,7 +9,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * 网关 GateWay
  */
 @SpringBootApplication
-@EnableDiscoveryClient // 服务注册和发现
+@EnableDiscoveryClient // 使用注解进行服务注册和发现
 public class Main9527 {
 
     public static void main(String[] args) {
