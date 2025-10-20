@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * @SentinelResource 声明哨兵要保护的资源
+ * @SentinelResource 声明哨兵（sentinel 就是哨兵）要保护的资源
+ *
+ * 使用这个注解的资源被保护的意思就是在触发限流后，如何进行降级服务？
+ * 是使用默认的 Blocked by Sentinel 还是自己写的限流提示（服务降级）
  *
  */
 @RestController
@@ -57,7 +60,7 @@ public class RateLimitController {
         log.error("sentinel配置自定义限流了:{}", e);
         return "sentinel配置自定义限流了";
     }
-
+    //
     public String doActionFallback(@PathVariable("p1") Integer p1,Throwable e){
         log.error("程序逻辑异常了:{}", e);
         return "程序逻辑异常了"+"\t"+e.getMessage();

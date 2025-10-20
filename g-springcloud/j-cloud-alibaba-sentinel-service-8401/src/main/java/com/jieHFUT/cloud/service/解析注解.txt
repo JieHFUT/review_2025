@@ -46,4 +46,5 @@ public @interface SentinelResource {
 }
 
 
+总的来说就是 sentinel 对这个注解的资源进行流量监控
 
