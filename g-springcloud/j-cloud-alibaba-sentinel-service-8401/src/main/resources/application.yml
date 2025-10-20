@@ -3,14 +3,19 @@ server:
 
 spring:
   application:
+    # 自己服务名称
     name: cloudalibaba-sentinel-service
+
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848         # 入住进 Nacos服务注册中心地址
+        # 入住进 Nacos服务注册中心地址
+        server-addr: localhost:8848
+
+   # 配置流量监控服务，这个微服务被谁监控
     sentinel:
       transport:
-        dashboard: localhost:8080 #配置 Sentinel dashboard 控制台服务地址
+        dashboard: localhost:8080  #配置 Sentinel dashboard 控制台服务地址
         port: 8719 #默认 8719 端口，假如被占用会自动从8719开始依次+1扫描,直至找到未被占用的端口
 
 
@@ -23,7 +28,7 @@ spring:
             groupId: DEFAULT_GROUP # 就是 nacos 配置里面的
             data-type: json # 就是 nacos 配置里面的
             rule-type: flow # 代表只会持久化流控
-        ds2: # 自定义的 key，
+        ds2: # 自定义的 key
           nacos:
             server-addr: localhost:8848
             dataId: ${spring.application.name}
@@ -32,7 +37,7 @@ spring:
             rule-type: degrade # 代表持久化加上了熔断规则
 
 
-    web-context-unify: false # controller层的方法对 service层调用不认为是同一个根链路
+    web-context-unify: false # controller层的方法对 service层调用不认为是同一个根链路（就是模仿调用其他微服务的控制器）
 
 
 

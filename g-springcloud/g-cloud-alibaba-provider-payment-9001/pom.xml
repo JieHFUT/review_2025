@@ -28,6 +28,8 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
+
+
         <!--nacos-discovery-->
         <!--服务注册中心-->
         <dependency>

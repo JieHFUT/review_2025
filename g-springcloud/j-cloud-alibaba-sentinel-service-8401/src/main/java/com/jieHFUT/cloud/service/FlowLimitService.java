@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class FlowLimitService {
 
     @SentinelResource(value = "common")
+    // 说明
     public void common() {
         System.out.println("------FlowLimitService come in");
     }

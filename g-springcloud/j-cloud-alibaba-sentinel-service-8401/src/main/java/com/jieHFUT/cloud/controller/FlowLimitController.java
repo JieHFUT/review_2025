@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * 流量限制控制器
+ */
 @RestController
 public class FlowLimitController {
 
@@ -75,7 +77,7 @@ public class FlowLimitController {
     @GetMapping("/testG")
     public String testG() {
         System.out.println("----测试:新增熔断规则-异常比例 ");
-        int age = 10/0;
+        int a = 10 / 0;
         return "------testG,新增熔断规则-异常比例 ";
     }
 

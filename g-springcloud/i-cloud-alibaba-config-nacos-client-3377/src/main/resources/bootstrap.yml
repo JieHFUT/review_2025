@@ -18,7 +18,8 @@ spring:
 
         # 声明分组 - 从 nacos 的哪一个分组里面获取信息
         group: PROD_GROUP
-        namespace: Prod_Namespace
+        namespace: Prod_Namespace # 这地方是命名空间 id
+
 
 # nacos 端配置文件 DataId 的命名规则是：微服务名称-运行环境名-拓展名
 # ${prefix}-${spring.profile.active}-${file-extension}

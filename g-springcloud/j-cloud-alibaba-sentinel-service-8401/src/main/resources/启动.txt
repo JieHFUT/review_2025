@@ -1,1 +1,6 @@
 java -Dserver.port=8080 -Dcsp.sentinel.dashboard.server=localhost:8080 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.8.6.jar
+
+
+sentinel 8080 来监控流量的行为，进行流量监控，熔断，降级等行为
+这里使用 8401 微服务注册进入 nacos 8848 服务注册中心
+然后将 8401 微服务被 8080 监控其流量
