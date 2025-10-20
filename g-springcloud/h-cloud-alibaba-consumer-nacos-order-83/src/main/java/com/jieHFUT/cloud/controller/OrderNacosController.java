@@ -13,7 +13,7 @@ public class OrderNacosController {
     @Resource
     private RestTemplate restTemplate;
 
-    @Value("${service-url.nacos-user-service}")
+    @Value("${service-url.nacos-user-service}") // nacos-payment-service
     private String serverURL;
 
     @GetMapping("/consumer/pay/nacos/{id}")

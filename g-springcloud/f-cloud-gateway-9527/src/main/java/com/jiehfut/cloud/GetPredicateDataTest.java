@@ -2,7 +2,7 @@ package com.jiehfut.cloud;
 
 import java.time.ZonedDateTime;
 
-public class GetPredicateData {
+public class GetPredicateDataTest {
     public static void main(String[] args) {
 
         /**

@@ -26,7 +26,6 @@ public class PayAlibabaController {
     }
 
 
-
     // openfiegn & sentinel 集成实现服务降级和流量监控整合功能
     @GetMapping("/pay/nacos/get/{orderNo}")
     @SentinelResource(value = "getPayByOrderNo",blockHandler = "handlerBlockHandler")
@@ -42,6 +41,8 @@ public class PayAlibabaController {
 
         return ResultData.success("查询返回值：" + payDTO);
     }
+
+
     // 如果你触发了流量限流 - 执行该方法，没有触发执行上面的方法
     public ResultData handlerBlockHandler(@PathVariable("orderNo") String orderNo, BlockException exception) {
         return ResultData.fail(ReturnCodeEnum.RC500.getCode(),"getPayByOrderNo服务不可用，" +

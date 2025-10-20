@@ -20,7 +20,7 @@ import java.util.function.Predicate;
  *      根据请求中携带的参数来判断请求是否被允许
  *
  * config 类是我们的路由断言规则（等级需要在 yml 中去配置）
- *
+ * xxxRoutePredicateFactory 格式
  */
 @Component
 public class MyRoutePredicateFactory extends AbstractRoutePredicateFactory<MyRoutePredicateFactory.Config> {
@@ -31,13 +31,14 @@ public class MyRoutePredicateFactory extends AbstractRoutePredicateFactory<MyRou
     }
 
     /**
-     * 设置支持短格式
+     * 设置支持短格式（支持快捷模式配置自定义断言）
      * @return
      */
     @Override
     public List<String> shortcutFieldOrder() {
         return Collections.singletonList("requestRank");
     }
+
 
     @Override
     public Predicate<ServerWebExchange> apply(MyRoutePredicateFactory.Config config) {
@@ -62,7 +63,7 @@ public class MyRoutePredicateFactory extends AbstractRoutePredicateFactory<MyRou
 
 
     /**
-     * Config 类
+     * Config 类 - 静态内部类
      * 是我们自定义的用于对路由进行判断的规则
      */
     @Validated

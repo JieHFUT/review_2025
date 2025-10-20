@@ -4,11 +4,12 @@ server:
 # 配置 9001 服务提供者入住我们的 8848 Nacos 服务器
 spring:
   application:
+    # 配置该服务的名称
     name: nacos-payment-provider
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848 #配置 Nacos 地址
+        server-addr: localhost:8848 #配置 Nacos 地址，9001 入住进去 8848
 
   # 进行 openfeign & sentinel 的集成服务实现服务降级
   sentinel:

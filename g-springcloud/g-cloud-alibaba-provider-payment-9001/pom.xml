@@ -29,10 +29,13 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
         <!--nacos-discovery-->
+        <!--服务注册中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
+
         <!--引入自己定义的对外暴露的通用包-->
         <dependency>
             <groupId>com.jiehfut.cloud</groupId>

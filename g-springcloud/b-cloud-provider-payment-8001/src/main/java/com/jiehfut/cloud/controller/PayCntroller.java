@@ -121,6 +121,7 @@ public class PayCntroller {
     @Value("${server.port}")
     private String port;
 
+
     // 从 consul 分布式配置中心获取
     @GetMapping("/pay/get/info")
     public String getInfoByConsul(@Value("${jiehfut.info}") String jiehfutInfo) {

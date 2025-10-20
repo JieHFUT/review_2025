@@ -36,6 +36,9 @@ public class PayGateWayController {
     }
 
 
+
+
+
     /**
      * 测试在使用网关的过程中，对请求转发到控制器方法的前后的处理 = filter
      * 如果请求头中有 X-Request-jieHFUT1 || X-Request-jieHFUT2 就将其显示请求头中的参数

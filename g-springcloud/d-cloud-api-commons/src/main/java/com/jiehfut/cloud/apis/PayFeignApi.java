@@ -3,6 +3,7 @@ package com.jiehfut.cloud.apis;
 
 import com.jiehfut.cloud.entities.PayDTO;
 import com.jiehfut.cloud.resp.ResultData;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -85,11 +86,12 @@ public interface PayFeignApi {
     @GetMapping(value = "/pay/gateway/get/{id}")
     public ResultData getById(@PathVariable("id") Integer id);
 
-
     /**
      * GateWay进行网关测试案例02
      * @return
      */
     @GetMapping(value = "/pay/gateway/info")
     public ResultData<String> getGatewayInfo();
+
+
 }

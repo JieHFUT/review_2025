@@ -17,29 +17,38 @@ import java.util.List;
 
 /**
  * 单一内置过滤器 GatewayFilter
- * 1.类名需要以 GatewayFilterFsctory 结尾（该过滤器配置名称叫做 My）
- * 2.根据一个状态值/标志位-status，它等于多少，匹配和才可以访问
+ * 1.类名需要以 xxxGatewayFilterFsctory 结尾（该过滤器配置名称叫做 My）
+ * 2.根据一个状态值 /标志位-status，它等于多少，匹配和才可以访问
  * 3.继承 AbstractGatewayFilterFactory，重写 apply()
  *
  */
 @Component
 public class MyGatewayFilterFactory extends AbstractGatewayFilterFactory<MyGatewayFilterFactory.Config> {
 
+
     public MyGatewayFilterFactory() {
         super(MyGatewayFilterFactory.Config.class);
     }
+
+
 
 
     @Override
     public GatewayFilter apply(MyGatewayFilterFactory.Config config) {
         // 重写 apply()，返回一个 GatewayFilter -
         return new GatewayFilter() {
+            /**
+             * @param exchange 这个对象是一个网关的核心组件，可以对请求中的属性等进行修改
+             * @param chain 网关的过滤器链
+             * @return
+             */
             @Override
             public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
                 ServerHttpRequest request = exchange.getRequest();
                 System.out.println("进入了自定义网关过滤器 MyGatewayFilterFactory，status：" + config.getStatus());
                 // 要求这个请求必需携带参数 jieHFUT=... 才会放行
                 if (request.getQueryParams().containsKey("jieHFUT")){
+                    // 放行
                     return chain.filter(exchange);
                 } else {
                     exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST); // 400 - 客户端异常
@@ -48,6 +57,7 @@ public class MyGatewayFilterFactory extends AbstractGatewayFilterFactory<MyGatew
             }
         };
     }
+
 
     @Override
     public List<String> shortcutFieldOrder() {

@@ -28,5 +28,7 @@ public class OrderGateWayController {
     public ResultData<String> getGatewayInfo() {
         return payFeignApi.getGatewayInfo();
     }
+
+
 }
 
