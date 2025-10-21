@@ -11,6 +11,8 @@ spring:
       discovery:
         server-addr: localhost:8848 #配置 Nacos 地址，9001 入住进去 8848
 
+
+
   # 进行 openfeign & sentinel 的集成服务实现服务降级
   sentinel:
     transport:

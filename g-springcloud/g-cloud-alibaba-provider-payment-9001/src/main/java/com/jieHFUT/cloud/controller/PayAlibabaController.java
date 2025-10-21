@@ -26,6 +26,7 @@ public class PayAlibabaController {
     }
 
 
+
     // openfiegn & sentinel 集成实现服务降级和流量监控整合功能
     @GetMapping("/pay/nacos/get/{orderNo}")
     @SentinelResource(value = "getPayByOrderNo",blockHandler = "handlerBlockHandler")

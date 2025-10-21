@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 流控 + 熔断
  * 流量限制控制器
  */
 @RestController

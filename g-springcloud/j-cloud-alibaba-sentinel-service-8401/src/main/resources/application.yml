@@ -12,6 +12,9 @@ spring:
         # 入住进 Nacos服务注册中心地址
         server-addr: localhost:8848
 
+    web-context-unify: false # controller层的方法对 service层调用不认为是同一个根链路（就是模仿调用其他微服务的控制器）
+
+
    # 配置流量监控服务，这个微服务被谁监控
     sentinel:
       transport:
@@ -20,6 +23,7 @@ spring:
 
 
       # 配置 sentinel 配置持久化，持久化到 Nacos注册中心
+      # 就是使用 nacos 的分布式配置来取代可视化的流控，熔断，热点，授权规则
       datasource:
         ds1:
           nacos:
@@ -36,8 +40,16 @@ spring:
             data-type: json
             rule-type: degrade # 代表持久化加上了熔断规则
 
+      #    FLOW("flow", FlowRule.class),
+      #    DEGRADE("degrade", DegradeRule.class),
+      #    PARAM_FLOW("param-flow", ParamFlowRule.class),
+      #    SYSTEM("system", SystemRule.class),
+      #    AUTHORITY("authority", AuthorityRule.class),
+      #    GW_FLOW("gw-flow", "com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule"),
+      #    GW_API_GROUP("gw-api-group", "com.alibaba.csp.sentinel.adapter.gateway.common.api.ApiDefinition");
 
-    web-context-unify: false # controller层的方法对 service层调用不认为是同一个根链路（就是模仿调用其他微服务的控制器）
+
+
 
 
 

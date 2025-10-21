@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 使用这个注解的资源被保护的意思就是在触发限流后，如何进行降级服务？
  * 是使用默认的 Blocked by Sentinel 还是自己写的限流提示（服务降级）
  *
+ * 热点
  */
 @RestController
 @Slf4j

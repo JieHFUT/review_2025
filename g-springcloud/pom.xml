@@ -21,6 +21,7 @@
         <module>g-cloud-alibaba-provider-payment-9002</module>
         <module>i-cloud-alibaba-config-nacos-client-3377</module>
         <module>j-cloud-alibaba-sentinel-service-8401</module>
+        <module>k-cloud-alibaba-sentinel-gateway-9528</module>
     </modules>
 
 
@@ -41,6 +42,9 @@
         <spring.boot.test.version>3.1.5</spring.boot.test.version>
         <spring.boot.version>3.2.0</spring.boot.version>
         <spring.cloud.version>2023.0.0</spring.cloud.version>
+        <!--下面这个版本处理仅仅是为了处理 feign 和 sentinel 整合的问题-->
+<!--        <spring.boot.version>3.0.9</spring.boot.version>-->
+<!--        <spring.cloud.version>2022.0.2</spring.cloud.version>-->
         <spring.cloud.alibaba.version>2022.0.0.0-RC2</spring.cloud.alibaba.version>
         <micrometer-tracing.version>1.2.0</micrometer-tracing.version>
         <micrometer-observation.version>1.12.0</micrometer-observation.version>

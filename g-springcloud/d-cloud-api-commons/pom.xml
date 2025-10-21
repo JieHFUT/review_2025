@@ -20,6 +20,21 @@
     <!--这个工程是提供向外暴露通用的组件、API、接口、工具类...-->
     <!--其不是一个微服务，只是对所有工程中重复部分的抽取，重构-->
     <dependencies>
+
+        <!--下面这两个依赖是进行 openfeign 整合 sentinel 来统一处理异常进行降级的服务-->
+        <!--openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--alibaba-sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+
+
         <!--引入 openfeign，实现公共的 API 模块供各种消费者系统调用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

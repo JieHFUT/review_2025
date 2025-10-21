@@ -19,6 +19,27 @@
 
 
     <dependencies>
+
+
+        <!--下面这三个依赖是进行 openfeign 和 sentinel 进行异常降级的整合服务-->
+        <!-- 引入自己定义的api通用包 -->
+        <dependency>
+            <groupId>com.jiehfut.cloud</groupId>
+            <artifactId>d-cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--alibaba-sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+
         <!--nacos-discovery-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
