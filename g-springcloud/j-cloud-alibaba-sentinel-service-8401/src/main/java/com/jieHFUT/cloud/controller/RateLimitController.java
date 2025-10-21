@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
+ * 如何使用自己的服务降级 ！！！
  * @SentinelResource 声明哨兵（sentinel 就是哨兵）要保护的资源
  *
  * 使用这个注解的资源被保护的意思就是在触发限流后，如何进行降级服务？
@@ -55,16 +56,21 @@ public class RateLimitController {
         }
         return "doAction";
     }
-    // 如果正常就走上面这个逻辑，如果异常就走下面的这个逻辑，相当于兜底处理
+    // 如果正常就走上面逻辑，如果（服务被限流）就走下面的这个逻辑，相当于兜底处理
     public String doActionBlockHandler(@PathVariable("p1") Integer p1,BlockException e){
         log.error("sentinel配置自定义限流了:{}", e);
         return "sentinel配置自定义限流了";
     }
-    //
+    // 如果正常就走上面逻辑，如果（服务出现异常）就走下面的这个逻辑，相当于兜底处理
     public String doActionFallback(@PathVariable("p1") Integer p1,Throwable e){
         log.error("程序逻辑异常了:{}", e);
         return "程序逻辑异常了"+"\t"+e.getMessage();
     }
+
+
+
+
+
 
 
     /**
@@ -81,8 +87,8 @@ public class RateLimitController {
     }
     // 如果没有发生请求限流就走上面的响应，否则就走下面这个响应
     // 只对 P1 进行参数限流，如果请求携带参数 P1，就直接限流
-    // 如果请求中仅仅携带 P2，不会限流走下面这个方法
-    public String dealHandler_testHotKey(String p1,String p2,BlockException exception) {
+    // 如果请求中仅仅携带 P2，不会限流去走下面这个方法
+    public String dealHandler_testHotKey(String p1, String p2, BlockException exception) {
         return "-----dealHandler_testHotKey";
     }
 
