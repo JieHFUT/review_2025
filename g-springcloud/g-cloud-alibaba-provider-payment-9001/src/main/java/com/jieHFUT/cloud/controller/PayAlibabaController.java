@@ -40,6 +40,7 @@ public class PayAlibabaController {
         payDTO.setPayNo("pay:" + IdUtil.fastUUID());
         payDTO.setUserId(1);
 
+
         return ResultData.success("查询返回值：" + payDTO);
     }
 
