@@ -51,6 +51,7 @@ public class PayAlibabaController {
         return ResultData.fail(ReturnCodeEnum.RC500.getCode(),"getPayByOrderNo服务不可用，" +
                 "触发sentinel流控配置规则"+"\t"+"o(╥﹏╥)o");
     }
+
     /*
     fallback 服务降级方法纳入到 Feign 接口统一处理，全局一个
     public ResultData myFallBack(@PathVariable("orderNo") String orderNo,Throwable throwable) {
