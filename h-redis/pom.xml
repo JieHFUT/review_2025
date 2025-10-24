@@ -29,6 +29,7 @@
         <junit.version>4.12</junit.version>
         <log4j.version>1.2.17</log4j.version>
         <lombok.version>1.16.18</lombok.version>
+        <swagger3.version>2.2.0</swagger3.version>
     </properties>
 
 
@@ -98,6 +99,13 @@
             <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
+        <!-- swagger3 调用方式 http://你的主机IP地址:5555/swagger-ui/index.html -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${swagger3.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

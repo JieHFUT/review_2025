@@ -1,11 +1,11 @@
 package com.jiehfut.redis.crediscluster.service;
 
 
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
