@@ -34,6 +34,8 @@ public class PayAlibabaController {
         //模拟从数据库查询出数据并赋值给DTO
         PayDTO payDTO = new PayDTO();
 
+
+
         payDTO.setId(1024);
         payDTO.setOrderNo(orderNo);
         payDTO.setAmount(BigDecimal.valueOf(9.9));
