@@ -50,6 +50,7 @@ public class StringBufferBuilderTest {
         System.out.println(sBuilder.length()); //实际存储的字符的个数
     }
 
+
     @Test
     public void test3(){
         StringBuilder  sBuilder = new StringBuilder("hello");
