@@ -22,6 +22,7 @@ public class StringBufferBuilderTest {
         （8）int length()：返回存储的字符数据的长度
         （9）StringBuffer reverse()：反转
     * */
+
     @Test
     public void test1(){
         StringBuilder  sBuilder = new StringBuilder();

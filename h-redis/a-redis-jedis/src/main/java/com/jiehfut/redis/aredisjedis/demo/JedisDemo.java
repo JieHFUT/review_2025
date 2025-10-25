@@ -15,6 +15,8 @@ public class JedisDemo {
         // 3.获得了 jedis 的客户端，可以像 jdbc 一样进行访问我们的 redis 服务
         System.out.println(jedis.ping());  // PONG
 
+
+
         // System.out.println(jedis.info());
         Set<String> keys = jedis.keys("*");
         for (String key : keys) {
