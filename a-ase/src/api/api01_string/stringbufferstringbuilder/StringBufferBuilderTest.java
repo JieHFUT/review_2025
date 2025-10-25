@@ -31,7 +31,6 @@ public class StringBufferBuilderTest {
     }
 
 
-
     @Test
     public void test2(){
         StringBuilder  sBuilder = new StringBuilder("hello");
