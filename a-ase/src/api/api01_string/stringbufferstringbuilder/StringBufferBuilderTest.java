@@ -30,6 +30,8 @@ public class StringBufferBuilderTest {
         System.out.println(sBuilder);
     }
 
+
+
     @Test
     public void test2(){
         StringBuilder  sBuilder = new StringBuilder("hello");
