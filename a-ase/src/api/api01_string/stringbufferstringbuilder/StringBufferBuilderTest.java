@@ -28,6 +28,7 @@ public class StringBufferBuilderTest {
         StringBuilder  sBuilder = new StringBuilder();
         sBuilder.append("abc").append("123").append("def"); //方法链的调用
         System.out.println(sBuilder);
+
     }
 
 
