@@ -15,9 +15,6 @@ public class AddOperation {
         byte i = 15;
         int j = 8;
         int k = i + j;
-
-
-
     }
 }
 
